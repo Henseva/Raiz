@@ -1,0 +1,190 @@
+/* Variáveis de Cores e Estilo */
+:root {
+    --bg-cream: #F9F7F2;
+    --primary-green: #6B705C;
+    --terracotta: #B06B4E;
+    --text-dark: #3F4238;
+    --white: #FFFFFF;
+    --font-title: 'DM Serif Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: var(--bg-cream);
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--primary-green);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-family: var(--font-title);
+    font-size: 5rem;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    max-width: 900px;
+    height: 400px;
+    background-color: #333; /* Fundo escuro como na imagem */
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: var(--white);
+    color: var(--terracotta);
+    padding: 12px 35px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+}
+
+/* Pilares */
+.pillars {
+    background-color: var(--bg-cream);
+    text-align: center;
+}
+
+.pillars h2 {
+    font-family: var(--font-title);
+    color: var(--terracotta);
+    margin-bottom: 40px;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Produtos */
+.products {
+    padding: 60px 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #888;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-order {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.btn-order.second {
+    background-color: var(--terracotta);
+}
+
+/* Footer CTA iFood */
+.footer-cta {
+    background-color: var(--terracotta);
+    color: var(--white);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.footer-cta h2 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.ifood-logo {
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 3.5rem; }
+    .navbar { flex-direction: column; gap: 20px; }
+}
