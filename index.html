@@ -31,19 +31,19 @@
             z-index: 1000; 
         }
 
+        /* Alinhamento solicitado: Lado esquerdo do RAIZ */
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 12px; /* Espaçamento exato como na foto */
+            gap: 12px;
         }
 
-        /* ÍCONE HK RAIZ - VERSÃO ROBUSTA DA FOTO */
         .hk-logo-svg {
             width: 45px;
             height: 45px;
             fill: none;
             stroke: var(--soft-peach);
-            stroke-width: 5; /* Aumentado para dar o peso da imagem */
+            stroke-width: 5;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
@@ -54,12 +54,12 @@
         .nav-links a { 
             color: var(--white); 
             text-decoration: none; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             font-weight: bold; 
         }
         .btn-nav { 
             background: var(--terracotta); 
-            padding: 8px 15px; 
+            padding: 8px 12px; 
             border-radius: 4px; 
         }
 
@@ -75,7 +75,6 @@
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* Cardápio */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -86,7 +85,7 @@
         .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
 
-        /* --- SLIDER DE BEBIDAS (RESTAURADO) --- */
+        /* --- SLIDER DE BEBIDAS (ORIGINAL) --- */
         .drink-slider-section { 
             padding: 80px 0; 
             text-align: center; 
@@ -102,6 +101,7 @@
             padding: 0 10%;
             overflow-x: auto; 
             scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
         .slider-container::-webkit-scrollbar { display: none; }
 
@@ -114,29 +114,65 @@
         .slide.active { opacity: 1; transform: scale(1); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
         .slide.active .drink-img { transform: translateY(-20px); }
-        
-        /* BOTÃO DE PEDIDO RESTAURADO */
-        .btn-drink { 
-            background: var(--terracotta); 
-            color: white; 
-            border: none; 
-            padding: 10px 25px; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            margin-top: 15px; 
-            opacity: 0; 
-            transition: 0.4s; 
-        }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; }
 
         /* Rodapé */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; text-align: center; }
-        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
-        .footer-column h4 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-column a { display: block; color: var(--white); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px; opacity: 0.8; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; opacity: 0.6; }
+        .main-footer {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 60px 5% 20px;
+            text-align: center;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+        .footer-column h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--soft-peach);
+        }
+        .footer-column a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .footer-column a:hover { opacity: 1; color: var(--terracotta); }
+        .footer-column p { font-size: 0.9rem; line-height: 1.6; opacity: 0.8; margin-bottom: 5px; }
+        
+        .ifood-bar {
+            background: var(--terracotta);
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            transition: 0.3s;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
 
+        @media (max-width: 768px) {
+            .footer-container { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -147,8 +183,8 @@
                 <path d="M25 25 V65 M25 45 H55 M55 25 V65 M55 45 L80 25 M55 45 L80 65" />
                 <path d="M25 65 Q25 85 10 90" />
                 <path d="M40 65 Q40 95 30 95" />
-                <path d="M55 65 Q55 85 65 90" stroke-width="4"/>
-                <path d="M70 65 Q75 80 85 80" stroke-width="3" opacity="0.8"/>
+                <path d="M55 65 Q55 85 65 90" />
+                <path d="M70 65 Q75 80 85 80" />
             </svg>
             <div class="logo">RAIZ</div>
         </div>
@@ -174,14 +210,18 @@
         <div class="menu-grid">
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
-                <h3>Burger Raiz</h3>
-                <p>Blend bovino 180g e queijo meia cura.</p>
+                <div class="card-content">
+                    <h3>Burger Raiz</h3>
+                    <p>Blend bovino 180g e queijo meia cura.</p>
+                </div>
                 <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
-                <h3>Bowl da Estação</h3>
-                <p>Mix de folhas e grãos ancestrais.</p>
+                <div class="card-content">
+                    <h3>Bowl da Estação</h3>
+                    <p>Mix de folhas e grãos ancestrais.</p>
+                </div>
                 <button>Pedir Agora</button>
             </div>
         </div>
@@ -212,17 +252,22 @@
         <div class="footer-container">
             <div class="footer-column">
                 <div class="logo">RAIZ</div>
-                <p>Sabor que vem da terra.</p>
+                <p>Sabor que vem da terra, direto para sua mesa.</p>
             </div>
             <div class="footer-column">
-                <h4>Explore</h4>
+                <h4>Navegação</h4>
                 <a href="#menu">Cardápio</a>
                 <a href="#especiais">Especiais</a>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <p>Rua da Terra, 123 - Centro</p>
+                <p>(11) 99999-9999</p>
             </div>
         </div>
         <a href="#" class="ifood-bar">Peça no iFood</a>
         <div class="footer-bottom">
-            <p>&copy; 2026 Restaurante Raiz.</p>
+            <p>&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</p>
         </div>
     </footer>
 
