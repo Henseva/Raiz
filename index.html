@@ -1,214 +1,162 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raiz - Sabor que vem da terra</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>Raiz - Sabor Original</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dark-green: #2D4A3E;
-            --soft-peach: #E9C4A6;
-            --light-grey: #D9D9D9;
-            --cream: #F5F1E3;
-            --terracotta: #D97D54;
-            --white: #FFFFFF;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* Navbar */
-        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
-
-        /* Hero */
-        .hero { 
-            height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
-
-        /* Valores */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-
-        /* Cardápio de Comidas */
-        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
-        
-        .card-food { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
-        .card-food h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card-food p { font-size: 0.85rem; line-height: 1.4; color: #444; margin-bottom: 15px; min-height: 45px; }
-        .card-food button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-
-        /* --- SEÇÃO DO VÍDEO (BEBIDAS INTERATIVAS) --- */
-        .drink-slider-section { 
-            padding: 80px 5%; 
-            text-align: center; 
-            transition: background-color 0.6s ease; 
-            background-color: #f5f1e3; 
+        section {
             position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
             overflow: hidden;
-            min-height: 700px;
+            transition: 0.5s;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; z-index: 10; position: relative; }
-        
-        .bg-text-overlay {
+
+        .circle {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            font-size: 20vw; font-weight: 900;
-            color: rgba(255,255,255,0.2);
-            text-transform: uppercase;
-            pointer-events: none;
-            opacity: 0;
-            transition: 0.6s;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e51e2a;
+            clip-path: circle(600px at right 800px);
+            z-index: 0;
+            transition: 0.5s ease-in-out;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo { color: #333; font-weight: 700; text-decoration: none; font-size: 2em; }
+
+        header ul { display: flex; }
+        header ul li { list-style: none; }
+        header ul li a { color: #333; text-decoration: none; margin-left: 40px; font-weight: 500; }
+
+        .content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 1;
         }
 
-        .container-drinks { display: flex; gap: 20px; justify-content: center; align-items: center; max-width: 1100px; margin: 0 auto; z-index: 5; position: relative; height: 450px; }
-        
-        .drink-card {
-            flex: 1; background: white; border-radius: 30px; cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-            padding: 30px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative; overflow: hidden;
+        .textBox { max-width: 600px; }
+        .textBox h2 { color: #333; font-size: 4em; line-height: 1.2em; font-weight: 900; text-transform: uppercase; }
+        .textBox h2 span { color: #e51e2a; font-size: 1.2em; transition: 0.5s; }
+        .textBox p { color: #333; margin: 20px 0; }
+        .textBox a {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #e51e2a;
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.5s;
         }
 
-        .drink-card.expanded { flex: 3; background: transparent; box-shadow: none; }
-        
-        .drink-card img { width: 100px; transition: 0.6s; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
-        .drink-card.expanded img { width: 220px; transform: translateY(-20px); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
+        .imgBox { width: 500px; display: flex; justify-content: flex-end; }
+        .imgBox img { max-width: 330px; transition: 0.5s; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); }
 
-        .drink-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; transition: 0.3s; }
-        .drink-card.expanded h3, .drink-card.expanded .view-label { opacity: 0; }
+        /* BEBIDAS LADO A LADO (Igual ao vídeo) */
+        .thumb {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
 
-        .expanded-info { position: absolute; bottom: 20px; opacity: 0; transition: 0.4s; text-align: center; }
-        .drink-card.expanded .expanded-info { opacity: 1; }
-        .expanded-info .price { font-size: 2rem; font-weight: 900; color: white; display: block; margin-bottom: 10px; }
+        .thumb li {
+            list-style: none;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: 0.5s;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-        /* Footer */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; font-size: 1.1rem; display: block; text-decoration: none; color: white; }
+        .thumb li:hover { transform: translateY(-10px); background: rgba(255,255,255,0.3); }
+        .thumb li img { width: 50px; }
 
-        @media (max-width: 768px) {
-            .container-drinks { flex-direction: column; height: auto; }
-            .drink-card { width: 100%; height: 350px; flex: none; }
-            .drink-card.expanded { height: 500px; }
-            .bg-text-overlay { font-size: 35vw; top: 30%; }
+        /* RESPONSIVIDADE */
+        @media (max-width: 991px) {
+            header { padding: 20px; }
+            header ul { display: none; }
+            section { padding: 150px 20px 100px; flex-direction: column; }
+            .content { flex-direction: column; }
+            .textBox { text-align: center; max-width: 100%; }
+            .textBox h2 { font-size: 2.5em; }
+            .imgBox { width: 100%; justify-content: center; margin-top: 50px; }
+            .imgBox img { max-width: 250px; }
+            .circle { clip-path: circle(400px at center bottom); }
         }
     </style>
 </head>
-<body id="page-body">
+<body>
+    <section>
+        <div class="circle"></div>
+        <header>
+            <a href="#" class="logo">Raiz</a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+            </ul>
+        </header>
 
-    <nav class="navbar">
-        <div class="logo">RAIZ</div>
-        <div class="nav-links">
-            <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">iFood</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <h1>Sabor que vem da terra.</h1>
-    </header>
-
-    <section class="values-bar">
-        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
-        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
-        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
-    <section id="menu" class="menu-section">
-        <h2>Cardápio Completo</h2>
-        <div class="menu-grid">
-            <div class="card-food">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura e pão artesanal.</p>
-                    <button>Pedir Agora</button>
-                </div>
+        <div class="content">
+            <div class="textBox">
+                <h2>Sabor que é <br><span id="spanText">Raiz</span></h2>
+                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica.</p>
+                <a href="#" id="btnColor">Saiba Mais</a>
             </div>
-            <div class="card-food">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas, grãos e legumes tostados.</p>
-                    <button>Pedir Agora</button>
-                </div>
+            <div class="imgBox">
+                <img src="coca.png" id="sliderImg">
             </div>
         </div>
+
+        <ul class="thumb">
+            <li onclick="imgSlider('coca.png', '#e51e2a')"><img src="coca.png"></li>
+            <li onclick="imgSlider('laranja.png', '#f28e1c')"><img src="laranja.png"></li>
+            <li onclick="imgSlider('guarana.png', '#017143')"><img src="guarana.png"></li>
+        </ul>
     </section>
-
-    <section id="especiais" class="drink-slider-section">
-        <div class="bg-text-overlay" id="bg-text">DRINK</div>
-        <h2>Especiais da Casa</h2>
-        
-        <div class="container-drinks">
-            <div class="drink-card" onclick="toggleDrink(this, '#e74c3c', 'COCA')">
-                <span>01</span>
-                <img src="coca.png">
-                <h3 class="view-label">Coca-Cola</h3>
-                <div class="expanded-info">
-                    <span class="price">R$ 8,50</span>
-                    <button style="padding:10px 20px; border-radius:20px; border:none; font-weight:bold;">PEDIR</button>
-                </div>
-            </div>
-
-            <div class="drink-card" onclick="toggleDrink(this, '#f39c12', 'FANTA')">
-                <span>02</span>
-                <img src="laranja.png">
-                <h3 class="view-label">Laranja</h3>
-                <div class="expanded-info">
-                    <span class="price">R$ 7,50</span>
-                    <button style="padding:10px 20px; border-radius:20px; border:none; font-weight:bold;">PEDIR</button>
-                </div>
-            </div>
-
-            <div class="drink-card" onclick="toggleDrink(this, '#27ae60', 'RAIZ')">
-                <span>03</span>
-                <img src="guarana.png">
-                <h3 class="view-label">Guaraná</h3>
-                <div class="expanded-info">
-                    <span class="price">R$ 7,50</span>
-                    <button style="padding:10px 20px; border-radius:20px; border:none; font-weight:bold;">PEDIR</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="logo">RAIZ</div>
-        <a href="#" class="ifood-bar">Peça no iFood</a>
-    </footer>
 
     <script>
-        function toggleDrink(card, color, text) {
-            const section = document.getElementById('especiais');
-            const bgOverlay = document.getElementById('bg-text');
-            
-            if (card.classList.contains('expanded')) {
-                card.classList.remove('expanded');
-                section.style.backgroundColor = '#f5f1e3';
-                bgOverlay.style.opacity = '0';
-                return;
-            }
-
-            document.querySelectorAll('.drink-card').forEach(c => c.classList.remove('expanded'));
-            card.classList.add('expanded');
-            section.style.backgroundColor = color;
-            bgOverlay.innerText = text;
-            bgOverlay.style.opacity = '1';
-            bgOverlay.style.transform = 'translate(-50%, -50%) scale(1)';
+        function imgSlider(anything, color){
+            document.querySelector('#sliderImg').src = anything;
+            document.querySelector('.circle').style.background = color;
+            document.querySelector('#spanText').style.color = color;
+            document.querySelector('#btnColor').style.background = color;
         }
     </script>
 </body>
