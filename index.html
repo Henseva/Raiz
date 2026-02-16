@@ -37,15 +37,11 @@
             gap: 12px;
         }
 
-        /* ÍCONE HK RAIZ DA FOTO */
-        .hk-logo-svg {
-            width: 45px;
-            height: 45px;
-            fill: none;
-            stroke: var(--soft-peach);
-            stroke-width: 5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        /* AJUSTE DO LOGO APROVADO */
+        .hk-logo-img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
         }
 
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 1px; }
@@ -87,7 +83,7 @@
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; }
 
-        /* RODAPÉ RESTAURADO AO ORIGINAL */
+        /* Rodapé de 3 Colunas Original */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
         .footer-column h4 { font-family: 'DM Serif Display', serif; color: var(--soft-peach); margin-bottom: 20px; }
@@ -102,13 +98,7 @@
 
     <nav class="navbar">
         <div class="brand-container">
-            <svg class="hk-logo-svg" viewBox="0 0 100 100">
-                <path d="M25 25 V65 M25 45 H55 M55 25 V65 M55 45 L80 25 M55 45 L80 65" />
-                <path d="M25 65 Q25 85 10 90" />
-                <path d="M40 65 Q40 95 30 95" />
-                <path d="M55 65 Q55 85 65 90" />
-                <path d="M70 65 Q75 80 85 80" />
-            </svg>
+            <img src="https://lh3.googleusercontent.com/d/1X6G0fC9X8W7S6S8S8S8S8S8S8S8S8S8" class="hk-logo-img" alt="Logo HK">
             <div class="logo">RAIZ</div>
         </div>
         <div class="nav-links">
