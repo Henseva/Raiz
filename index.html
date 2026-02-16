@@ -1,204 +1,255 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raiz - Sabor que vem da terra</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Sabor Raiz | Refresco Premium</title>
     <style>
-        :root {
-            --dark-green: #2D4A3E;
-            --soft-peach: #E9C4A6;
-            --light-grey: #D9D9D9;
-            --cream: #F5F1E3;
-            --terracotta: #D97D54;
-            --white: #FFFFFF;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* Navbar */
-        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
-
-        /* Hero */
-        .hero { 
-            height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
-
-        /* Valores */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        
-        /* Cardápio de Comidas (Baseado na sua foto) */
-        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
-        
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card p { font-size: 0.85rem; line-height: 1.4; color: #444; margin-bottom: 15px; min-height: 45px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-
-        /* SEÇÃO ESPECIAIS (Onde estavam as fotos quebradas) */
-        .drink-slider-section { 
-            padding: 80px 0; 
-            text-align: center; 
-            transition: background-color 0.8s ease; 
-            background-color: #fce4e4; 
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
             overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1000px; min-height: 480px; }
-        
-        .slide { 
-            min-width: 280px; height: 420px; 
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 35px;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-            opacity: 0.3; 
-            transform: scale(0.85);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
-            padding: 20px;
-        }
-        
-        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        
-        /* Ajuste das Imagens das Bebidas */
-        .drink-img {
+
+        /* HEADER */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 180px;
-            height: 250px;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
         }
-        .slide.active .drink-img { transform: translateY(-20px) scale(1.1); }
 
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-top: 15px; color: var(--dark-green); }
-        .slide span { font-weight: bold; color: var(--terracotta); position: absolute; top: 25px; left: 25px; font-size: 1.1rem; }
+        .logo {
+            color: #333;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        /* Footer */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; font-size: 1.1rem; margin-top: 20px; display: block; text-decoration: none; color: white; }
+        header ul {
+            display: flex;
+        }
 
-        /* Correção Mobile */
-        @media (max-width: 768px) {
-            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding: 20px 10%; gap: 15px; -webkit-overflow-scrolling: touch; }
-            .slide { min-width: 260px; height: 380px; flex-shrink: 0; }
-            .drink-img { height: 200px; }
-            .menu-grid { grid-template-columns: 1fr; }
+        header ul li {
+            list-style: none;
+        }
+
+        header ul li a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 40px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        header ul li a:hover {
+            color: #e51e2a; /* Cor muda no script */
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .textBox {
+            position: relative;
+            max-width: 600px;
+            animation: fadeInText 1s ease-in-out;
+        }
+
+        .textBox h2 {
+            color: #333;
+            font-size: 4em;
+            line-height: 1.2em;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .textBox h2 span {
+            color: #e51e2a;
+            font-size: 1.2em;
+            transition: 0.5s;
+        }
+
+        .textBox p {
+            color: #333;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+
+        .textBox a {
+            display: inline-block;
+            padding: 12px 35px;
+            background: #e51e2a; 
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: 0.5s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .textBox a:hover {
+            transform: scale(1.05);
+        }
+
+        /* IMAGEM E ANIMAÇÕES */
+        .imgBox {
+            width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Efeito de flutuar constante na garrafa */
+        .imgBox img {
+            max-width: 420px;
+            transition: 0.5s ease;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Classe disparada via JS para efeito de troca */
+        .img-fade {
+            animation: imgSwap 0.6s ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes imgSwap {
+            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* MINIATURAS */
+        .thumb {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 100;
+        }
+
+        .thumb li {
+            list-style: none;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: 0.5s;
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .thumb li:hover {
+            transform: translateY(-15px) scale(1.1);
+            background: rgba(255,255,255,0.4);
+        }
+
+        .thumb li img {
+            max-width: 50px;
+        }
+
+        /* CÍRCULO DE FUNDO */
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e51e2a;
+            clip-path: circle(600px at right 800px);
+            transition: 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
     </style>
 </head>
 <body>
+    <section class="main">
+        <div class="circle"></div>
+        
+        <header>
+            <a href="#" class="logo">Raiz</a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </header>
 
-    <nav class="navbar">
-        <div class="logo">RAIZ</div>
-        <div class="nav-links">
-            <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">iFood</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <h1>Sabor que vem da terra.</h1>
-    </header>
-
-    <section class="values-bar">
-        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
-        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
-        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
-    <section id="menu" class="menu-section">
-        <h2>Cardápio Completo</h2>
-        <div class="menu-grid">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura e pão artesanal.</p>
-                    <button>Pedir Agora</button>
-                </div>
+        <div class="content">
+            <div class="textBox">
+                <h2>Sabor que é <br><span id="spanText">Raiz</span></h2>
+                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica para quem valoriza o sabor autêntico e momentos refrescantes.</p>
+                <a href="#" id="btnColor">Saiba Mais</a>
             </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas, grãos e legumes tostados.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500');"></div>
-                <div class="card-content">
-                    <h3>Pão Rústico</h3>
-                    <p>Pão de campo crocante com manteiga de ervas.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b4?w=500');"></div>
-                <div class="card-content">
-                    <h3>Sucos Vivos</h3>
-                    <p>Frutas prensadas a frio, 100% natural.</p>
-                    <button>Pedir Agora</button>
-                </div>
+            <div class="imgBox">
+                <img src="coca.png" id="sliderImg">
             </div>
         </div>
+
+        <ul class="thumb">
+            <li><img src="coca.png" onclick="updateSlider('coca.png', '#e51e2a')"></li>
+            <li><img src="laranja.png" onclick="updateSlider('laranja.png', '#f28e1c')"></li>
+            <li><img src="guarana.png" onclick="updateSlider('guarana.png', '#017143')"></li>
+        </ul>
     </section>
-
-    <section id="especiais" class="drink-slider-section">
-        <h2>Especiais da Casa</h2>
-        <div class="slider-container">
-            
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
-                <span>01</span>
-                <img src="https://cdn.pixabay.com/photo/2017/02/02/15/15/coca-cola-2032980_1280.png" alt="Coca-Cola" class="drink-img">
-                <h3>Coca-Cola</h3>
-            </div>
-
-            <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <span>02</span>
-                <img src="https://cdn.pixabay.com/photo/2016/08/23/15/52/fresh-orange-juice-1614822_1280.png" alt="Laranja" class="drink-img">
-                <h3>Laranja</h3>
-            </div>
-
-            <div class="slide" onclick="updateSlider(this, '#27ae60')">
-                <span>03</span>
-                <img src="https://cdn.pixabay.com/photo/2012/04/13/13/10/bottle-32331_1280.png" alt="Guaraná" class="drink-img">
-                <h3>Guaraná</h3>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="logo">RAIZ</div>
-        <a href="#" class="ifood-bar">Peça no iFood</a>
-    </footer>
 
     <script>
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
+        function updateSlider(filename, color) {
+            const img = document.querySelector('#sliderImg');
             
-            if(window.innerWidth < 768) {
-                element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
+            // 1. Aplica animação de troca na imagem
+            img.classList.remove('img-fade');
+            void img.offsetWidth; // Truque para resetar animação CSS
+            img.classList.add('img-fade');
+            
+            // 2. Troca a imagem
+            img.src = filename;
+
+            // 3. Troca as cores
+            document.querySelector('.circle').style.background = color;
+            document.querySelector('#spanText').style.color = color;
+            document.querySelector('#btnColor').style.background = color;
         }
     </script>
 </body>
