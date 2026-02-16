@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raiz - Sabor que vem da terra</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --dark-green: #2D4A3E;
@@ -15,90 +15,151 @@
             --white: #FFFFFF;
         }
 
-        /* Reset e Base */
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Navbar (RESTAURADA) */
-        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 20px; border-radius: 4px; display: inline-block; color: white !important; }
-
-        /* Hero Section */
-        .hero { 
-            height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
+        /* --- NAVBAR CORRIGIDA (IGUAL À IMAGEM) --- */
+        .navbar { 
+            background: var(--dark-green); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: var(--white); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; margin: 0; }
-
-        /* Blocos de Valores */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-
-        /* Cardápio de Comidas */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .logo { 
+            font-family: 'DM Serif Display', serif; 
+            font-size: 1.8rem; 
+            text-decoration: none; 
+            color: white; 
+        }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; text-align: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 10px; }
+        .nav-links { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; /* Espaço entre os links */
+        }
+        
+        .nav-links a { 
+            color: var(--white); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+        }
 
-        /* SEÇÃO DE BEBIDAS */
+        /* Botão iFood em destaque */
+        .btn-nav { 
+            background: var(--terracotta); 
+            padding: 10px 20px; 
+            border-radius: 6px; 
+            transition: 0.3s;
+        }
+        .btn-nav:hover { background: #bf6a45; }
+
+        /* --- HERO --- */
+        .hero { 
+            height: 60vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+        }
+        .hero h1 { 
+            font-family: 'DM Serif Display', serif; 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            color: var(--white); 
+            text-align: center; 
+            line-height: 1.1;
+        }
+
+        /* --- VALORES --- */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; }
+        .icon { font-size: 2.5rem; display: block; margin-bottom: 15px; }
+        .values-bar h3 { font-family: 'DM Serif Display', serif; margin-bottom: 10px; }
+
+        /* --- BEBIDAS (ESTILO VÍDEO) --- */
         .drink-slider-section { 
             padding: 100px 0; 
             text-align: center; 
-            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: background-color 0.8s ease; 
             background-color: #fce4e4; 
-            overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 60px; }
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 550px; }
+        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.8rem; margin-bottom: 50px; }
+        
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 30px; min-height: 550px; padding: 0 20px; }
         
         .slide { 
-            min-width: 280px; height: 480px; 
+            min-width: 300px; 
+            height: 500px; 
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(15px);
             border-radius: 40px;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
-            opacity: 0.3; 
-            transform: scale(0.85) rotateY(15deg);
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 30px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+            opacity: 0.4; 
+            transform: scale(0.9);
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-end;
+            cursor: pointer; 
+            position: relative; 
+            border: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 40px;
         }
         
-        .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
-        .drink-img { width: 200px; height: 280px; object-fit: contain; margin-bottom: 10px; transition: transform 0.6s ease; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); }
-        .slide.active .drink-img { transform: translateY(-40px) scale(1.15); }
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin: 0; color: var(--dark-green); }
-        .slide span { font-weight: bold; color: var(--terracotta); position: absolute; top: 30px; left: 30px; font-size: 1.2rem; }
+        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.12); }
+        
+        .drink-img { 
+            width: 200px; 
+            height: 300px; 
+            object-fit: contain; 
+            margin-bottom: 20px; 
+            transition: 0.5s; 
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); 
+        }
+        
+        .slide.active .drink-img { transform: translateY(-40px); }
+        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark-green); }
 
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; cursor: pointer; opacity: 0; transform: translateY(10px); transition: 0.5s; }
+        .btn-drink { 
+            background: var(--terracotta); 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            border-radius: 30px; 
+            font-weight: 900; 
+            margin-top: 20px; 
+            cursor: pointer; 
+            opacity: 0; 
+            transform: translateY(10px);
+            transition: 0.4s; 
+        }
         .slide.active .btn-drink { opacity: 1; transform: translateY(0); }
 
         /* Rodapé */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 20px; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; margin-top: 40px; cursor: pointer; display: block; text-decoration: none; color: white; }
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5%; text-align: center; }
+        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.3rem; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto; }
 
+        /* Ajustes para Mobile */
         @media (max-width: 768px) {
-            .navbar .nav-links { display: none; }
-            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding-left: 10%; gap: 15px; padding-bottom: 40px; }
-            .slide { min-width: 270px; height: 440px; }
+            .navbar { padding: 15px 3%; }
+            .nav-links { gap: 12px; } /* Mantém visível mas com menos espaço */
+            .nav-links a { font-size: 0.75rem; }
+            .slider-container { overflow-x: auto; justify-content: flex-start; padding-bottom: 30px; }
+            .slide { min-width: 270px; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">RAIZ</div>
+        <a href="#" class="logo">RAIZ</a>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
@@ -111,50 +172,25 @@
     </header>
 
     <section class="values-bar">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
-    <section id="menu" class="menu-section">
-        <h2>Cardápio Completo</h2>
-        <div class="menu-grid">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura e pão artesanal.</p>
-                </div>
-                <button>Pedir Agora</button>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas orgânicas, grãos ancestrais e legumes tostados.</p>
-                </div>
-                <button>Pedir Agora</button>
-            </div>
-        </div>
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Ingredientes orgânicos colhidos por produtores locais.</p></div>
+        <div><span class="icon">🖐️</span><h3>Feito à Mão</h3><p>Processo artesanal que respeita o tempo de cada alimento.</p></div>
+        <div><span class="icon">🚲</span><h3>Entrega Consciente</h3><p>Seu pedido chega fresco e com menor impacto ambiental.</p></div>
     </section>
 
     <section id="especiais" class="drink-slider-section">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
             <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
-                <span>01</span>
                 <img src="coca.png" class="drink-img">
                 <h3>Coca-Cola</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <span>02</span>
                 <img src="laranja.png" class="drink-img">
-                <h3>Laranja</h3>
+                <h3>Suco Laranja</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
-                <span>03</span>
                 <img src="guarana.png" class="drink-img">
                 <h3>Guaraná</h3>
                 <button class="btn-drink">Pedir Agora</button>
@@ -163,18 +199,17 @@
     </section>
 
     <footer class="main-footer">
-        <div class="logo">RAIZ</div>
         <a href="#" class="ifood-bar">Peça no iFood</a>
     </footer>
 
     <script>
         function updateSlider(element, color) {
+            // Remove classe ativa de todos
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            // Adiciona no clicado
             element.classList.add('active');
+            // Muda cor do fundo da seção
             document.getElementById('especiais').style.backgroundColor = color;
-            if(window.innerWidth < 768) {
-                element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
         }
     </script>
 </body>
