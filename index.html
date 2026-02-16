@@ -23,7 +23,7 @@
         .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
         .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; text-decoration: none; color: white; }
 
         /* Hero Section */
         .hero { 
@@ -50,7 +50,7 @@
         .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 10px; }
 
-        /* Slider de Bebidas */
+        /* SEÇÃO DE BEBIDAS (Foco Atual) */
         .drink-slider-section { 
             padding: 100px 0; 
             text-align: center; 
@@ -59,7 +59,6 @@
             overflow: hidden;
         }
         .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 60px; }
-        
         .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 550px; }
         
         .slide { 
@@ -76,34 +75,12 @@
         }
         
         .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
-        
-        .drink-img {
-            width: 200px;
-            height: 280px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            transition: transform 0.6s ease;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
-        }
+        .drink-img { width: 200px; height: 280px; object-fit: contain; margin-bottom: 10px; transition: transform 0.6s ease; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); }
         .slide.active .drink-img { transform: translateY(-40px) scale(1.15); }
-
         .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin: 0; color: var(--dark-green); }
         .slide span { font-weight: bold; color: var(--terracotta); position: absolute; top: 30px; left: 30px; font-size: 1.2rem; }
 
-        /* Botão de Pedir Bebida */
-        .btn-drink {
-            background: var(--terracotta);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 15px;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.5s;
-        }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; cursor: pointer; opacity: 0; transform: translateY(10px); transition: 0.5s; }
         .slide.active .btn-drink { opacity: 1; transform: translateY(0); }
 
         /* Rodapé */
@@ -124,7 +101,7 @@
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">Pedir no iFood</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -157,50 +134,30 @@
                 </div>
                 <button>Pedir Agora</button>
             </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500');"></div>
-                <div class="card-content">
-                    <h3>Pão Rústico</h3>
-                    <p>Pão de campo crocante servido com manteiga de ervas.</p>
-                </div>
-                <button>Pedir Agora</button>
             </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b4?w=500');"></div>
-                <div class="card-content">
-                    <h3>Sucos Vivos</h3>
-                    <p>Frutas prensadas a frio, sem adição de açúcar ou água.</p>
-                </div>
-                <button>Pedir Agora</button>
-            </div>
-        </div>
     </section>
 
     <section id="especiais" class="drink-slider-section">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
-            
             <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
                 <span>01</span>
-                <img src="coca.png" alt="Coca-Cola" class="drink-img">
+                <img src="coca.png" class="drink-img">
                 <h3>Coca-Cola</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
-
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <span>02</span>
-                <img src="laranja.png" alt="Laranja" class="drink-img">
+                <img src="laranja.png" class="drink-img">
                 <h3>Laranja</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
-
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
                 <span>03</span>
-                <img src="guarana.png" alt="Guaraná" class="drink-img">
+                <img src="guarana.png" class="drink-img">
                 <h3>Guaraná</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
-
         </div>
     </section>
 
@@ -214,7 +171,6 @@
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
-            
             if(window.innerWidth < 768) {
                 element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
