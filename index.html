@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raiz - Gastronomia de Origem</title>
+    <title>Raiz - Sabor que vem da terra</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -20,100 +20,78 @@
         /* Navbar */
         .navbar { background: var(--dark-green); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 2rem; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-weight: bold; }
+        .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: bold; }
+        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 4px; }
 
-        /* Hero */
+        /* Hero Section */
         .hero { 
             height: 60vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?w=1200'); 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4rem; color: var(--white); text-align: center; }
 
-        /* Secções de Cores */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 60px 10%; text-align: center; gap: 30px; }
-        .menu-section { background: var(--light-grey); padding: 80px 10%; text-align: center; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card-static { background: var(--white); border-radius: 15px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        /* Blocos de Cores (Valores) */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 50px 10%; text-align: center; gap: 30px; }
+        .icon { font-size: 2.5rem; }
 
-        /* SLIDER IDÊNTICO AO VÍDEO (SEM SETAS) */
+        /* Cardápio (Bloco Cinza) */
+        .menu-section { background: var(--light-grey); padding: 80px 10%; text-align: center; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--white); padding-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card-img { height: 180px; background-size: cover; background-position: center; background-color: #eee; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+
+        /* SLIDER ESTILO VÍDEO (SEM SETAS) */
         .drink-slider-section { 
             padding: 100px 0; 
             text-align: center; 
             transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
             background-color: var(--white);
-            min-height: 80vh;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 80px; }
+        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 60px; }
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; }
         
-        .slider-container { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 20px; 
-            perspective: 1200px;
-        }
-
         .slide { 
-            min-width: 280px; 
-            height: 420px; 
+            min-width: 280px; height: 420px; 
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(8px);
             border-radius: 35px;
             transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
-            opacity: 0.5; 
-            transform: scale(0.85) rotateY(15deg);
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.4);
+            opacity: 0.4; 
+            transform: scale(0.8) rotateY(15deg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
         }
-
-        .slide.active { 
-            opacity: 1; 
-            transform: scale(1.15) rotateY(0deg); 
-            background: white; 
-            z-index: 10; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12); 
+        .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        
+        /* Elemento da Garrafa */
+        .bottle-shape {
+            width: 100px; height: 220px; background: #ddd; border-radius: 50px 50px 15px 15px;
+            margin-bottom: 20px; transition: 0.5s ease;
         }
-
-        /* Placeholder da Garrafa (Efeito do vídeo) */
-        .bottle-placeholder {
-            width: 120px;
-            height: 240px;
-            background: #eee;
-            border-radius: 60px 60px 20px 20px;
-            margin-bottom: 20px;
-            transition: 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        .slide.active .bottle-placeholder {
-            transform: translateY(-30px);
-            background: var(--dark-green);
-            color: white;
-        }
-
+        .slide.active .bottle-shape { transform: translateY(-30px); background: var(--dark-green); }
         .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 0; }
         .slide span { font-weight: bold; color: var(--terracotta); margin-bottom: 10px; }
 
-        /* História e Rodapé */
-        .history-section { background: var(--cream); padding: 80px 10%; }
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 10%; text-align: center; }
+        /* História (Bloco Creme) */
+        .history-section { background: var(--cream); padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .history-img { flex: 1; min-width: 300px; height: 400px; background: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000'); background-size: cover; border-radius: 8px; }
+        .history-text { flex: 1; min-width: 300px; }
+        .history-text h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; }
+
+        /* Footer */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; }
+        .ifood-bar { background: var(--terracotta); padding: 25px; text-align: center; margin: 0 -12%; font-weight: bold; font-size: 1.2rem; }
 
         @media (max-width: 768px) {
-            .slider-container { flex-direction: column; padding: 40px; }
-            .slide { min-width: 100%; height: 350px; }
+            .slider-container { flex-direction: column; gap: 40px; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -123,7 +101,8 @@
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
+            <a href="#historia">História</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -132,64 +111,68 @@
     </header>
 
     <section class="values-bar">
-        <div><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><h3>Consciente</h3><p>Entrega segura.</p></div>
+        <div class="value-item"><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
+        <div class="value-item"><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div class="value-item"><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
     <section id="menu" class="menu-section">
-        <h2>Cardápio Semanal</h2>
+        <h2>Cardápio Completo</h2>
         <div class="menu-grid">
-            <div class="card-static"><h3>Burger Raiz</h3></div>
-            <div class="card-static"><h3>Bowl Estação</h3></div>
-            <div class="card-static"><h3>Pão Rústico</h3></div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
+                <h3>Burger Raiz</h3>
+                <button>Pedir Agora</button>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
+                <h3>Bowl Estação</h3>
+                <button>Pedir Agora</button>
+            </div>
         </div>
     </section>
 
-    <section id="especiais" class="drink-slider-section">
+    <section class="drink-slider-section" id="sliderArea">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
-            
-            <div class="slide active" onclick="activateSlide(this, '#E9C4A6')">
+            <div class="slide active" onclick="updateSlider(this, '#E9C4A6')">
                 <span>01</span>
-                <div class="bottle-placeholder">GARRAFA 01</div>
+                <div class="bottle-shape"></div>
                 <h3>Berry Mix</h3>
             </div>
-
-            <div class="slide" onclick="activateSlide(this, '#D97D54')">
+            <div class="slide" onclick="updateSlider(this, '#D97D54')">
                 <span>02</span>
-                <div class="bottle-placeholder">GARRAFA 02</div>
+                <div class="bottle-shape"></div>
                 <h3>Orange Vital</h3>
             </div>
-
-            <div class="slide" onclick="activateSlide(this, '#2D4A3E')">
+            <div class="slide" onclick="updateSlider(this, '#2D4A3E')">
                 <span>03</span>
-                <div class="bottle-placeholder">GARRAFA 03</div>
+                <div class="bottle-shape"></div>
                 <h3>Green Detox</h3>
             </div>
-
         </div>
     </section>
 
     <section id="historia" class="history-section">
-        <h2>Nossa História</h2>
-        <p>Gastronomia consciente para um dia a dia mais leve.</p>
+        <div class="history-img"></div>
+        <div class="history-text">
+            <h2>Nossa História</h2>
+            <p>Uma jornada que começou na terra e floresceu na mesa.</p>
+        </div>
     </section>
 
     <footer class="main-footer">
-        <p>RAIZ © 2026 - Feito para você.</p>
+        <div class="footer-grid">
+            <div class="footer-info"><div class="logo">RAIZ</div><p>Sabor e Origem.</p></div>
+        </div>
+        <div class="ifood-bar">Peça RAIZ no iFood</div>
     </footer>
 
     <script>
-        function activateSlide(element, color) {
-            // Remove a classe active de todos os slides
+        function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            
-            // Adiciona active ao slide clicado
             element.classList.add('active');
-            
-            // Muda a cor de fundo da seção
-            document.querySelector('.drink-slider-section').style.backgroundColor = color;
+            document.getElementById('sliderArea').style.backgroundColor = color;
         }
     </script>
 </body>
