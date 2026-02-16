@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raiz - Sabor que vem da terra</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --dark-green: #2D4A3E;
@@ -15,98 +15,65 @@
             --white: #FFFFFF;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+        /* --- ESTILOS ORIGINAIS DO CÓDIGO RAIZ --- */
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* --- NAVBAR (Fiel à imagem do monitor) --- */
-        .navbar { 
-            background: var(--dark-green); 
-            padding: 15px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            color: var(--white); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; text-decoration: none; color: white; }
-        .nav-links { display: flex; align-items: center; gap: 25px; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
-        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 6px; }
+        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
+        .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; text-decoration: none; }
 
-        /* --- HERO --- */
         .hero { 
-            height: 60vh; 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
+            height: 50vh; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-align: center; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; margin: 0; }
 
-        /* --- VALORES --- */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; }
-        .icon { font-size: 2.5rem; display: block; margin-bottom: 15px; }
-        .values-bar h3 { font-family: 'DM Serif Display', serif; margin-bottom: 10px; }
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
+        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* --- CARDÁPIO DE COMIDAS (Restaurado) --- */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.8rem; margin-bottom: 40px; }
+        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; padding-bottom: 25px; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
         .card:hover { transform: translateY(-5px); }
         .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 25px; flex-grow: 1; text-align: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .card p { font-size: 0.9rem; line-height: 1.5; color: #444; margin-bottom: 20px; min-height: 60px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; align-self: center; }
+        .card-content { padding: 20px; flex-grow: 1; text-align: center; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
+        .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 10px; }
 
-        /* --- SEÇÃO DE BEBIDAS (Inspirada no vídeo) --- */
+        /* --- ADIÇÃO APENAS DO SLIDE DE BEBIDAS --- */
         .drink-slider-section { 
             padding: 100px 0; 
             text-align: center; 
             transition: background-color 0.8s ease; 
             background-color: #fce4e4; 
+            overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.8rem; margin-bottom: 50px; }
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 30px; min-height: 550px; }
-        
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 550px; }
         .slide { 
-            min-width: 300px; height: 500px; 
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-            opacity: 0.4; transform: scale(0.9);
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 40px;
+            min-width: 280px; height: 480px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0.3; transform: scale(0.85) rotateY(15deg);
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; cursor: pointer; position: relative; padding-bottom: 30px;
         }
-        
-        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.12); }
-        .drink-img { width: 200px; height: 300px; object-fit: contain; margin-bottom: 20px; transition: 0.5s; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); }
-        .slide.active .drink-img { transform: translateY(-40px); }
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark-green); }
-        
-        .btn-drink { 
-            background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 30px; 
-            font-weight: 900; margin-top: 20px; cursor: pointer; opacity: 0; transition: 0.4s; 
-        }
-        .slide.active .btn-drink { opacity: 1; }
+        .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
+        .drink-img { width: 200px; height: 280px; object-fit: contain; margin-bottom: 10px; transition: 0.6s ease; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); }
+        .slide.active .drink-img { transform: translateY(-40px) scale(1.15); }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; cursor: pointer; opacity: 0; transform: translateY(10px); transition: 0.5s; }
+        .slide.active .btn-drink { opacity: 1; transform: translateY(0); }
 
-        /* Footer */
-        .main-footer { background: var(--dark-green); padding: 60px 5%; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; color: white; text-decoration: none; display: inline-block; border-radius: 8px; width: 100%; max-width: 400px; }
-
-        @media (max-width: 768px) {
-            .slider-container { overflow-x: auto; justify-content: flex-start; padding: 0 5%; }
-        }
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 20px; text-align: center; }
+        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; margin-top: 40px; cursor: pointer; display: block; text-decoration: none; color: white; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="#" class="logo">RAIZ</a>
+        <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Nossa História</a>
@@ -172,7 +139,7 @@
             </div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <img src="laranja.png" class="drink-img">
-                <h3>Suco Laranja</h3>
+                <h3>Laranja</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
@@ -184,6 +151,7 @@
     </section>
 
     <footer class="main-footer">
+        <div class="logo">RAIZ</div>
         <a href="#" class="ifood-bar">Peça no iFood</a>
     </footer>
 
