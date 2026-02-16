@@ -57,11 +57,11 @@
         .slider-container { display: flex; justify-content: center; align-items: center; gap: 30px; perspective: 1000px; }
         
         .slide { 
-            min-width: 260px; 
-            height: 380px;
+            min-width: 280px; 
+            height: 400px;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
             transition: 0.6s ease; 
             opacity: 0.4; 
             transform: scale(0.8) rotateY(10deg);
@@ -70,13 +70,26 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
         }
         .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
-        .drink-img { width: 140px; height: auto; transition: 0.5s ease; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
-        .slide.active .drink-img { transform: translateY(-20px) scale(1.1); }
+        /* A Garrafa agora flutua sobre o card */
+        .drink-img { 
+            width: 180px; 
+            height: auto; 
+            transition: 0.5s ease; 
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .slide.active .drink-img { transform: translate(-50%, -70%) scale(1.2); }
+        .slide-content h3 { position: absolute; bottom: 40px; font-family: 'DM Serif Display', serif; font-size: 1.8rem; width: 100%; }
+        .slide-content span { position: absolute; top: 30px; font-weight: bold; font-size: 1.2rem; }
 
-        .slider-nav button { background: var(--dark-green); color: white; border: none; width: 55px; height: 55px; border-radius: 50%; cursor: pointer; margin: 40px 15px 0; font-size: 1.2rem; }
+        .slider-nav button { background: var(--dark-green); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; margin: 50px 15px 0; font-size: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         /* História (Bloco Creme) */
         .history-section { background: var(--cream); padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
@@ -84,7 +97,7 @@
         .history-text { flex: 1; min-width: 300px; }
         .history-text h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; }
 
-        /* Rodapé Verde Escuro + iFood Terracota */
+        /* Rodapé Verde Escuro */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 0; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; }
         .ifood-bar { background: var(--terracotta); padding: 25px; text-align: center; margin: 0 -12%; font-weight: bold; font-size: 1.2rem; }
@@ -92,6 +105,7 @@
         @media (max-width: 768px) {
             .slider-container { flex-direction: column; gap: 50px; }
             .hero h1 { font-size: 2.5rem; }
+            .navbar { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -122,13 +136,11 @@
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
                 <h3>Burger Raiz</h3>
-                <p>Blend bovino e pão artesanal.</p>
                 <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
                 <h3>Bowl Estação</h3>
-                <p>Mix de folhas e grãos puros.</p>
                 <button>Pedir Agora</button>
             </div>
         </div>
@@ -140,28 +152,28 @@
             <div class="slide active" data-color="#E9C4A6">
                 <div class="slide-content">
                     <span>01</span>
+                    <img src="https://images.pngnice.com/download/2000/Strawberry-Smoothie-PNG-File.png" class="drink-img">
                     <h3>Berry Smoothie</h3>
-                    <img src="https://ouch-cdn2.icons8.com/6U83_6uUqWl3hF6mXzI_4U6W2kYvI3J7tq5Wq5Wq5Wq/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvOTU1/LzE0ZTQ1YjRjLTk0/MDItNDk0Zi1hYjE3/LTY4M2JkOTk4YjY5/Ni5wbmc.png" class="drink-img">
                 </div>
             </div>
             <div class="slide" data-color="#D97D54">
                 <div class="slide-content">
                     <span>02</span>
-                    <h3>Vitalidade Laranja</h3>
-                    <img src="https://ouch-cdn2.icons8.com/V9X2A_H3T0_3Bf7I-z4f1_U8k1_7M1U7yL5f3f3f3f3/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNDM1/LzU3ZDVmZTQxLWZi/MmEtNDY4Zi1hYzEy/LTI3ZGU0ZDY4ZTE0/NS5wbmc.png" class="drink-img">
+                    <img src="https://www.pngall.com/wp-content/uploads/12/Orange-Juice-Bottle-PNG-Cutout.png" class="drink-img">
+                    <h3>Suco Vitalidade</h3>
                 </div>
             </div>
             <div class="slide" data-color="#2D4A3E">
                 <div class="slide-content">
                     <span>03</span>
+                    <img src="https://www.pngall.com/wp-content/uploads/13/Green-Juice-PNG-Images.png" class="drink-img">
                     <h3>Detox Raiz</h3>
-                    <img src="https://ouch-cdn2.icons8.com/f2_B9T2-M1M1-z4f1_U8k1_7M1U7yL5f3f3f3f3/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMzE1/LzE0ZTQ1YjRjLTk0/MDItNDk0Zi1hYjE3/LTY4M2JkOTk4YjY5/Ni5wbmc.png" class="drink-img">
                 </div>
             </div>
         </div>
         <div class="slider-nav">
-            <button onclick="move(1)">❮</button>
-            <button onclick="move(-1)">❯</button>
+            <button onclick="move(-1)">❮</button>
+            <button onclick="move(1)">❯</button>
         </div>
     </section>
 
@@ -169,29 +181,11 @@
         <div class="history-img"></div>
         <div class="history-text">
             <h2>Nossa História</h2>
-            <p>Uma jornada que começou na terra e floresceu na mesa, trazendo o melhor do campo para o seu dia a dia.</p>
+            <p>Conectando você ao pequeno produtor através de uma gastronomia consciente e cheia de vida.</p>
         </div>
     </section>
 
     <footer class="main-footer">
         <div class="footer-grid">
-            <div class="footer-info"><div class="logo">RAIZ</div><p>Sabor e Origem Consciente.</p></div>
-            <div class="footer-links"><h4>Contatos</h4><p>contato@raiz.com.br</p><p>(11) 98765-4321</p></div>
-        </div>
-        <div class="ifood-bar">Peça RAIZ no iFood</div>
-    </footer>
-
-    <script>
-        let idx = 0;
-        const items = document.querySelectorAll('.slide');
-        const bg = document.getElementById('sliderBg');
-
-        function move(dir) {
-            items[idx].classList.remove('active');
-            idx = (idx + dir + items.length) % items.length;
-            items[idx].classList.add('active');
-            bg.style.backgroundColor = items[idx].getAttribute('data-color');
-        }
-    </script>
-</body>
-</html>
+            <div class="footer-info"><div class="logo">RAIZ</div><p>Sabor e Origem
+                
