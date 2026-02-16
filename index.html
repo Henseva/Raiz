@@ -33,11 +33,11 @@
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; margin: 0; }
 
-        /* Blocos de Valores (Pêssego) */
+        /* Blocos de Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* Cardápio Completo (Cinza) - Restaurado conforme a foto */
+        /* Cardápio Completo (Comidas) */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -50,39 +50,46 @@
         .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 10px; }
 
-        /* Slider Especiais (Estilo Vídeo) */
+        /* Slider de Bebidas (Estilo Vídeo com Fotos Reais) */
         .drink-slider-section { 
             padding: 100px 0; 
             text-align: center; 
             transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-            background-color: #fce4e4; /* Cor inicial */
+            background-color: #fce4e4; 
             overflow: hidden;
         }
         .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 60px; }
         
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 450px; }
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 500px; }
         
         .slide { 
-            min-width: 280px; height: 420px; 
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
+            min-width: 280px; height: 450px; 
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
             border-radius: 35px;
             transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
             opacity: 0.4; 
             transform: scale(0.85) rotateY(15deg);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
             cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
+            padding-bottom: 30px;
         }
         
         .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
         
-        .bottle-placeholder {
-            width: 100px; height: 220px; border-radius: 50px 50px 15px 15px;
-            margin-bottom: 20px; transition: 0.5s ease;
+        /* Foto da Bebida Gelada */
+        .drink-img {
+            width: 180px;
+            height: 280px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
         }
-        .slide.active .bottle-placeholder { transform: translateY(-30px); }
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin: 0; }
-        .slide span { font-weight: bold; color: var(--terracotta); margin-bottom: 10px; }
+        .slide.active .drink-img { transform: translateY(-40px) scale(1.1); }
+
+        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin: 0; }
+        .slide span { font-weight: bold; color: var(--terracotta); margin-bottom: 5px; position: absolute; top: 25px; left: 25px; }
 
         /* Rodapé e História */
         .history-section { background: var(--cream); padding: 80px 10%; text-align: center; }
@@ -93,8 +100,9 @@
         @media (max-width: 768px) {
             .navbar .nav-links { display: none; }
             .logo { width: 100%; text-align: center; }
-            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding-left: 10%; gap: 15px; }
-            .slide { min-width: 250px; }
+            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding-left: 10%; gap: 15px; padding-bottom: 30px; }
+            .slide { min-width: 260px; height: 400px; }
+            .drink-img { width: 140px; height: 220px; }
             .menu-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -164,19 +172,19 @@
             
             <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
                 <span>01</span>
-                <div class="bottle-placeholder" style="background: #333;"></div>
+                <img src="https://images.unsplash.com/photo-1622708782465-3b6bc693897a?w=400" alt="Coca-Cola Gelada" class="drink-img">
                 <h3>Coca-Cola</h3>
             </div>
 
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <span>02</span>
-                <div class="bottle-placeholder" style="background: #ff9800;"></div>
+                <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400" alt="Suco de Laranja Gelado" class="drink-img">
                 <h3>Laranja</h3>
             </div>
 
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
                 <span>03</span>
-                <div class="bottle-placeholder" style="background: #2ecc71;"></div>
+                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=400" alt="Bebida de Guaraná Gelada" class="drink-img">
                 <h3>Guaraná</h3>
             </div>
 
@@ -195,14 +203,10 @@
 
     <script>
         function updateSlider(element, color) {
-            // Remove active de todos
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            // Adiciona ao clicado
             element.classList.add('active');
-            // Muda a cor de fundo da seção
             document.getElementById('especiais').style.backgroundColor = color;
             
-            // Suporte para scroll suave no mobile
             if(window.innerWidth < 768) {
                 element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
