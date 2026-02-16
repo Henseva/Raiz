@@ -15,10 +15,10 @@
             --white: #FFFFFF;
         }
 
+        /* --- BASE DO CÓDIGO RAIZ --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* NAVBAR ORIGINAL COM LOGO HK */
         .navbar { 
             background: var(--dark-green); 
             padding: 10px 5%; 
@@ -34,27 +34,27 @@
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* MONOGRAMA HK CONFORME A FOTO */
+        /* ÍCONE HK RAIZ DA FOTO */
         .hk-logo-svg {
-            width: 42px;
-            height: 42px;
+            width: 45px;
+            height: 45px;
             fill: none;
             stroke: var(--soft-peach);
-            stroke-width: 4;
+            stroke-width: 5;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 1px; }
         
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; }
 
-        /* HERO ORIGINAL */
+        /* Hero */
         .hero { 
             height: 55vh; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
@@ -62,11 +62,11 @@
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-align: center; }
 
-        /* VALORES ORIGINAL */
+        /* Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon-val { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO ORIGINAL */
+        /* Cardápio */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -77,24 +77,25 @@
         .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
 
-        /* SLIDER DE BEBIDAS ORIGINAL (COM BOTÕES) */
+        /* Slider de Bebidas Original */
         .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e4; }
         .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
         .slide { min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; transition: 0.5s; opacity: 0.5; transform: scale(0.9); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 35px; scroll-snap-align: center; }
         .slide.active { opacity: 1; transform: scale(1); background: white; }
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; }
-        .btn-pedir-drink { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; opacity: 0; transition: 0.3s; }
-        .slide.active .btn-pedir-drink { opacity: 1; }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
+        .slide.active .btn-drink { opacity: 1; }
 
-        /* RODAPÉ ORIGINAL */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; text-align: center;}
+        /* RODAPÉ RESTAURADO AO ORIGINAL */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
         .footer-column h4 { font-family: 'DM Serif Display', serif; color: var(--soft-peach); margin-bottom: 20px; }
         .footer-column a { display: block; color: var(--white); text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
         .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; text-align: center; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; opacity: 0.6; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; text-align: center; opacity: 0.6; }
 
+        @media (max-width: 768px) { .footer-container { text-align: center; } }
     </style>
 </head>
 <body>
@@ -103,10 +104,10 @@
         <div class="brand-container">
             <svg class="hk-logo-svg" viewBox="0 0 100 100">
                 <path d="M25 25 V65 M25 45 H55 M55 25 V65 M55 45 L80 25 M55 45 L80 65" />
-                <path d="M25 65 Q25 85 12 92" />
-                <path d="M38 65 Q40 95 30 95" />
-                <path d="M55 65 Q55 85 68 92" />
-                <path d="M72 65 Q78 82 88 82" />
+                <path d="M25 65 Q25 85 10 90" />
+                <path d="M40 65 Q40 95 30 95" />
+                <path d="M55 65 Q55 85 65 90" />
+                <path d="M70 65 Q75 80 85 80" />
             </svg>
             <div class="logo">RAIZ</div>
         </div>
@@ -122,9 +123,9 @@
     </header>
 
     <section class="values-bar">
-        <div><span class="icon-val">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon-val">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon-val">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
     <section id="menu" class="menu-section">
@@ -151,17 +152,17 @@
             <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
                 <img src="coca.png" class="drink-img">
                 <h3>Coca-Cola</h3>
-                <button class="btn-pedir-drink">Pedir Agora</button>
+                <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <img src="laranja.png" class="drink-img">
                 <h3>Laranja</h3>
-                <button class="btn-pedir-drink">Pedir Agora</button>
+                <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
                 <img src="guarana.png" class="drink-img">
                 <h3>Guaraná</h3>
-                <button class="btn-pedir-drink">Pedir Agora</button>
+                <button class="btn-drink">Pedir Agora</button>
             </div>
         </div>
     </section>
@@ -176,6 +177,11 @@
                 <h4>Navegação</h4>
                 <a href="#menu">Cardápio</a>
                 <a href="#especiais">Especiais</a>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <p>Rua da Terra, 123</p>
+                <p>(11) 99999-9999</p>
             </div>
         </div>
         <a href="#" class="ifood-bar">Peça no iFood</a>
