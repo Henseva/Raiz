@@ -15,62 +15,54 @@
             --white: #FFFFFF;
         }
 
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; }
+        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
         /* Navbar */
         .navbar { background: var(--dark-green); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 2rem; }
         .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 4px; transition: 0.3s; }
-        .btn-nav:hover { background: #bf6a45; }
+        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 4px; }
 
         /* Hero Section */
         .hero { 
             height: 60vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1965&auto=format&fit=crop'); 
-            background-size: cover; 
-            background-position: center; 
-            display: flex; align-items: center; justify-content: center; text-align: center;
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4.5rem; color: var(--white); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4rem; color: var(--white); text-align: center; }
 
         /* Values Bar */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 50px 10%; text-align: center; gap: 30px; }
-        .value-item h3 { font-family: 'DM Serif Display', serif; margin: 10px 0; }
-        .value-item p { font-size: 0.95rem; opacity: 0.9; }
         .icon { font-size: 2.5rem; }
 
         /* Menu Section */
         .menu-section { background: var(--light-grey); padding: 80px 10%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 50px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .card { background: var(--white); padding: 0 0 25px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .card-img { height: 200px; background-size: cover; background-position: center; }
-        .card h3 { margin: 20px 0 10px; font-family: 'DM Serif Display', serif; }
-        .card p { padding: 0 20px; font-size: 0.9rem; min-height: 40px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; margin-top: 20px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--white); padding-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card-img { height: 180px; background-size: cover; background-position: center; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-        /* History Section */
-        .history-section { background: var(--cream); padding: 100px 10%; }
-        .history-content { display: flex; gap: 80px; align-items: center; flex-wrap: wrap; }
-        .history-img { flex: 1; min-width: 300px; height: 450px; background: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; border-radius: 8px; }
+        /* SLIDER DE BEBIDAS (Inspirado no vídeo) */
+        .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--cream); }
+        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; height: 450px; overflow: hidden; }
+        .slide { min-width: 280px; transition: 0.6s ease; opacity: 0.4; transform: scale(0.8); filter: grayscale(100%); }
+        .slide.active { opacity: 1; transform: scale(1.1); filter: grayscale(0%); z-index: 10; }
+        .slide-content { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .slide-content img { width: 120px; height: auto; margin-bottom: 15px; }
+        .slider-nav { margin-top: 40px; }
+        .slider-nav button { background: var(--dark-green); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; margin: 0 15px; }
+
+        /* History */
+        .history-section { background: var(--cream); padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .history-img { flex: 1; min-width: 300px; height: 400px; background: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000'); background-size: cover; border-radius: 8px; }
         .history-text { flex: 1; min-width: 300px; }
-        .history-text h2 { font-family: 'DM Serif Display', serif; font-size: 3.5rem; margin-bottom: 25px; }
-        .history-text p { font-size: 1.1rem; line-height: 1.8; }
+        .history-text h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; }
 
         /* Footer */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 10% 0; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; padding-bottom: 60px; }
-        .footer-info .logo { margin-bottom: 20px; }
-        .footer-links h4, .footer-social h4 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 20px; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; text-align: center; margin: 0 -12%; font-size: 1.2rem; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .navbar { padding: 20px; }
-            .nav-links { display: none; }
-        }
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; }
+        .ifood-bar { background: var(--terracotta); padding: 20px; text-align: center; margin: 0 -12%; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -79,8 +71,8 @@
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
-            <a href="#historia">Nossa História</a>
-            <a href="#" class="btn-nav">Pedir no iFood</a>
+            <a href="#historia">História</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -89,85 +81,80 @@
     </header>
 
     <section class="values-bar">
-        <div class="value-item">
-            <span class="icon">🌿</span>
-            <h3>Nossos Valores</h3>
-            <p>Ingredientes puros, orgânicos e colhidos por produtores locais.</p>
-        </div>
-        <div class="value-item">
-            <span class="icon">🖐️</span>
-            <h3>Feito à Mão</h3>
-            <p>Processo artesanal que respeita o tempo e a essência de cada alimento.</p>
-        </div>
-        <div class="value-item">
-            <span class="icon">🚲</span>
-            <h3>Entrega Consciente</h3>
-            <p>Seu pedido chega fresco, seguro e com o menor impacto ambiental.</p>
-        </div>
+        <div class="value-item"><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
+        <div class="value-item"><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div class="value-item"><span class="icon">🚲</span><h3>Rápido</h3><p>Entrega segura.</p></div>
     </section>
 
     <section id="menu" class="menu-section">
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop');"></div>
-                <h3>Burger Raiz</h3>
-                <p>Blend bovino 180g, queijo meia cura e pão de fermentação natural.</p>
-                <button>Pedir Agora</button>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
+                <h3>Burger Raiz</h3><button>Pedir</button>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop');"></div>
-                <h3>Bowl da Estação</h3>
-                <p>Mix de folhas orgânicas, grãos ancestrais e legumes tostados.</p>
-                <button>Pedir Agora</button>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop');"></div>
-                <h3>Pão Rústico</h3>
-                <p>Pão de campo crocante servido com manteiga de ervas da casa.</p>
-                <button>Pedir Agora</button>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=1964&auto=format&fit=crop');"></div>
-                <h3>Sucos Vivos</h3>
-                <p>Frutas da estação prensadas a frio, sem adição de açúcar ou água.</p>
-                <button>Pedir Agora</button>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
+                <h3>Bowl Estação</h3><button>Pedir</button>
             </div>
         </div>
     </section>
 
-    <section id="historia" class="history-section">
-        <div class="history-content">
-            <div class="history-img"></div>
-            <div class="history-text">
-                <h2>Nossa História</h2>
-                <p>O Raiz nasceu da vontade de reconectar as pessoas com a origem do que comem. Acreditamos que a comida de verdade não aceita atalhos. Por isso, cada prato é fruto de uma parceria direta com pequenos agricultores, garantindo o frescor máximo e o respeito à terra.</p>
+    <section class="drink-slider-section" id="bgSection">
+        <h2>Especiais da Casa</h2>
+        <div class="slider-container">
+            <div class="slide active" data-color="#E9C4A6"> <div class="slide-content">
+                    <span>01</span>
+                    <h3>Berry Smoothie</h3>
+                    <img src="https://www.pngplay.com/wp-content/uploads/12/Strawberry-Smoothie-Transparent-File.png" alt="Drink">
+                </div>
             </div>
+            <div class="slide" data-color="#D97D54"> <div class="slide-content">
+                    <span>02</span>
+                    <h3>Orange Juice</h3>
+                    <img src="https://www.pngplay.com/wp-content/uploads/12/Orange-Juice-Background-PNG-Image.png" alt="Drink">
+                </div>
+            </div>
+            <div class="slide" data-color="#2D4A3E"> <div class="slide-content">
+                    <span>03</span>
+                    <h3>Green Detox</h3>
+                    <img src="https://www.pngall.com/wp-content/uploads/13/Green-Juice-PNG-Images.png" alt="Drink">
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <button onclick="changeSlide(-1)">❮</button>
+            <button onclick="changeSlide(1)">❯</button>
+        </div>
+    </section>
+
+    <section id="historia" class="history-section">
+        <div class="history-img"></div>
+        <div class="history-text">
+            <h2>Nossa História</h2>
+            <p>Conectando você ao pequeno produtor através de uma gastronomia consciente e cheia de vida.</p>
         </div>
     </section>
 
     <footer class="main-footer">
         <div class="footer-grid">
-            <div class="footer-info">
-                <div class="logo">RAIZ</div>
-                <p>Gastronomia consciente para um dia a dia mais leve.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Contatos</h4>
-                <p>contato@raizgastronomia.com.br</p>
-                <p>(11) 98765-4321</p>
-                <p>Rua da Terra, 100 - SP</p>
-            </div>
-            <div class="footer-social">
-                <h4>Siga a Gente</h4>
-                <p>Instagram: @raiz.gastronomia</p>
-                <p>Facebook: /raizbr</p>
-            </div>
+            <div class="footer-info"><div class="logo">RAIZ</div><p>Sabor e Origem.</p></div>
+            <div class="footer-links"><h4>Contato</h4><p>contato@raiz.com</p></div>
         </div>
-        <div class="ifood-bar">
-            Peça RAIZ no <strong>iFood</strong>
-        </div>
+        <div class="ifood-bar">Peça RAIZ no iFood</div>
     </footer>
 
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const bg = document.getElementById('bgSection');
+
+        function changeSlide(n) {
+            slides[current].classList.remove('active');
+            current = (current + n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            bg.style.backgroundColor = slides[current].getAttribute('data-color');
+        }
+    </script>
 </body>
 </html>
