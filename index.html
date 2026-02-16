@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raiz - Sabor Original</title>
+    <title>Sabor Raiz | Design Original</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
@@ -24,6 +24,7 @@
             align-items: center;
             background: #fff;
             overflow: hidden;
+            transition: 0.5s;
         }
 
         header {
@@ -43,6 +44,7 @@
             font-weight: 700;
             text-decoration: none;
             font-size: 2em;
+            text-transform: uppercase;
         }
 
         header ul {
@@ -57,6 +59,7 @@
             color: #333;
             text-decoration: none;
             margin-left: 40px;
+            font-weight: 500;
         }
 
         .content {
@@ -76,7 +79,7 @@
         .textBox h2 {
             color: #333;
             font-size: 4em;
-            line-height: 1.4em;
+            line-height: 1.2em;
             font-weight: 900;
             text-transform: uppercase;
         }
@@ -84,33 +87,36 @@
         .textBox h2 span {
             color: #e51e2a; 
             font-size: 1.2em;
+            transition: 0.5s;
         }
 
         .textBox p {
             color: #333;
+            margin: 20px 0;
+            font-size: 1.1em;
         }
 
         .textBox a {
             display: inline-block;
-            margin-top: 20px;
-            padding: 8px 20px;
+            padding: 10px 25px;
             background: #e51e2a;
             color: #fff;
             border-radius: 40px;
             font-weight: 500;
             text-decoration: none;
+            transition: 0.5s;
         }
 
         .imgBox {
-            width: 600px;
+            width: 500px;
             display: flex;
             justify-content: flex-end;
-            padding-right: 50px;
         }
 
         .imgBox img {
-            max-width: 340px;
+            max-width: 330px;
             transition: 0.5s ease;
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2));
         }
 
         .thumb {
@@ -119,12 +125,18 @@
             bottom: 20px;
             transform: translateX(-50%);
             display: flex;
+            z-index: 10;
         }
 
         .thumb li {
             list-style: none;
-            margin: 0 20px;
+            margin: 0 15px;
             cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .thumb li:hover {
+            transform: translateY(-10px);
         }
 
         .thumb li img {
@@ -140,38 +152,62 @@
             background: #e51e2a;
             clip-path: circle(600px at right 800px);
             z-index: 0;
-            transition: 0.5s;
+            transition: 0.8s ease-in-out;
         }
 
-        /* Ajuste essencial para não quebrar no seu celular */
+        /* RESPONSIVIDADE PARA O SEU CELULAR */
         @media (max-width: 991px) {
-            header { padding: 20px; }
-            header ul { display: none; }
-            section { padding: 150px 20px 100px; }
-            .content { flex-direction: column; }
-            .textBox { max-width: 100%; text-align: center; }
-            .textBox h2 { font-size: 2.5em; }
-            .imgBox { width: 100%; justify-content: center; padding: 0; margin-top: 40px; }
-            .imgBox img { max-width: 280px; }
-            .circle { clip-path: circle(400px at center bottom); }
+            header {
+                padding: 20px;
+            }
+            header ul {
+                display: none;
+            }
+            section {
+                padding: 120px 20px 80px;
+                flex-direction: column;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .textBox {
+                max-width: 100%;
+                text-align: center;
+            }
+            .textBox h2 {
+                font-size: 2.8em;
+            }
+            .imgBox {
+                width: 100%;
+                justify-content: center;
+                margin-top: 30px;
+            }
+            .imgBox img {
+                max-width: 260px;
+            }
+            .circle {
+                clip-path: circle(400px at center bottom);
+            }
         }
     </style>
 </head>
 <body>
     <section class="main">
         <div class="circle"></div>
+        
         <header>
             <a href="#" class="logo">Raiz</a>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Produtos</a></li>
+                <li><a href="#">Contato</a></li>
             </ul>
         </header>
 
         <div class="content">
             <div class="textBox">
                 <h2>Sabor que é <br><span id="spanText">Raiz</span></h2>
-                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica.</p>
+                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica para quem valoriza o sabor autêntico.</p>
                 <a href="#" id="btnColor">Saiba Mais</a>
             </div>
             <div class="imgBox">
@@ -188,7 +224,10 @@
 
     <script>
         function imgSlider(anything, color){
+            // Muda a imagem principal
             document.querySelector('#sliderImg').src = anything;
+            
+            // Muda a cor do círculo, do texto "Raiz" e do botão
             document.querySelector('.circle').style.background = color;
             document.querySelector('#spanText').style.color = color;
             document.querySelector('#btnColor').style.background = color;
