@@ -19,7 +19,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Navbar - Links sempre visíveis */
         .navbar { 
             background: var(--dark-green); 
             padding: 15px 5%; 
@@ -46,7 +45,6 @@
             border-radius: 4px; 
         }
 
-        /* Hero */
         .hero { 
             height: 50vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
@@ -54,11 +52,9 @@
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 8vw, 4rem); color: var(--white); text-align: center; }
 
-        /* Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* Cardápio de Comidas Original */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -69,7 +65,7 @@
         .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
 
-        /* --- SLIDER DE BEBIDAS COM SCROLL --- */
+        /* --- SLIDER DE BEBIDAS --- */
         .drink-slider-section { 
             padding: 80px 0; 
             text-align: center; 
@@ -78,16 +74,15 @@
         }
         .slider-container { 
             display: flex; 
-            justify-content: flex-start; /* Alinhado à esquerda para o scroll funcionar bem */
+            justify-content: flex-start; 
             align-items: center; 
             gap: 20px; 
             min-height: 520px; 
             padding: 0 10%;
-            overflow-x: auto; /* Scroll ativado */
+            overflow-x: auto; 
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
-        /* Esconde a barra de scroll feia em alguns navegadores */
         .slider-container::-webkit-scrollbar { display: none; }
 
         .slide { 
@@ -99,9 +94,48 @@
         .slide.active { opacity: 1; transform: scale(1); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
         .slide.active .drink-img { transform: translateY(-20px); }
-        
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; }
+
+        /* --- SEÇÃO DE DEPOIMENTOS --- */
+        .testimonials-section {
+            padding: 80px 5%;
+            background-color: var(--cream);
+            text-align: center;
+        }
+        .testimonials-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--dark-green);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--terracotta);
+        }
+        .testimonial-card p {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .testimonial-card span {
+            font-weight: bold;
+            color: var(--dark-green);
+            display: block;
+            font-size: 0.9rem;
+        }
 
         /* Rodapé */
         .main-footer { background: var(--dark-green); padding: 60px 5%; text-align: center; }
@@ -172,6 +206,24 @@
         </div>
     </section>
 
+    <section class="testimonials-section">
+        <h2>Quem provou, aprovou</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"O Burger Raiz tem um sabor indescritível. Você sente que os ingredientes são frescos de verdade."</p>
+                <span>- Marina Silva</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"Melhor opção para quem busca saúde sem abrir mão do sabor. O Bowl da Estação é perfeito!"</p>
+                <span>- Ricardo Souza</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"Atendimento impecável e a entrega foi super rápida. Recomendo o Guaraná geladinho!"</p>
+                <span>- Ana Paula</span>
+            </div>
+        </div>
+    </section>
+
     <footer class="main-footer">
         <a href="#" class="ifood-bar">Peça no iFood</a>
     </footer>
@@ -181,11 +233,9 @@
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
-            
-            // Centraliza o item clicado no scroll
             element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
     </script>
 </body>
 </html>
-w
+a
