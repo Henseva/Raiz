@@ -15,94 +15,88 @@
             --white: #FFFFFF;
         }
 
-        /* Reset e Base */
         * { box-sizing: border-box; }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Navbar Responsiva */
+        /* Navbar */
         .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
         .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
         .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
 
-        /* Hero Section */
+        /* Hero */
         .hero { 
             height: 50vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; margin: 0; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
 
-        /* Blocos de Valores */
+        /* Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-
-        /* Cardápio de Comidas */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
+        
+        /* Cardápio de Comidas (Baseado na sua foto) */
+        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
         .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; text-align: center; }
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
         .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 10px; }
+        .card p { font-size: 0.85rem; line-height: 1.4; color: #444; margin-bottom: 15px; min-height: 45px; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        /* Slider de Bebidas (Foco nas Fotos de Estúdio) */
+        /* SEÇÃO ESPECIAIS (Onde estavam as fotos quebradas) */
         .drink-slider-section { 
-            padding: 100px 0; 
+            padding: 80px 0; 
             text-align: center; 
-            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: background-color 0.8s ease; 
             background-color: #fce4e4; 
             overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 60px; }
+        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; min-height: 520px; }
+        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1000px; min-height: 480px; }
         
         .slide { 
-            min-width: 280px; height: 460px; 
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+            min-width: 280px; height: 420px; 
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 35px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
             opacity: 0.3; 
-            transform: scale(0.85) rotateY(15deg);
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 40px;
+            transform: scale(0.85);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
+            padding: 20px;
         }
         
-        .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
+        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
-        /* Foto da Bebida com Efeito de Sombra */
+        /* Ajuste das Imagens das Bebidas */
         .drink-img {
-            width: 200px;
-            height: 300px;
+            width: 100%;
+            max-width: 180px;
+            height: 250px;
             object-fit: contain;
-            margin-bottom: 10px;
-            transition: transform 0.6s ease;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
-        .slide.active .drink-img { transform: translateY(-50px) scale(1.15); }
+        .slide.active .drink-img { transform: translateY(-20px) scale(1.1); }
 
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; margin: 0; color: var(--dark-green); }
-        .slide span { font-weight: bold; color: var(--terracotta); margin-bottom: 5px; position: absolute; top: 30px; left: 30px; font-size: 1.2rem; }
+        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-top: 15px; color: var(--dark-green); }
+        .slide span { font-weight: bold; color: var(--terracotta); position: absolute; top: 25px; left: 25px; font-size: 1.1rem; }
 
-        /* Rodapé e História */
-        .history-section { background: var(--cream); padding: 80px 10%; text-align: center; }
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 20px; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; margin-top: 40px; cursor: pointer; }
+        /* Footer */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
+        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; font-size: 1.1rem; margin-top: 20px; display: block; text-decoration: none; color: white; }
 
-        /* Responsividade Mobile */
+        /* Correção Mobile */
         @media (max-width: 768px) {
-            .navbar .nav-links { display: none; }
-            .logo { width: 100%; text-align: center; }
-            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding-left: 10%; gap: 15px; padding-bottom: 40px; }
-            .slide { min-width: 270px; height: 420px; }
-            .drink-img { width: 160px; height: 250px; }
+            .slider-container { flex-direction: row; overflow-x: auto; justify-content: flex-start; padding: 20px 10%; gap: 15px; -webkit-overflow-scrolling: touch; }
+            .slide { min-width: 260px; height: 380px; flex-shrink: 0; }
+            .drink-img { height: 200px; }
             .menu-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -114,7 +108,7 @@
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">Pedir no iFood</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -123,9 +117,9 @@
     </header>
 
     <section class="values-bar">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
+        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
+        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
     <section id="menu" class="menu-section">
@@ -136,32 +130,32 @@
                 <div class="card-content">
                     <h3>Burger Raiz</h3>
                     <p>Blend bovino 180g, queijo meia cura e pão artesanal.</p>
+                    <button>Pedir Agora</button>
                 </div>
-                <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
                 <div class="card-content">
                     <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas orgânicas, grãos ancestrais e legumes tostados.</p>
+                    <p>Mix de folhas, grãos e legumes tostados.</p>
+                    <button>Pedir Agora</button>
                 </div>
-                <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500');"></div>
                 <div class="card-content">
                     <h3>Pão Rústico</h3>
-                    <p>Pão de campo crocante servido com manteiga de ervas.</p>
+                    <p>Pão de campo crocante com manteiga de ervas.</p>
+                    <button>Pedir Agora</button>
                 </div>
-                <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b4?w=500');"></div>
                 <div class="card-content">
                     <h3>Sucos Vivos</h3>
-                    <p>Frutas prensadas a frio, sem adição de açúcar ou água.</p>
+                    <p>Frutas prensadas a frio, 100% natural.</p>
+                    <button>Pedir Agora</button>
                 </div>
-                <button>Pedir Agora</button>
             </div>
         </div>
     </section>
@@ -172,19 +166,19 @@
             
             <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
                 <span>01</span>
-                <img src="https://www.pngarts.com/files/10/Coca-Cola-Bottle-PNG-Photo.png" alt="Coca-Cola" class="drink-img">
+                <img src="https://cdn.pixabay.com/photo/2017/02/02/15/15/coca-cola-2032980_1280.png" alt="Coca-Cola" class="drink-img">
                 <h3>Coca-Cola</h3>
             </div>
 
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <span>02</span>
-                <img src="https://pngimg.com/uploads/orange_juice/orange_juice_PNG75.png" alt="Laranja" class="drink-img">
+                <img src="https://cdn.pixabay.com/photo/2016/08/23/15/52/fresh-orange-juice-1614822_1280.png" alt="Laranja" class="drink-img">
                 <h3>Laranja</h3>
             </div>
 
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
                 <span>03</span>
-                <img src="https://static.wixstatic.com/media/2cd43b_2b5d4e1a067140f8a845f3458d08c58a~mv2.png/v1/fill/w_400,h_600,al_c,q_85,usm_0.66_1.00_0.01/guarana.png" alt="Guaraná" class="drink-img">
+                <img src="https://cdn.pixabay.com/photo/2012/04/13/13/10/bottle-32331_1280.png" alt="Guaraná" class="drink-img">
                 <h3>Guaraná</h3>
             </div>
 
@@ -193,7 +187,7 @@
 
     <footer class="main-footer">
         <div class="logo">RAIZ</div>
-        <div class="ifood-bar">Peça no iFood</div>
+        <a href="#" class="ifood-bar">Peça no iFood</a>
     </footer>
 
     <script>
