@@ -31,38 +31,22 @@
             z-index: 1000; 
         }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* AJUSTE DO LOGO APROVADO */
-        .hk-logo-img {
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-        }
-
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 1px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
         
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; }
 
-        /* Hero */
         .hero { 
             height: 55vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-align: center; }
 
-        /* Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* Cardápio */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -73,17 +57,33 @@
         .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
 
-        /* Slider de Bebidas Original */
+        /* --- AJUSTE NO SLIDER --- */
         .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e4; }
         .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
-        .slide { min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; transition: 0.5s; opacity: 0.5; transform: scale(0.9); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 35px; scroll-snap-align: center; }
+        
+        .slide { 
+            min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
+            transition: 0.5s; opacity: 0.5; transform: scale(0.9); 
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
+            padding-bottom: 35px; scroll-snap-align: center; 
+        }
+        
+        /* Slide fica opaco e cresce apenas quando clicado */
         .slide.active { opacity: 1; transform: scale(1); background: white; }
+        
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
-        .slide.active .btn-drink { opacity: 1; }
+        
+        /* O botão agora nasce invisível e sem ocupar espaço no slide comum */
+        .btn-drink { 
+            background: var(--terracotta); color: white; border: none; 
+            padding: 10px 25px; border-radius: 20px; font-weight: bold; 
+            margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; 
+        }
+        
+        /* Só aparece quando ganha a classe .active */
+        .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
-        /* Rodapé de 3 Colunas Original */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
         .footer-column h4 { font-family: 'DM Serif Display', serif; color: var(--soft-peach); margin-bottom: 20px; }
@@ -97,10 +97,7 @@
 <body>
 
     <nav class="navbar">
-        <div class="brand-container">
-            <img src="https://lh3.googleusercontent.com/d/1X6G0fC9X8W7S6S8S8S8S8S8S8S8S8S8" class="hk-logo-img" alt="Logo HK">
-            <div class="logo">RAIZ</div>
-        </div>
+        <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">História</a>
@@ -139,7 +136,7 @@
     <section id="especiais" class="drink-slider-section">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
+            <div class="slide" onclick="updateSlider(this, '#e74c3c')">
                 <img src="coca.png" class="drink-img">
                 <h3>Coca-Cola</h3>
                 <button class="btn-drink">Pedir Agora</button>
@@ -182,9 +179,16 @@
 
     <script>
         function updateSlider(element, color) {
+            // Remove o estado ativo de todos
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            
+            // Adiciona apenas no que foi clicado
             element.classList.add('active');
+            
+            // Muda a cor de fundo da seção
             document.getElementById('especiais').style.backgroundColor = color;
+            
+            // Centraliza o slide clicado (bom para mobile)
             element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
     </script>
