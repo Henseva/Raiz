@@ -15,82 +15,109 @@
             --white: #FFFFFF;
         }
 
+        /* Reset Básico */
+        * { box-sizing: border-box; }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Navbar */
-        .navbar { background: var(--dark-green); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 2rem; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 4px; }
+        /* Navbar Responsiva */
+        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
+        .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
 
         /* Hero Section */
         .hero { 
-            height: 60vh; 
+            height: 50vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4rem; color: var(--white); text-align: center; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; margin: 0; }
 
-        /* Blocos de Cores (Valores) */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 50px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.5rem; }
+        /* Valores */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
+        .icon { font-size: 2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO RESTAURADO (IDÊNTICO À FOTO) */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        /* Cardápio Otimizado */
+        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
+        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; padding-bottom: 20px; }
-        .card-img { height: 250px; background-size: cover; background-position: center; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { height: 220px; background-size: cover; background-position: center; }
         .card-content { padding: 20px; flex-grow: 1; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card p { font-size: 0.85rem; line-height: 1.4; color: #555; height: 60px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; align-self: center; transition: 0.3s; }
-        .card button:hover { background: #bf6a45; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 10px 0; }
+        .card p { font-size: 0.9rem; line-height: 1.5; color: #444; margin-bottom: 20px; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content; margin: 0 auto 20px; }
 
-        /* SLIDER DAS GARRAFAS (ESTILO VÍDEO) */
+        /* Slider das Garrafas (Design do Vídeo Adaptado) */
         .drink-slider-section { 
-            padding: 100px 0; 
+            padding: 80px 0; 
             text-align: center; 
-            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: background-color 0.8s ease; 
             background-color: var(--white);
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 60px; }
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1200px; }
+        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        
+        .slider-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 20px;
+            min-height: 450px;
+        }
         
         .slide { 
-            min-width: 280px; height: 420px; 
+            min-width: 260px; height: 380px; 
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(8px);
-            border-radius: 35px;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
-            opacity: 0.4; 
-            transform: scale(0.8) rotateY(15deg);
+            border-radius: 30px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            opacity: 0.3; 
+            transform: scale(0.8);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
+            cursor: pointer; border: 1px solid rgba(255,255,255,0.4);
+            user-select: none;
         }
-        .slide.active { opacity: 1; transform: scale(1.1) rotateY(0deg); background: white; z-index: 10; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        
+        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
         .bottle-shape {
-            width: 100px; height: 220px; background: #ddd; border-radius: 50px 50px 15px 15px;
-            margin-bottom: 20px; transition: 0.5s ease;
+            width: 80px; height: 180px; background: #ddd; border-radius: 40px 40px 10px 10px;
+            margin-bottom: 15px; transition: 0.5s ease;
         }
-        .slide.active .bottle-shape { transform: translateY(-30px); background: var(--dark-green); }
+        .slide.active .bottle-shape { transform: translateY(-20px); background: var(--dark-green); }
 
-        /* História e Footer */
-        .history-section { background: var(--cream); padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
-        .history-text { flex: 1; min-width: 300px; }
-        .history-text h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; }
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 0; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; text-align: center; margin: 0 -12%; font-weight: bold; font-size: 1.2rem; }
+        /* Rodapé */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
+        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; margin: 20px -5% -40px; }
 
+        /* AJUSTES PARA CELULAR (MOBILE) */
         @media (max-width: 768px) {
-            .slider-container { flex-direction: column; gap: 40px; }
-            .hero h1 { font-size: 2.5rem; }
+            .navbar { padding: 10px 5%; }
+            .nav-links { display: none; } /* Esconde links no mobile para simplificar */
+            .logo { font-size: 1.5rem; width: 100%; text-align: center; }
+            
+            .slider-container { 
+                flex-direction: row; /* Mantém horizontal */
+                overflow-x: auto; /* Permite deslizar se necessário */
+                justify-content: flex-start;
+                padding-left: 10%;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .slide { min-width: 240px; height: 350px; opacity: 0.5; transform: scale(0.9); }
+            .slide.active { transform: scale(1); }
+            
+            .menu-grid { grid-template-columns: 1fr; } /* Uma coluna no celular */
         }
     </style>
 </head>
@@ -110,9 +137,9 @@
     </header>
 
     <section class="values-bar">
-        <div class="value-item"><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div class="value-item"><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div class="value-item"><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div><span class="icon">🌿</span><h3>Puro</h3></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3></div>
     </section>
 
     <section id="menu" class="menu-section">
@@ -146,14 +173,14 @@
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b4?w=500');"></div>
                 <div class="card-content">
                     <h3>Sucos Vivos</h3>
-                    <p>Frutas da estação prensadas a frio, sem adição de açúcar ou água.</p>
+                    <p>Frutas da estação prensadas a frio, 100% natural.</p>
                 </div>
                 <button>Pedir Agora</button>
             </div>
         </div>
     </section>
 
-    <section id="especiais" class="drink-slider-section" id="sliderArea">
+    <section id="especiais" class="drink-slider-section">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
             <div class="slide active" onclick="updateSlider(this, '#E9C4A6')">
@@ -175,7 +202,9 @@
     </section>
 
     <footer class="main-footer">
-        <div class="ifood-bar">Peça RAIZ no iFood</div>
+        <div class="logo">RAIZ</div>
+        <p>Conectando você à origem.</p>
+        <div class="ifood-bar">Peça no iFood</div>
     </footer>
 
     <script>
@@ -183,6 +212,11 @@
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
+            
+            // Centraliza o slide no mobile ao clicar
+            if(window.innerWidth < 768) {
+                element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
         }
     </script>
 </body>
