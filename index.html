@@ -3,208 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raiz - Sabor que vem da terra</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Raiz - Experiência Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-green: #2D4A3E;
-            --soft-peach: #E9C4A6;
-            --light-grey: #D9D9D9;
-            --cream: #F5F1E3;
-            --terracotta: #D97D54;
-            --white: #FFFFFF;
+            --bg-default: #f5f1e3;
+            --coca: #e74c3c;
+            --fanta: #f39c12;
+            --guarana: #27ae60;
         }
 
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
-
-        /* Navbar */
-        .navbar { background: var(--dark-green); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: var(--white); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
-        .nav-links a { color: var(--white); text-decoration: none; margin-left: 15px; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; display: inline-block; }
-
-        /* Hero */
-        .hero { 
-            height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
-
-        /* Valores */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-
-        /* Cardápio de Comidas */
-        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
-        .card p { font-size: 0.85rem; line-height: 1.4; color: #444; margin-bottom: 15px; min-height: 45px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-default);
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        /* SEÇÃO ESPECIAIS (Slider das Bebidas) */
-        .drink-slider-section { 
-            padding: 80px 0; 
-            text-align: center; 
-            transition: background-color 0.8s ease; 
-            background-color: #fce4e4; 
+        /* Texto de Fundo Estilo Revista */
+        .bg-text {
+            position: absolute;
+            font-size: 25vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.8s;
+            transform: scale(0.8);
+        }
+
+        .active-bg .bg-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Container dos Cards */
+        .container {
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+            width: 90%;
+            max-width: 1100px;
+            height: 500px;
+            align-items: center;
+        }
+
+        .card {
+            flex: 1;
+            height: 100%;
+            background: white;
+            border-radius: 40px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             overflow: hidden;
         }
-        .drink-slider-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; perspective: 1000px; min-height: 480px; }
-        
-        .slide { 
-            min-width: 280px; height: 420px; 
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 35px;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-            opacity: 0.3; 
-            transform: scale(0.85);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.4);
-            padding: 20px;
+
+        /* Quando o card é expandido */
+        .card.expanded {
+            flex: 4;
+            background: transparent;
+            box-shadow: none;
         }
-        
-        .slide.active { opacity: 1; transform: scale(1.05); background: white; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        
-        .drink-img {
-            width: 100%;
-            max-width: 200px;
-            height: 300px;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15));
+
+        .card.expanded .card-info, .card.expanded .btn-view {
+            opacity: 0;
+            pointer-events: none;
         }
-        .slide.active .drink-img { transform: translateY(-20px) scale(1.1); }
 
-        .slide h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-top: 15px; color: var(--dark-green); }
-        .slide span { font-weight: bold; color: var(--terracotta); position: absolute; top: 25px; left: 25px; font-size: 1.1rem; }
+        /* Imagem do Produto */
+        .product-img {
+            width: 120px;
+            z-index: 5;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
 
-        /* Footer */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; font-size: 1.1rem; margin-top: 20px; display: block; text-decoration: none; color: white; }
+        .card.expanded .product-img {
+            width: 320px;
+            transform: translateY(-20px);
+            filter: drop-shadow(0 30px 50px rgba(0,0,0,0.3));
+        }
 
+        /* Detalhes do Card */
+        .card-info { text-align: center; }
+        .card-info span { font-size: 0.8rem; font-weight: bold; opacity: 0.3; }
+        .card-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-top: 5px; }
+
+        .btn-view {
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+        }
+
+        /* Preço e Botão de Fechar (Aparecem na expansão) */
+        .expanded-content {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .card.expanded .expanded-content {
+            opacity: 1;
+        }
+
+        .price { font-size: 2.5rem; font-weight: 900; color: white; margin-bottom: 15px; display: block; }
+        .btn-buy {
+            background: white;
+            color: black;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Cores dos Cards no Hover/Active */
+        .card-coca:hover { border: 2px solid var(--coca); }
+        .card-fanta:hover { border: 2px solid var(--fanta); }
+        .card-guarana:hover { border: 2px solid var(--guarana); }
+
+        /* Responsivo Mobile */
         @media (max-width: 768px) {
-            .slider-container { 
-                flex-direction: row; 
-                overflow-x: auto; 
-                justify-content: flex-start; 
-                padding: 20px 5%; 
-                gap: 15px;
-                -webkit-overflow-scrolling: touch;
-            }
-            .slide { min-width: 260px; height: 380px; flex-shrink: 0; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .navbar { padding: 10px 5%; }
-            .logo { font-size: 1.4rem; }
+            body { overflow-y: auto; height: auto; padding: 40px 0; }
+            .container { flex-direction: column; height: auto; }
+            .card { width: 100%; height: 400px; flex: none; }
+            .card.expanded { height: 600px; }
+            .bg-text { font-size: 40vw; top: 20%; }
         }
     </style>
 </head>
-<body>
+<body id="body">
 
-    <nav class="navbar">
-        <div class="logo">RAIZ</div>
-        <div class="nav-links">
-            <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">iFood</a>
-        </div>
-    </nav>
+    <div class="bg-text" id="bg-title">RAIZ</div>
 
-    <header class="hero">
-        <h1>Sabor que vem da terra.</h1>
-    </header>
-
-    <section class="values-bar">
-        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
-        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
-        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
-    <section id="menu" class="menu-section">
-        <h2>Cardápio Completo</h2>
-        <div class="menu-grid">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura e pão artesanal.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
-                <div class="card-content">
-                    <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas, grãos e legumes tostados.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500');"></div>
-                <div class="card-content">
-                    <h3>Pão Rústico</h3>
-                    <p>Pão de campo crocante com manteiga de ervas.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1622597467836-f3285f2131b4?w=500');"></div>
-                <div class="card-content">
-                    <h3>Sucos Vivos</h3>
-                    <p>Frutas prensadas a frio, 100% natural.</p>
-                    <button>Pedir Agora</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="especiais" class="drink-slider-section">
-        <h2>Especiais da Casa</h2>
-        <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')">
+    <div class="container">
+        
+        <div class="card card-coca" onclick="expandCard(this, 'var(--coca)', 'COCA')">
+            <div class="card-info">
                 <span>01</span>
-                <img src="coca.png" alt="Coca-Cola Gelada" class="drink-img">
                 <h3>Coca-Cola</h3>
             </div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <span>02</span>
-                <img src="laranja.png" alt="Laranja Gelada" class="drink-img">
-                <h3>Laranja</h3>
-            </div>
-            <div class="slide" onclick="updateSlider(this, '#27ae60')">
-                <span>03</span>
-                <img src="guarana.png" alt="Guaraná Gelada" class="drink-img">
-                <h3>Guaraná</h3>
+            <img src="coca.png" class="product-img">
+            <div class="btn-view">Ver Detalhes</div>
+            <div class="expanded-content">
+                <span class="price">R$ 8,90</span>
+                <a href="#" class="btn-buy">ADICIONAR AO PEDIDO</a>
             </div>
         </div>
-    </section>
 
-    <footer class="main-footer">
-        <div class="logo">RAIZ</div>
-        <a href="#" class="ifood-bar">Peça no iFood</a>
-    </footer>
+        <div class="card card-fanta" onclick="expandCard(this, 'var(--fanta)', 'ORANGE')">
+            <div class="card-info">
+                <span>02</span>
+                <h3>Laranja</h3>
+            </div>
+            <img src="laranja.png" class="product-img">
+            <div class="btn-view">Ver Detalhes</div>
+            <div class="expanded-content">
+                <span class="price">R$ 7,50</span>
+                <a href="#" class="btn-buy">ADICIONAR AO PEDIDO</a>
+            </div>
+        </div>
+
+        <div class="card card-guarana" onclick="expandCard(this, 'var(--guarana)', 'BRAZIL')">
+            <div class="card-info">
+                <span>03</span>
+                <h3>Guaraná</h3>
+            </div>
+            <img src="guarana.png" class="product-img">
+            <div class="btn-view">Ver Detalhes</div>
+            <div class="expanded-content">
+                <span class="price">R$ 7,50</span>
+                <a href="#" class="btn-buy">ADICIONAR AO PEDIDO</a>
+            </div>
+        </div>
+
+    </div>
 
     <script>
-        function updateSlider(element, color) {
-            // Remove classe active de todos
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            // Adiciona no clicado
-            element.classList.add('active');
-            // Muda a cor de fundo da seção
-            document.getElementById('especiais').style.backgroundColor = color;
+        function expandCard(card, color, text) {
+            const body = document.getElementById('body');
+            const bgTitle = document.getElementById('bg-title');
             
-            // Centraliza o slide no mobile ao clicar
-            if(window.innerWidth < 768) {
-                element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            // Se clicar no card que já está expandido, ele volta ao normal
+            if (card.classList.contains('expanded')) {
+                card.classList.remove('expanded');
+                body.style.background = 'var(--bg-default)';
+                body.classList.remove('active-bg');
+                return;
             }
+
+            // Remove expansão de outros cards
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('expanded'));
+            
+            // Expande o atual
+            card.classList.add('expanded');
+            body.style.background = color;
+            bgTitle.innerText = text;
+            body.classList.add('active-bg');
         }
     </script>
 </body>
