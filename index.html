@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabor Raiz | Refresco Premium</title>
+    <title>Sabor Raiz | Base Original</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
@@ -26,7 +26,6 @@
             overflow: hidden;
         }
 
-        /* HEADER */
         header {
             position: absolute;
             top: 0;
@@ -43,9 +42,7 @@
             color: #333;
             font-weight: 700;
             text-decoration: none;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 2em;
         }
 
         header ul {
@@ -61,14 +58,8 @@
             text-decoration: none;
             margin-left: 40px;
             font-weight: 500;
-            transition: 0.3s;
         }
 
-        header ul li a:hover {
-            color: #e51e2a; /* Cor muda no script */
-        }
-
-        /* CONTEÚDO PRINCIPAL */
         .content {
             position: relative;
             width: 100%;
@@ -81,88 +72,66 @@
         .textBox {
             position: relative;
             max-width: 600px;
-            animation: fadeInText 1s ease-in-out;
         }
 
         .textBox h2 {
             color: #333;
             font-size: 4em;
-            line-height: 1.2em;
+            line-height: 1.4em;
             font-weight: 900;
             text-transform: uppercase;
         }
 
         .textBox h2 span {
-            color: #e51e2a;
+            color: #e51e2a; 
             font-size: 1.2em;
             transition: 0.5s;
         }
 
         .textBox p {
             color: #333;
-            font-size: 1.1em;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
 
         .textBox a {
             display: inline-block;
-            padding: 12px 35px;
-            background: #e51e2a; 
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: #e51e2a;
             color: #fff;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1px;
             text-decoration: none;
             transition: 0.5s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .textBox a:hover {
-            transform: scale(1.05);
-        }
-
-        /* IMAGEM E ANIMAÇÕES */
         .imgBox {
             width: 600px;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Centraliza a garrafa no espaço dela */
             align-items: center;
-            position: relative;
         }
 
-        /* Efeito de flutuar constante na garrafa */
         .imgBox img {
-            max-width: 420px;
+            max-width: 380px; /* Ajuste para as fotos novas ficarem no tamanho da base */
             transition: 0.5s ease;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
-            animation: float 4s ease-in-out infinite;
         }
 
-        /* Classe disparada via JS para efeito de troca */
-        .img-fade {
-            animation: imgSwap 0.6s ease-in-out;
+        /* Animação suave de entrada ao clicar */
+        .img-swap {
+            animation: swap 0.5s ease-in-out;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes swap {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes imgSwap {
-            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        @keyframes fadeInText {
-            0% { opacity: 0; transform: translateX(-50px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        /* MINIATURAS */
         .thumb {
             position: absolute;
             left: 50%;
-            bottom: 30px;
+            bottom: 20px;
             transform: translateX(-50%);
             display: flex;
             z-index: 100;
@@ -170,26 +139,19 @@
 
         .thumb li {
             list-style: none;
-            margin: 0 15px;
+            margin: 0 20px;
             cursor: pointer;
             transition: 0.5s;
-            background: rgba(255,255,255,0.2);
-            padding: 10px;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.4);
         }
 
         .thumb li:hover {
-            transform: translateY(-15px) scale(1.1);
-            background: rgba(255,255,255,0.4);
+            transform: translateY(-15px);
         }
 
         .thumb li img {
             max-width: 50px;
         }
 
-        /* CÍRCULO DE FUNDO */
         .circle {
             position: absolute;
             top: 0;
@@ -198,7 +160,8 @@
             height: 100%;
             background: #e51e2a;
             clip-path: circle(600px at right 800px);
-            transition: 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 0;
+            transition: 0.5s;
         }
     </style>
 </head>
@@ -219,7 +182,7 @@
         <div class="content">
             <div class="textBox">
                 <h2>Sabor que é <br><span id="spanText">Raiz</span></h2>
-                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica para quem valoriza o sabor autêntico e momentos refrescantes.</p>
+                <p>O verdadeiro frescor da garrafa de vidro. Uma experiência clássica para quem valoriza o sabor autêntico.</p>
                 <a href="#" id="btnColor">Saiba Mais</a>
             </div>
             <div class="imgBox">
@@ -228,25 +191,25 @@
         </div>
 
         <ul class="thumb">
-            <li><img src="coca.png" onclick="updateSlider('coca.png', '#e51e2a')"></li>
-            <li><img src="laranja.png" onclick="updateSlider('laranja.png', '#f28e1c')"></li>
-            <li><img src="guarana.png" onclick="updateSlider('guarana.png', '#017143')"></li>
+            <li><img src="coca.png" onclick="imgSlider('coca.png', '#e51e2a')"></li>
+            <li><img src="laranja.png" onclick="imgSlider('laranja.png', '#f28e1c')"></li>
+            <li><img src="guarana.png" onclick="imgSlider('guarana.png', '#017143')"></li>
         </ul>
     </section>
 
     <script>
-        function updateSlider(filename, color) {
+        function imgSlider(anything, color){
             const img = document.querySelector('#sliderImg');
             
-            // 1. Aplica animação de troca na imagem
-            img.classList.remove('img-fade');
-            void img.offsetWidth; // Truque para resetar animação CSS
-            img.classList.add('img-fade');
-            
-            // 2. Troca a imagem
-            img.src = filename;
+            // Troca a imagem
+            img.src = anything;
 
-            // 3. Troca as cores
+            // Efeito rápido de entrada
+            img.classList.remove('img-swap');
+            void img.offsetWidth; 
+            img.classList.add('img-swap');
+
+            // Troca as cores baseadas no clique
             document.querySelector('.circle').style.background = color;
             document.querySelector('#spanText').style.color = color;
             document.querySelector('#btnColor').style.background = color;
