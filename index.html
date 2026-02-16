@@ -15,10 +15,11 @@
             --white: #FFFFFF;
         }
 
-        /* --- ESTILOS ORIGINAIS DO SEU CÓDIGO RAIZ --- */
+        /* --- BASE DO CÓDIGO RAIZ --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
+        /* Navbar - Links sempre visíveis */
         .navbar { 
             background: var(--dark-green); 
             padding: 15px 5%; 
@@ -32,41 +33,43 @@
         }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
         
-        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { 
             color: var(--white); 
             text-decoration: none; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             font-weight: bold; 
         }
         .btn-nav { 
             background: var(--terracotta); 
-            padding: 8px 15px; 
+            padding: 8px 12px; 
             border-radius: 4px; 
         }
 
+        /* Hero */
         .hero { 
             height: 50vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 8vw, 4rem); color: var(--white); text-align: center; }
 
+        /* Valores */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
+        /* Cardápio de Comidas Original */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 20px;}
         .card-img { height: 220px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; flex-grow: 1; text-align: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
-        .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 auto 15px; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 15px 0 5px; }
+        .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
+        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
 
-        /* --- SEÇÃO DE BEBIDAS (Slider corrigido para não sumir itens) --- */
+        /* --- SLIDER DE BEBIDAS COM SCROLL --- */
         .drink-slider-section { 
             padding: 80px 0; 
             text-align: center; 
@@ -75,27 +78,34 @@
         }
         .slider-container { 
             display: flex; 
-            justify-content: center; 
+            justify-content: flex-start; /* Alinhado à esquerda para o scroll funcionar bem */
             align-items: center; 
             gap: 20px; 
-            min-height: 550px; 
-            padding: 0 5%;
-            overflow-x: auto; /* Permite scroll se não couber */
+            min-height: 520px; 
+            padding: 0 10%;
+            overflow-x: auto; /* Scroll ativado */
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
+        /* Esconde a barra de scroll feia em alguns navegadores */
+        .slider-container::-webkit-scrollbar { display: none; }
+
         .slide { 
-            min-width: 280px; height: 480px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px;
-            transition: all 0.6s ease; opacity: 0.4; transform: scale(0.9);
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 40px; cursor: pointer;
+            min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px;
+            transition: all 0.5s ease; opacity: 0.5; transform: scale(0.9);
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 35px; cursor: pointer;
+            scroll-snap-align: center;
         }
-        .slide.active { opacity: 1; transform: scale(1.05); background: white; box-shadow: 0 30px 60px rgba(0,0,0,0.1); z-index: 2; }
-        .drink-img { width: 180px; height: 280px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
-        .slide.active .drink-img { transform: translateY(-30px); }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; margin-top: 20px; opacity: 0; transition: 0.4s; }
+        .slide.active { opacity: 1; transform: scale(1); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
+        .slide.active .drink-img { transform: translateY(-20px); }
+        
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; }
 
         /* Rodapé */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 20px; text-align: center; }
-        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; display: block; text-decoration: none; color: white; margin-top: 40px; }
+        .main-footer { background: var(--dark-green); padding: 60px 5%; text-align: center; }
+        .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; display: block; text-decoration: none; color: white; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -104,8 +114,8 @@
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
-            <a href="#especiais">Nossa História</a>
-            <a href="#" class="btn-nav">Pedir no iFood</a>
+            <a href="#especiais">História</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -114,9 +124,9 @@
     </header>
 
     <section class="values-bar">
-        <div><span class="icon">🌿</span><h3>Nossos Valores</h3><p>Ingredientes puros e orgânicos.</p></div>
-        <div><span class="icon">🖐️</span><h3>Feito à Mão</h3><p>Processo artesanal único.</p></div>
-        <div><span class="icon">🚲</span><h3>Entrega</h3><p>Rápida e consciente.</p></div>
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
     <section id="menu" class="menu-section">
@@ -126,17 +136,17 @@
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
                 <div class="card-content">
                     <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura e pão de fermentação natural.</p>
-                    <button>Pedir Agora</button>
+                    <p>Blend bovino 180g e queijo meia cura.</p>
                 </div>
+                <button>Pedir Agora</button>
             </div>
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
                 <div class="card-content">
                     <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas orgânicas, grãos ancestrais e legumes tostados.</p>
-                    <button>Pedir Agora</button>
+                    <p>Mix de folhas e grãos ancestrais.</p>
                 </div>
+                <button>Pedir Agora</button>
             </div>
         </div>
     </section>
@@ -171,7 +181,11 @@
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
+            
+            // Centraliza o item clicado no scroll
+            element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
     </script>
 </body>
 </html>
+w
