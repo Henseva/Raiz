@@ -15,7 +15,7 @@
             --white: #FFFFFF;
         }
 
-        /* --- BASE E NAVBAR ORIGINAL --- */
+        /* --- ESTILOS ORIGINAIS DO SEU CÓDIGO RAIZ --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
@@ -32,40 +32,29 @@
         }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
         
-        .nav-links { display: flex; align-items: center; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
         .nav-links a { 
             color: var(--white); 
             text-decoration: none; 
-            margin-left: 20px; 
-            font-size: 0.8rem; 
+            font-size: 0.85rem; 
             font-weight: bold; 
         }
-        /* Estilo exato do botão laranja do topo */
         .btn-nav { 
             background: var(--terracotta); 
             padding: 8px 15px; 
             border-radius: 4px; 
-            display: inline-block; 
         }
 
-        /* --- HERO --- */
         .hero { 
             height: 50vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
-            background-size: cover; 
-            background-position: center; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px;
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--white); text-align: center; }
 
-        /* --- VALORES --- */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* --- CARDÁPIO COMPLETO (Exato como na imagem) --- */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -73,39 +62,40 @@
         .card { background: var(--cream); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; }
         .card-img { height: 220px; background-size: cover; background-position: center; }
         .card-content { padding: 20px; flex-grow: 1; text-align: center; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 10px 0; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
         .card p { font-size: 0.9rem; line-height: 1.4; color: #444; margin-bottom: 20px; height: 50px; }
         .card button { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 auto 15px; }
 
-        /* --- SEÇÃO DE BEBIDAS (Inspirada no Vídeo) --- */
+        /* --- SEÇÃO DE BEBIDAS (Slider corrigido para não sumir itens) --- */
         .drink-slider-section { 
-            padding: 100px 0; 
+            padding: 80px 0; 
             text-align: center; 
             transition: background-color 0.8s ease; 
             background-color: #fce4e4; 
-            overflow: hidden;
         }
-        .slider-container { display: flex; justify-content: center; align-items: center; gap: 20px; min-height: 550px; }
+        .slider-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            min-height: 550px; 
+            padding: 0 5%;
+            overflow-x: auto; /* Permite scroll se não couber */
+        }
         .slide { 
             min-width: 280px; height: 480px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0.3; transform: scale(0.85);
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 30px; cursor: pointer;
+            transition: all 0.6s ease; opacity: 0.4; transform: scale(0.9);
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 40px; cursor: pointer;
         }
-        .slide.active { opacity: 1; transform: scale(1.1); background: white; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
-        .drink-img { width: 180px; height: 280px; object-fit: contain; margin-bottom: 15px; transition: 0.6s ease; }
+        .slide.active { opacity: 1; transform: scale(1.05); background: white; box-shadow: 0 30px 60px rgba(0,0,0,0.1); z-index: 2; }
+        .drink-img { width: 180px; height: 280px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
         .slide.active .drink-img { transform: translateY(-30px); }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; transition: 0.5s; }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; margin-top: 20px; opacity: 0; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; }
 
         /* Rodapé */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 10% 20px; text-align: center; }
         .ifood-bar { background: var(--terracotta); padding: 25px; font-weight: bold; font-size: 1.2rem; display: block; text-decoration: none; color: white; margin-top: 40px; }
-
-        /* Responsividade Mobile (Mantendo o topo intacto) */
-        @media (max-width: 768px) {
-            .nav-links a:not(.btn-nav) { display: none; } /* Esconde textos longos no mobile para caber o botão */
-            .slider-container { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 0 10%; }
-        }
     </style>
 </head>
 <body>
@@ -162,6 +152,11 @@
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
                 <img src="laranja.png" class="drink-img">
                 <h3>Laranja</h3>
+                <button class="btn-drink">Pedir Agora</button>
+            </div>
+            <div class="slide" onclick="updateSlider(this, '#27ae60')">
+                <img src="guarana.png" class="drink-img">
+                <h3>Guaraná</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
         </div>
