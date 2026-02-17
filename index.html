@@ -15,10 +15,18 @@
             --white: #FFFFFF;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; } /* Cursor personalizado ativado */
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* ANIMAÇÕES */
+        /* CURSOR PERSONALIZADO */
+        #custom-cursor {
+            width: 20px; height: 20px; border: 2px solid var(--terracotta);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transition: transform 0.1s ease-out, background 0.3s;
+            transform: translate(-50%, -50%);
+        }
+
+        /* REVEAL E ANIMAÇÕES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -30,12 +38,6 @@
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
-        .btn-nav.pulse { animation: pulse-animation 2s infinite; }
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(217, 125, 84, 0.7); }
-            100% { box-shadow: 0 0 0 15px rgba(217, 125, 84, 0); }
-        }
-
         /* NAVBAR */
         .navbar { 
             background: var(--dark-green); padding: 10px 5%; 
@@ -43,9 +45,8 @@
             color: var(--white); position: sticky; top: 0; z-index: 1000; 
         }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 15px; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-left: 15px; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; }
 
         /* HERO */
         .hero { 
@@ -57,77 +58,44 @@
 
         /* CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-        
         .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card-img { height: 240px; background-size: cover; background-position: center; transition: 0.6s; }
-        .card:hover .card-img { transform: scale(1.1); }
-
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 20px 0 5px; color: var(--dark-green); }
-        .card p { font-size: 0.9rem; padding: 0 15px; margin-bottom: 20px; color: #444; height: 40px; }
-        
-        .btn-card { 
-            background: var(--terracotta); color: white; border: none; 
-            padding: 12px 25px; border-radius: 5px; font-weight: bold; 
-            cursor: pointer; align-self: center; transition: 0.3s; 
-        }
-        .btn-card:hover { background: var(--dark-green); }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; align-self: center; }
 
         /* SLIDER BEBIDAS */
-        .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; }
+        .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; position: relative; }
         .slider-container { display: flex; gap: 20px; min-height: 500px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
-        .slider-container::-webkit-scrollbar { display: none; }
-        
-        .slide { 
-            min-width: 280px; height: 420px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.5; transform: scale(0.9); 
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
-            padding-bottom: 35px; scroll-snap-align: center; cursor: pointer;
-        }
+        .slide { min-width: 280px; height: 420px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 35px; scroll-snap-align: center; transition: 0.5s; opacity: 0.5; transform: scale(0.9); }
         .slide.active { opacity: 1; transform: scale(1); background: white; }
-        .drink-img { width: 160px; height: 230px; object-fit: contain; margin-bottom: 15px; }
-        
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; }
+        .drink-img { width: 160px; height: 230px; object-fit: contain; }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; opacity: 0; visibility: hidden; transition: 0.4s; margin-top: 15px; }
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
-        /* RODAPÉ (AJUSTADO CONFORME FOTO 3) */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 40px; text-align: center; }
+        /* DIVISOR ORGÂNICO (ONDA) */
+        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
+        .wave { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; }
+        .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 100px; }
+        .wave .shape-fill { fill: #fce4e3; } /* Cor deve bater com a seção de cima */
+
+        /* RODAPÉ */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5% 40px; text-align: center; position: relative; z-index: 10; }
         .footer-logo { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
-        .footer-tagline { font-size: 1.1rem; opacity: 0.9; margin-bottom: 40px; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 350px; margin: 30px auto; padding: 18px; border-radius: 12px; font-weight: bold; }
+        .footer-nav a { color: #6a8c7e; text-decoration: none; margin: 0 10px; }
+        .copyright { font-size: 0.85rem; opacity: 0.5; margin-top: 40px; }
 
-        .footer-nav { margin-bottom: 40px; }
-        .footer-nav h4 { font-weight: bold; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .footer-nav a { color: #6a8c7e; text-decoration: none; margin: 0 10px; font-size: 0.95rem; }
-
-        .footer-contact { margin-bottom: 40px; }
-        .footer-contact h4 { font-weight: bold; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .footer-contact p { opacity: 0.9; line-height: 1.6; }
-
-        .ifood-full-btn { 
-            background: var(--terracotta); color: white; text-decoration: none; 
-            display: block; width: 100%; max-width: 350px; margin: 0 auto 40px; 
-            padding: 18px; border-radius: 12px; font-weight: bold; font-size: 1.1rem; 
-            transition: 0.3s;
-        }
-        .ifood-full-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
-
-        .copyright { font-size: 0.85rem; opacity: 0.5; margin-top: 20px; }
-
-        @media (max-width: 768px) {
-            .footer-nav a { display: block; margin: 10px 0; }
-        }
     </style>
 </head>
 <body>
+
+    <div id="custom-cursor"></div>
 
     <nav class="navbar">
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">História</a>
-            <a href="#" class="btn-nav pulse">iFood</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -174,34 +142,51 @@
         </div>
     </section>
 
+    <div class="wave-container">
+        <div class="wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </div>
+
     <footer class="main-footer">
         <div class="footer-logo">RAIZ</div>
         <div class="footer-tagline">Sabor que vem da terra.</div>
-
+        <a href="#" class="ifood-full-btn">Peça no iFood</a>
         <div class="footer-nav">
-            <h4>Navegação</h4>
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
         </div>
-
-        <div class="footer-contact">
-            <h4>Contato</h4>
-            <p>Rua da Terra, 123</p>
-            <p>(11) 99999-9999</p>
-        </div>
-
-        <a href="#" class="ifood-full-btn">Peça no iFood</a>
-
-        <div class="copyright">
-            &copy; 2026 Restaurante Raiz.
-        </div>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
     </footer>
 
     <script>
+        // Cursor Personalizado
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        // Aumentar cursor em links/botões
+        document.querySelectorAll('a, button, .slide').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                cursor.style.background = 'rgba(217, 125, 84, 0.2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'transparent';
+            });
+        });
+
         function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
+            // Atualiza a cor da onda para combinar com o fundo das bebidas
+            document.querySelector('.shape-fill').style.fill = color;
             element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
@@ -210,7 +195,7 @@
             reveals.forEach(el => {
                 var windowHeight = window.innerHeight;
                 var elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) { el.classList.add("active"); }
+                if (elementTop < windowHeight - 100) el.classList.add("active");
             });
         }
         window.addEventListener("scroll", reveal);
