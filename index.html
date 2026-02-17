@@ -20,23 +20,11 @@
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
         #custom-cursor {
-            width: 20px; height: 20px; border: 2px solid var(--terracotta);
+            width: 25px; height: 25px; border: 2px solid var(--terracotta);
             border-radius: 50%; position: fixed; pointer-events: none;
             z-index: 9999; transition: transform 0.1s ease-out, background 0.3s;
             transform: translate(-50%, -50%);
         }
-
-        /* ANIMAÇÕES */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        .typing-effect { 
-            display: inline-block; overflow: hidden; white-space: nowrap; 
-            border-right: 3px solid var(--soft-peach);
-            animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
-        }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
         /* NAVBAR */
         .navbar { 
@@ -48,70 +36,56 @@
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: bold; margin-left: 20px; }
         .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 6px; }
 
-        /* HERO - RESPONSIVO */
+        /* HERO - COM IMAGEM ESTÁVEL */
         .hero { 
             height: 60vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=1200&auto=format&fit=crop'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 5vw, 4rem); color: var(--white); text-align: center; padding: 0 20px; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: var(--white); text-align: center; }
 
-        /* CARDÁPIO GRID */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 50px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        /* SEÇÃO CARDÁPIO */
+        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
+        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; color: var(--dark-green); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-img { height: 250px; background-size: cover; background-position: center; transition: 0.6s; }
-        .card:hover .card-img { transform: scale(1.05); }
-        .card-info { padding: 25px 20px; }
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 10px; }
-        .card p { font-size: 0.95rem; color: #555; margin-bottom: 25px; line-height: 1.4; }
-        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; align-self: center; transition: 0.3s; }
-
-        /* SLIDER DE BEBIDAS */
-        .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; position: relative; }
-        .slider-container { display: flex; gap: 25px; min-height: 550px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
-        .slider-container::-webkit-scrollbar { display: none; }
+        .card { background: var(--cream); border-radius: 25px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-10px); }
         
-        .slide { 
-            min-width: 300px; height: 480px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
-            padding-bottom: 40px; scroll-snap-align: center; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-            opacity: 0.4; transform: scale(0.85); 
+        .card-img { height: 280px; background-size: cover; background-position: center; }
+        .card-info { padding: 30px 20px; text-align: center; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .card p { font-size: 1rem; color: #555; margin-bottom: 25px; }
+        
+        /* BOTÃO VERMELHO DO MODELO */
+        .btn-card { 
+            background: var(--terracotta); color: white; border: none; 
+            padding: 15px 40px; border-radius: 12px; font-weight: bold; 
+            font-size: 1rem; cursor: pointer; transition: 0.3s; align-self: center;
         }
-        .slide.active { opacity: 1; transform: scale(1); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .drink-img { width: 180px; height: 260px; object-fit: contain; transition: 0.5s; }
-        .slide.active .drink-img { transform: translateY(-20px); }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 14px 35px; border-radius: 30px; font-weight: bold; opacity: 0; visibility: hidden; transition: 0.4s; margin-top: 20px; }
-        .slide.active .btn-drink { opacity: 1; visibility: visible; }
+        .btn-card:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* ONDA E RODAPÉ */
-        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
-        .wave { position: absolute; top: 0; width: 100%; line-height: 0; }
-        .wave svg { display: block; width: 100%; height: 100px; }
-        .shape-fill { fill: #fce4e3; transition: fill 0.8s ease; }
+        /* ONDA DINÂMICA */
+        .wave-container { background: var(--dark-green); height: 80px; position: relative; z-index: 5; }
+        .wave svg { display: block; width: 100%; height: 80px; fill: #fce4e3; }
 
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5% 40px; text-align: center; }
-        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 15px; }
+        /* FOOTER ESTILO FOTO */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 40px; text-align: center; }
+        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 10px; }
         .ifood-full-btn { 
             background: var(--terracotta); color: white; text-decoration: none; 
-            display: block; width: 90%; max-width: 400px; margin: 40px auto; 
-            padding: 20px; border-radius: 15px; font-weight: bold; font-size: 1.2rem; 
+            display: block; width: 100%; max-width: 380px; margin: 40px auto; 
+            padding: 22px; border-radius: 18px; font-weight: bold; font-size: 1.3rem; 
         }
-        .footer-nav a { color: #A4B8AF; text-decoration: none; margin: 0 15px; font-size: 1rem; }
-        .copyright { font-size: 0.8rem; opacity: 0.4; margin-top: 60px; }
+        .copyright { font-size: 0.8rem; opacity: 0.5; margin-top: 50px; }
 
         /* RESPONSIVIDADE CELULAR */
         @media (max-width: 768px) {
-            * { cursor: auto; } /* Desativa cursor custom no toque */
+            * { cursor: auto; }
             #custom-cursor { display: none; }
-            .nav-links { display: none; } /* Pode adicionar um menu hamburguer depois */
-            .hero { height: 45vh; }
-            .menu-grid { padding: 0 10px; }
-            .slide { min-width: 80vw; }
-            .footer-nav a { display: block; margin: 15px 0; }
+            .hero { height: 50vh; }
+            .card-img { height: 220px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -123,54 +97,33 @@
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
-            <a href="#especiais">História</a>
+            <a href="#">História</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
+        <h1>Sabor que vem da terra.</h1>
     </header>
 
-    <section id="menu" class="menu-section reveal">
+    <section id="menu" class="menu-section">
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800');"></div>
                 <div class="card-info">
                     <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g artesanal e queijo meia cura derretido.</p>
+                    <p>Blend bovino 180g e queijo meia cura.</p>
                     <button class="btn-card">Pedir Agora</button>
                 </div>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800');"></div>
                 <div class="card-info">
                     <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas orgânicas, grãos ancestrais e molho da casa.</p>
+                    <p>Mix de folhas e grãos ancestrais.</p>
                     <button class="btn-card">Pedir Agora</button>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="especiais" class="drink-slider-section reveal">
-        <h2>Especiais da Casa</h2>
-        <div class="slider-container">
-            <div class="slide" onclick="updateSlider(this, '#e74c3c')">
-                <img src="coca.png" class="drink-img" alt="Coca-Cola">
-                <h3>Coca-Cola</h3>
-                <button class="btn-drink">Pedir Agora</button>
-            </div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <img src="laranja.png" class="drink-img" alt="Suco de Laranja">
-                <h3>Suco Natural</h3>
-                <button class="btn-drink">Pedir Agora</button>
-            </div>
-            <div class="slide" onclick="updateSlider(this, '#27ae60')">
-                <img src="guarana.png" class="drink-img" alt="Guaraná">
-                <h3>Guaraná</h3>
-                <button class="btn-drink">Pedir Agora</button>
             </div>
         </div>
     </section>
@@ -178,7 +131,7 @@
     <div class="wave-container">
         <div class="wave">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
             </svg>
         </div>
     </div>
@@ -187,44 +140,21 @@
         <div class="footer-logo">RAIZ</div>
         <p>Sabor que vem da terra.</p>
         <a href="#" class="ifood-full-btn">Peça no iFood</a>
-        <div class="footer-nav">
-            <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
-            <a href="#">Contato</a>
-        </div>
-        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
     </footer>
 
     <script>
-        // CURSOR SENSÍVEL
+        // Lógica do Cursor
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
         });
 
-        document.querySelectorAll('a, button, .slide').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2.5)');
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2)');
             el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
         });
-
-        // SLIDER DINÂMICO
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.querySelector('.shape-fill').style.fill = color;
-            element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
-
-        // REVELAÇÃO NO SCROLL
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
     </script>
 </body>
 </html>
