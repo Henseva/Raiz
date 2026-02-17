@@ -65,7 +65,7 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
-        /* ACRESCIMO: EFEITO FOLHAS (IDEIA 1) */
+        /* EFEITO FOLHAS */
         .leaf {
             position: fixed; top: -10%; z-index: 9999;
             pointer-events: none; font-size: 20px;
@@ -90,9 +90,14 @@
         }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
-        /* STATUS NAVBAR */
+        /* STATUS NAVBAR (A LUZ QUE VOLTOU) */
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
-        .nav-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .nav-dot { width: 7px; height: 7px; border-radius: 50%; transition: 0.3s; }
+        
+        /* ESTILOS DAS LUZES */
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+        .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
+        .dot-offline { background-color: var(--closed-color); box-shadow: 0 0 5px var(--closed-color); }
 
         .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
@@ -181,7 +186,7 @@
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
 
-        /* ACRESCIMO: ESTILO HORARIOS (IDEIA 3) */
+        /* HORARIOS */
         .hours-list { list-style: none; font-size: 0.85rem; }
         .hours-list li { display: flex; justify-content: space-between; padding: 3px 0; opacity: 0.7; }
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
@@ -298,7 +303,6 @@
             themeToggle.classList.toggle('fa-moon');
         });
 
-        // ACRESCIMO: FUNÇÃO FOLHAS (IDEIA 1)
         function createLeaves() {
             const leaves = ['🌿', '🍃', '🌱'];
             for(let i=0; i<15; i++) {
@@ -339,16 +343,18 @@
             const now = new Date();
             const hour = now.getHours();
             const day = now.getDay();
+            
+            // Lógica Simples de Aberto: 11h às 23h (Ajuste conforme necessário)
             const isOpen = hour >= 11 && hour < 23;
             
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
+            
             if(dot && text) {
                 dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
                 text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
             }
 
-            // ACRESCIMO: DESTAQUE DIA ATUAL (IDEIA 3)
             const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
             if(dayRow) dayRow.classList.add('today');
         }
@@ -356,17 +362,4 @@
         function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
-        }
-
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        }
-        
-        updateStatus();
-        reveal();
-    </script>
-</b
+            document.getEle
