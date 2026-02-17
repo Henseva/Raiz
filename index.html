@@ -280,26 +280,33 @@
             }
         });
 
-        function createLeaves(btn) {
+                function createLeaves(btn) {
             const originalText = btn.innerText;
+            const isIFood = btn.classList.contains('ifood-full-btn');
+            const leafCount = isIFood ? 40 : 15; 
+
             btn.innerText = "✓ Adicionado";
             btn.classList.add('checked');
+            
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('checked');
             }, 2000);
 
-            const leaves = ['🌿', '🍃', '🌱'];
-            for(let i=0; i<15; i++) {
+            const leaves = ['🌿', '🍃', '🌱', '🌵'];
+            for(let i=0; i < leafCount; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'leaf';
                 leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
                 leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.top = -(Math.random() * 20) + 'vh'; 
                 leaf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                leaf.style.fontSize = (Math.random() * 20 + 20) + 'px';
                 document.body.appendChild(leaf);
                 setTimeout(() => leaf.remove(), 3000);
             }
-        }
+                }
+            
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
