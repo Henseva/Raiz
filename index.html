@@ -69,45 +69,51 @@
         .sound-switch.active { color: var(--whatsapp-green); text-shadow: 0 0 10px var(--whatsapp-green); }
         .btn-nav { background: var(--terracotta); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; }
 
-        /* BARRA DE VALORES (RESTAURADA) */
+        /* BARRA DE VALORES (ESTILO ORIGINAL) */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); }
         .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+        .values-bar h3 { font-family: 'DM Serif Display', serif; margin-bottom: 10px; font-size: 1.5rem; }
 
-        /* CARDÁPIO E FILTROS (RESTAURADOS) */
+        /* CARDÁPIO E FILTROS (ESTILO ORIGINAL) */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
         .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; text-align: left; }
         
-        /* ACRÉSCIMO 1: PARALLAX */
-        .card:hover .card-img { transform: scale(1.1); }
+        /* PARALLAX NO CARD */
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.8s ease; }
+        .card:hover .card-img { transform: scale(1.1); }
+        
         .card-info { padding: 25px 20px; }
+        .card-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
+        .card-info p { font-size: 0.9rem; line-height: 1.5; opacity: 0.8; margin-bottom: 20px; }
 
         /* BOTÕES ORIGINAIS */
-        .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
-        .btn-card.success::after { content: " ✓"; }
+        .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-card:hover, .btn-drink:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(217, 125, 84, 0.3); }
 
-        /* SLIDER BEBIDAS (RESTAURADO) */
+        /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 80px 0; text-align: center; background-color: var(--light-grey); }
-        .slider-container { display: flex; gap: 25px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .slide { min-width: 280px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 40px; padding: 40px 20px; scroll-snap-align: center; }
+        .slider-container { display: flex; gap: 25px; padding: 20px 10%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .slide { min-width: 280px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 40px; padding: 40px 20px; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.2); }
         .drink-img { height: 200px; object-fit: contain; margin-bottom: 20px; }
 
-        /* FOOTER E WAVE (RESTAURADOS) */
+        /* FOOTER E WAVE */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); }
-        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
-        .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        .footer-column h4 { margin-bottom: 20px; color: var(--soft-peach); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .hours-list { list-style: none; }
+        .hours-list li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; opacity: 0.8; }
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
-        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
-
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -118,10 +124,12 @@
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <nav class="navbar">
-        <div class="logo">RAIZ</div>
-        <div class="nav-status">
-            <div class="nav-dot" id="nav-dot"></div>
-            <span id="nav-text">---</span>
+        <div style="display: flex; align-items: center;">
+            <div class="logo">RAIZ</div>
+            <div class="nav-status">
+                <div class="nav-dot" id="nav-dot"></div>
+                <span id="nav-text">---</span>
+            </div>
         </div>
         <div class="nav-links">
             <i class="fas fa-tree sound-switch" id="soundToggle" title="Som da Natureza"></i>
@@ -132,40 +140,53 @@
     </nav>
 
     <header class="hero" style="height: 70vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
-        <h1 style="color: white; font-family: 'DM Serif Display'; font-size: 3.5rem;"><span class="typing-effect">Sabor que vem da terra.</span></h1>
+        <h1 style="color: white; font-family: 'DM Serif Display'; font-size: clamp(2rem, 8vw, 4rem);"><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
     <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais de produtores parceiros.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Cada detalhe feito à mão com carinho.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega limpa.</p></div>
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais de produtores parceiros selecionados.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Cada detalhe feito à mão com carinho e dedicação.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega limpa na sua porta.</p></div>
     </section>
 
     <section id="menu" class="menu-section reveal">
-        <h2>Cardápio Completo</h2>
+        <h2 style="font-family: 'DM Serif Display'; font-size: 2.5rem; margin-bottom: 40px;">Nosso Cardápio</h2>
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterMenu('todos')">Todos</button>
             <button class="filter-btn" onclick="filterMenu('burger')">Burgers</button>
             <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
         </div>
-        <div class="menu-grid" id="menuGrid">
+        <div class="menu-grid">
             <div class="card burger">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g, queijo meia cura e maionese da casa.</p><button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button></div>
+                <div class="card-info">
+                    <h3>Burger Raiz</h3>
+                    <p>Blend bovino 180g, queijo meia cura artesanal, cebola caramelizada e maionese secreta da casa.</p>
+                    <button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button>
+                </div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Bowl da Estação</h3><p>Mix de folhas, grãos ancestrais e legumes grelhados.</p><button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button></div>
+                <div class="card-info">
+                    <h3>Bowl da Estação</h3>
+                    <p>Mix de folhas orgânicas, grãos ancestrais, legumes grelhados na brasa e molho de ervas frescas.</p>
+                    <button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="especiais" class="drink-slider-section reveal">
-        <h2 style="margin-bottom: 40px;">Especiais da Casa</h2>
+        <h2 style="font-family: 'DM Serif Display'; font-size: 2.5rem; margin-bottom: 40px;">Bebidas Geladas</h2>
         <div class="slider-container">
             <div class="slide">
                 <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80" class="drink-img" style="border-radius: 20px;">
                 <h3>Coca-Cola</h3>
+                <button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1613478223719-2ab30262b124?auto=format&fit=crop&w=400&q=80" class="drink-img" style="border-radius: 20px;">
+                <h3>Suco de Laranja</h3>
                 <button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button>
             </div>
         </div>
@@ -175,7 +196,7 @@
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor que vem da terra.</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor autêntico que respeita o ciclo da natureza.</p></div>
             <div class="footer-column">
                 <h4>Funcionamento</h4>
                 <ul class="hours-list">
@@ -188,8 +209,12 @@
                     <li data-day="0">Domingo <span>18h - 23h</span></li>
                 </ul>
             </div>
+            <div class="footer-column">
+                <h4>Endereço</h4>
+                <p>Av. da Terra, 456 - São Paulo, SP</p>
+                <p>Telefone: (11) 98888-7777</p>
+            </div>
         </div>
-        <a href="#" class="ifood-full-btn" onclick="actionOrder(this)">Peça no iFood</a>
     </footer>
 
     <script>
@@ -215,9 +240,13 @@
 
         function actionOrder(btn) {
             const originalText = btn.innerText;
-            btn.innerText = originalText + " ✓";
+            btn.innerText = "✓ Adicionado";
+            btn.style.background = "#2ecc71";
             createLeaves();
-            setTimeout(() => { btn.innerText = originalText; }, 2000);
+            setTimeout(() => { 
+                btn.innerText = originalText; 
+                btn.style.background = "var(--terracotta)";
+            }, 2000);
         }
 
         function createLeaves() {
@@ -243,8 +272,7 @@
 
         function updateStatus() {
             const now = new Date();
-            const hour = now.getHours();
-            const isOpen = hour >= 11 && hour < 23;
+            const isOpen = now.getHours() >= 11 && now.getHours() < 23;
             document.getElementById('nav-dot').className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
             document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
             const dayRow = document.querySelector(`.hours-list li[data-day="${now.getDay()}"]`);
