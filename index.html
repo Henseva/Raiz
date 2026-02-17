@@ -22,147 +22,110 @@
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        #custom-cursor { width: 20px; height: 20px; border: 2px solid var(--terracotta); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s ease-out; transform: translate(-50%, -50%); }
+        #custom-cursor {
+            width: 20px; height: 20px; border: 2px solid var(--terracotta);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transition: transform 0.1s ease-out;
+            transform: translate(-50%, -50%);
+        }
 
-        /* NAVBAR */
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 70px; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
-        .nav-status { font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.2); padding: 6px 12px; border-radius: 20px; }
-        .nav-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-online { background: var(--open-color); box-shadow: 0 0 10px var(--open-color); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
+        
+        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; }
+        .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); }
 
-        /* HERO */
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4.5rem; }
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
+        
+        .typing-effect { 
+            display: inline-block; overflow: hidden; white-space: nowrap; 
+            border-right: 3px solid var(--soft-peach); color: white;
+            font-family: 'DM Serif Display'; font-size: 3.5rem;
+            animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach) } }
 
-        /* VALORES */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(3, 1fr); padding: 80px 10%; gap: 40px; text-align: center; }
-        .value-item i { font-size: 3rem; margin-bottom: 20px; color: var(--dark-green); display: block; }
-        .value-item h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; }
+        .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
 
-        /* HISTÓRIA */
-        .history-section { padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .history-img { width: 100%; border-radius: 40px; box-shadow: 20px 20px 0 var(--soft-peach); }
-        .history-content h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 20px; }
-        .history-content p { font-size: 1.1rem; line-height: 1.8; opacity: 0.9; }
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
+        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; font-weight: bold; cursor: pointer; }
+        .filter-btn.active { background: var(--terracotta); color: white; }
 
-        /* CARDÁPIO */
-        .menu-section { background: var(--light-grey); padding: 100px 8%; text-align: center; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: var(--cream); border-radius: 30px; overflow: hidden; transition: 0.4s; text-align: left; }
-        .card:hover { transform: translateY(-10px); }
-        .card-img { width: 100%; height: 280px; background-size: cover; background-position: center; }
-        .card-body { padding: 30px; }
-        .btn-order { background: var(--terracotta); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; transition: 0.3s; text-align: left; }
+        .card-img { width: 100%; height: 250px; background-size: cover; background-position: center; }
+        .card-info { padding: 25px 20px; }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; }
 
-        /* DEPOIMENTOS */
-        .testimonials { padding: 100px 10%; text-align: center; background: var(--white); }
-        .testimonial-card { max-width: 700px; margin: 0 auto; font-style: italic; font-size: 1.4rem; color: var(--dark-green); }
+        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); }
+        .slider-container { display: flex; gap: 25px; padding: 0 10%; overflow-x: auto; scrollbar-width: none; }
+        .slide { min-width: 280px; height: 400px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
+        .drink-img { height: 200px; object-fit: contain; margin-bottom: 20px; }
 
-        /* FOOTER */
-        .footer { background: var(--dark-green); color: white; padding: 80px 10% 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
-        .footer h4 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 60px 5%; text-align: center; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; z-index: 1000; }
 
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp-green); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; text-decoration: none; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-
-        .reveal { opacity: 0; transform: translateY(40px); transition: 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
     <div id="custom-cursor"></div>
-    <a href="#" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <nav class="navbar">
         <div class="logo">RAIZ</div>
         <div class="nav-status">
             <div class="nav-dot dot-online"></div>
-            <span>ABERTO AGORA</span>
+            <span>ABERTO</span>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="reveal">
-            <h1>Sabor que vem da terra.</h1>
-            <p style="font-size: 1.4rem; margin-top: 20px;">Cozinha afetiva, ingredientes locais e respeito à natureza.</p>
-        </div>
+        <h1 class="typing-effect">Sabor que vem da terra.</h1>
     </header>
 
-    <section class="values-bar">
-        <div class="value-item reveal">
-            <i class="fas fa-seedling"></i>
-            <h3>Puro</h3>
-            <p>Orgânicos locais de produtores parceiros selecionados.</p>
-        </div>
-        <div class="value-item reveal">
-            <i class="fas fa-hand-sparkles"></i>
-            <h3>Artesanal</h3>
-            <p>Cada detalhe feito à mão com carinho e dedicação.</p>
-        </div>
-        <div class="value-item reveal">
-            <i class="fas fa-leaf"></i>
-            <h3>Consciente</h3>
-            <p>Embalagens biodegradáveis e entrega limpa na sua porta.</p>
-        </div>
+    <section class="values-bar reveal">
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais de produtores parceiros.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Cada detalhe feito à mão com carinho.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega rápida.</p></div>
     </section>
 
-    <section class="history-section reveal">
-        <img src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?w=800" class="history-img" alt="Nossa História">
-        <div class="history-content">
-            <h2>Nossa Essência</h2>
-            <p>O Raiz nasceu do desejo de reconectar as pessoas com o alimento de verdade. Não é apenas comida, é um ciclo de respeito que começa na semente e termina no seu sorriso.</p>
-            <p style="margin-top: 20px;">Cada prato conta uma história de sustentabilidade e amor pelo que a terra nos provê.</p>
+    <section id="menu" class="menu-section reveal">
+        <div class="filter-container">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Burgers</button>
         </div>
-    </section>
-
-    <section class="menu-section">
-        <h2 style="font-family: 'DM Serif Display', serif; font-size: 3rem;">O que temos hoje</h2>
         <div class="menu-grid">
-            <div class="card reveal">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600');"></div>
-                <div class="card-body">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800');"></div>
+                <div class="card-info">
                     <h3>Burger Raiz</h3>
-                    <p>Blend bovino 180g, queijo meia cura artesanal e maionese defumada.</p>
-                    <button class="btn-order">Pedir via WhatsApp</button>
-                </div>
-            </div>
-            <div class="card reveal">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600');"></div>
-                <div class="card-body">
-                    <h3>Bowl da Estação</h3>
-                    <p>Mix de folhas orgânicas, grãos ancestrais e legumes grelhados.</p>
-                    <button class="btn-order">Pedir via WhatsApp</button>
+                    <p>Blend bovino 180g, queijo meia cura e maionese da casa.</p>
+                    <button class="btn-card">Pedir Agora</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials reveal">
-        <div class="testimonial-card">
-            <p>"A melhor experiência gastronômica sustentável que já tive. O sabor é realmente diferente quando se respeita a origem do alimento."</p>
-            <h4 style="margin-top: 20px; font-family: 'Inter'; font-weight: bold;">— Mariana Silva</h4>
+    <section class="drink-slider-section reveal">
+        <div class="slider-container">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" class="drink-img">
+                <h3>Coca-Cola</h3>
+                <button class="btn-card" style="width: auto;">Pedir</button>
+            </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div>
-            <div class="footer-logo">RAIZ</div>
-            <p style="margin-top: 20px; opacity: 0.8;">Cozinha Consciente © 2026</p>
-        </div>
-        <div>
-            <h4>Explorar</h4>
-            <p>Cardápio</p>
-            <p>Nossa História</p>
-            <p>Sustentabilidade</p>
-        </div>
-        <div>
-            <h4>Contato</h4>
-            <p>WhatsApp: (69) 98113-3218</p>
-            <p>Insta: @raiz.gastronomia</p>
-        </div>
+    <footer class="main-footer">
+        <h2>RAIZ</h2>
+        <p>Sabor que vem da terra.</p>
     </footer>
 
     <script>
@@ -180,4 +143,3 @@
     </script>
 </body>
 </html>
-a
