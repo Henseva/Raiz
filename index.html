@@ -94,13 +94,14 @@
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
+        .filter-container { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
 
         .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid rgba(0,0,0,0.05); }
-        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
+        .card.hidden { display: none; }
         .card-img-container { width: 100%; height: 160px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
         .card-info { padding: 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
@@ -178,6 +179,14 @@
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterMenu('burger', this)">Burgers</button>
+            <button class="filter-btn" onclick="filterMenu('bowl', this)">Bowls</button>
+            <button class="filter-btn" onclick="filterMenu('dessert', this)">Sobremesas</button>
+        </div>
+
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
@@ -260,6 +269,21 @@
             if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
             else { natureSound.pause(); soundToggle.classList.remove('active'); }
         });
+
+        // FUNÇÃO DE FILTRO RESTAURADA
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.menu-grid .card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
 
         function createLeaves(btn) {
             const originalText = btn.innerText;
