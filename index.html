@@ -64,8 +64,8 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
-        .leaf { position: fixed; top: -10%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        .leaf { position: fixed; top: -15%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(120vh) rotate(720deg); } }
 
         .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
@@ -254,7 +254,7 @@
             }
         });
 
-        // Folhas e Botão - ATUALIZADO PARA COBRIR A TELA (150 FOLHAS)
+        // Folhas e Botão - CHUVA INTENSA (400 FOLHAS)
         function createLeaves(btn) {
             const originalText = btn.innerText;
             btn.innerText = "✓ Adicionado";
@@ -264,24 +264,23 @@
                 btn.classList.remove('checked');
             }, 2000);
 
-            // Aumentado para 150 para tampar a tela como solicitado
-            const leafCount = btn.classList.contains('ifood-full-btn') ? 150 : 25;
+            // Aumentado para 400 para fechar a tela completamente
+            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
             const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
             for(let i=0; i < leafCount; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'leaf';
                 leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
                 
-                // Espalha por toda a largura (vw)
                 leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDelay = Math.random() * 3 + 's';
                 
-                // Distribui o início em um intervalo maior para cobrir a tela aos poucos
-                leaf.style.animationDelay = Math.random() * 2.5 + 's';
+                // Folhas maiores para tampar mais espaço
+                leaf.style.fontSize = (Math.random() * 35 + 25) + 'px';
+                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
                 
-                leaf.style.fontSize = (Math.random() * 25 + 20) + 'px';
-                leaf.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
                 document.body.appendChild(leaf);
-                setTimeout(() => leaf.remove(), 5000);
+                setTimeout(() => leaf.remove(), 6000);
             }
         }
 
