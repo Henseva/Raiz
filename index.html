@@ -21,20 +21,17 @@
             --text-main: var(--dark-green);
         }
 
-        /* MODO ESCURO RAIZ - SEM ALTERAÇÕES DE ESTRUTURA */
         body.dark-mode {
-            --bg-body: #0a0a0a;
+            --bg-body: #1a1a1a;
             --text-main: #f0f0f0;
-            --light-grey: #121212;
-            --cream: #1a1a1a;
-            --white: #0a0a0a;
+            --white: #1a1a1a;
         }
 
-        /* INCLUSÃO CIRÚRGICA DO NEON - APENAS VISUAL */
+        /* EFEITO NEON ISOLADO - APENAS PARA O MODO ESCURO */
         body.dark-mode .btn-card, 
         body.dark-mode .btn-drink, 
         body.dark-mode .ifood-full-btn {
-            box-shadow: 0 0 12px rgba(46, 204, 113, 0.6);
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
             border: 1px solid var(--open-color);
         }
 
