@@ -98,9 +98,9 @@
             animation: floatingBounce 3s ease-in-out infinite;
         }
 
-        /* CORREÇÃO DO ERRO DA IMAGEM (MOBILE) */
+        /* CORREÇÃO MOBILE */
         @media (max-width: 650px) {
-            .nav-links a:not(.btn-nav) { display: none; } /* Oculta apenas textos repetidos */
+            .nav-links a:not(.btn-nav) { display: none; }
             .navbar { padding: 0 3%; }
             .logo { font-size: 1.3rem; }
             .nav-status { margin-left: 5px; font-size: 0.55rem; }
@@ -131,7 +131,7 @@
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
 
-        /* CARDÁPIO + FOCO NO SCROLL */
+        /* CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { 
@@ -170,8 +170,7 @@
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
-        .status-badge { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
-        .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
         .dot-offline { background-color: var(--closed-color); }
@@ -253,7 +252,7 @@
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
             <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a><a href="#">Nossa História</a></div>
             <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123 - São Paulo</p><p>(11) 99999-9999</p></div>
         </div>
@@ -302,8 +301,6 @@
         function updateStatus() {
             const hour = new Date().getHours();
             const isOpen = hour >= 11 && hour < 23;
-            const container = document.getElementById('status-container');
-            if(container) container.innerHTML = isOpen ? `<span class="status-dot dot-online"></span> ABERTO AGORA` : `<span class="status-dot dot-offline"></span> FECHADO`;
             
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
