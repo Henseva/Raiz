@@ -68,7 +68,7 @@
         @keyframes fall { to { transform: translateY(120vh) rotate(720deg); } }
 
         .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; }
 
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
         .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -76,11 +76,14 @@
         .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
         .dot-offline { background-color: var(--closed-color); }
 
-        .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+        .nav-links { display: flex; align-items: center; gap: 15px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
-        .sound-switch { cursor: pointer; font-size: 1.3rem; color: rgba(255,255,255,0.6); transition: 0.4s; margin-right: 5px; }
-        .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); transform: scale(1.1); }
+        
+        /* AJUSTE LUA E FOLHA */
+        .theme-switch { cursor: pointer; font-size: 1.2rem; color: var(--soft-peach); margin-left: auto; margin-right: 5px; }
+        .sound-switch { cursor: pointer; font-size: 1.1rem; color: rgba(255,255,255,0.8); transition: 0.4s; }
+        .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); }
+
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
 
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
@@ -88,60 +91,25 @@
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
-        /* AJUSTE MOBILE NA BARRA DE VALORES */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* SEÇÃO DE CARDÁPIO COMPACTA */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
-        .menu-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 40px auto; 
-        }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
 
-        .card { 
-            background: var(--cream); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            transition: all 0.4s ease; 
-            position: relative; 
-            box-shadow: 0 10px 30px var(--card-shadow); 
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid rgba(0,0,0,0.05); }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
-        
         .card-img-container { width: 100%; height: 160px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
-        
         .card-info { padding: 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
         .card-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 5px; }
         .card-info p { font-size: 0.85rem; opacity: 0.7; line-height: 1.4; margin-bottom: 15px; height: 38px; overflow: hidden; }
-        
         .price-tag { font-weight: bold; color: var(--terracotta); margin-top: auto; margin-bottom: 12px; font-size: 1.1rem; }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 11px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
 
-        .btn-card { 
-            background: var(--terracotta); 
-            color: white; 
-            border: none; 
-            padding: 11px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 0.85rem;
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
-        .btn-card.checked { background: var(--open-color) !important; }
-
-        /* SLIDER DE BEBIDAS - RESTAURADO */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; transition: background 0.5s; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
@@ -151,7 +119,6 @@
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
         
-        /* RODAPÉ COMPLETO - RESTAURADO */
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
@@ -162,7 +129,7 @@
         .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
         .ifood-full-btn { display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; text-align: center; background: var(--terracotta); color: white; text-decoration: none; font-weight: bold; }
 
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50%; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 1000;}
         .back-to-top.visible { opacity: 1; }
 
@@ -170,9 +137,7 @@
         @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } }
         @media (max-width: 480px) {
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .card-info h3 { font-size: 1rem; }
-            .card-img-container { height: 120px; }
-            .values-bar { grid-template-columns: 1fr; gap: 20px; }
+            .values-bar { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -186,14 +151,16 @@
 
     <nav class="navbar">
         <div style="display: flex; align-items: center;">
-            <div class="logo">RAIZ</div>
+            <div class="logo">
+                RAIZ
+                <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i>
+            </div>
             <div class="nav-status">
                 <div class="nav-dot" id="nav-dot"></div>
                 <span id="nav-text">---</span>
             </div>
         </div>
         <div class="nav-links">
-            <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i>
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
             <a href="#" class="btn-nav">iFood</a>
@@ -212,11 +179,6 @@
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
-        <div class="filter-container" style="margin-bottom: 30px;">
-            <button class="filter-btn active" onclick="filterMenu('todos', event)">Todos</button>
-            <button class="filter-btn" onclick="filterMenu('burger', event)">Burgers</button>
-            <button class="filter-btn" onclick="filterMenu('bowl', event)">Bowls</button>
-        </div>
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
@@ -286,7 +248,8 @@
             themeToggle.classList.toggle('fa-moon');
         });
 
-        soundToggle.addEventListener('click', () => {
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
             else { natureSound.pause(); soundToggle.classList.remove('active'); }
         });
@@ -304,21 +267,10 @@
                 leaf.className = 'leaf';
                 leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDelay = Math.random() * 3 + 's';
-                leaf.style.fontSize = (Math.random() * 35 + 25) + 'px';
                 leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
                 document.body.appendChild(leaf);
                 setTimeout(() => leaf.remove(), 6000);
             }
-        }
-
-        function filterMenu(category, e) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            document.querySelectorAll('.card').forEach(card => {
-                if (category === 'todos' || card.classList.contains(category)) card.style.display = 'flex';
-                else card.style.display = 'none';
-            });
         }
 
         function updateSlider(element, color) {
@@ -348,14 +300,6 @@
             if (window.scrollY > 400) btt.classList.add('visible');
             else btt.classList.remove('visible');
         });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('focused');
-                else entry.target.classList.remove('focused');
-            });
-        }, { threshold: 0.7 });
-        document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
         updateStatus();
     </script>
