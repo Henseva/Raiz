@@ -15,7 +15,7 @@
             --white: #FFFFFF;
         }
 
-        /* RESET E CURSOR */
+        /* MANTIDO: RESET E CURSOR */
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
@@ -26,7 +26,7 @@
             transform: translate(-50%, -50%);
         }
 
-        /* ANIMAÇÕES */
+        /* MANTIDO: ANIMAÇÕES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -38,7 +38,7 @@
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
-        /* NAVBAR */
+        /* MANTIDO: NAVBAR */
         .navbar { 
             background: var(--dark-green); padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -48,7 +48,7 @@
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: bold; margin-left: 20px; }
         .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 6px; }
 
-        /* HERO */
+        /* MANTIDO: HERO */
         .hero { 
             height: 60vh; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero.jpg'); 
@@ -56,20 +56,19 @@
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: var(--white); text-align: center; }
 
-        /* BARRA DE VALORES */
+        /* MANTIDO: BARRA DE VALORES */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO */
+        /* MANTIDO: CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); }
         .card-img { height: 250px; background-size: cover; background-position: center; }
         .card-info { padding: 25px 20px; }
         .btn-card { background: #e0e0e0; color: #333; border: 1px solid #999; padding: 12px 30px; border-radius: 8px; font-weight: bold; }
 
-        /* SLIDER DE BEBIDAS DINÂMICO */
+        /* MANTIDO: SLIDER DE BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; position: relative; }
         .slider-container { display: flex; gap: 25px; min-height: 500px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
@@ -79,17 +78,21 @@
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; opacity: 0; visibility: hidden; transition: 0.4s; margin-top: 15px; }
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
-        /* ONDA (WAVE) */
+        /* MANTIDO: ONDA (WAVE) */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
         .wave { position: absolute; top: 0; width: 100%; line-height: 0; }
         .wave svg { display: block; width: 100%; height: 100px; fill: #fce4e3; transition: fill 0.8s ease; }
 
-        /* FOOTER */
+        /* NOVO RODAPÉ AJUSTADO */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5% 40px; text-align: center; }
-        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 15px; }
-        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 90%; max-width: 400px; margin: 40px auto; padding: 20px; border-radius: 15px; font-weight: bold; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
+        .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
+        .footer-column p, .footer-column a { font-size: 0.9rem; color: var(--white); text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
+        .copyright { margin-top: 60px; font-size: 0.8rem; opacity: 0.4; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } }
+        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } .footer-content { text-align: center; } }
     </style>
 </head>
 <body>
@@ -165,9 +168,26 @@
     </div>
 
     <footer class="main-footer">
-        <div class="footer-logo">RAIZ</div>
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <h2>RAIZ</h2>
+                <p>Sabor que vem da terra.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navegação</h4>
+                <a href="#menu">Cardápio</a>
+                <a href="#especiais">Especiais</a>
+                <a href="#">Nossa História</a>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <p>Rua da Terra, 123 - São Paulo</p>
+                <p>(11) 99999-9999</p>
+                <p>contato@restauranteraiz.com</p>
+            </div>
+        </div>
         <a href="#" class="ifood-full-btn">Peça no iFood</a>
-        <div class="copyright">Rua da Terra, 123 | (11) 99999-9999</div>
+        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
     </footer>
 
     <script>
