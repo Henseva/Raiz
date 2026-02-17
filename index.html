@@ -21,14 +21,13 @@
             --text-main: var(--dark-green);
         }
 
-        /* ULTRA DARK MODE - MAIS PROFUNDO */
+        /* ULTRA DARK MODE */
         body.dark-mode {
-            --bg-body: #0a0a0a; /* Preto profundo */
-            --text-main: #d1d1d1; /* Texto suave */
-            --light-grey: #141414; /* Containers escuros */
-            --cream: #1a1a1a; /* Cards escuros */
+            --bg-body: #0a0a0a;
+            --text-main: #d1d1d1;
+            --light-grey: #141414;
+            --cream: #1a1a1a;
             --white: #0a0a0a;
-            color: #b3b3b3;
         }
 
         /* RESET E CURSOR */
@@ -53,7 +52,18 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
 
-        /* NAVBAR SLIM */
+        /* VAPOR EFFECT */
+        @keyframes steam {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.2; }
+            100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+        }
+        .steam-effect::after {
+            content: "☁"; font-size: 30px; position: absolute; top: 20%; left: 50%;
+            color: white; filter: blur(8px); animation: steam 3s infinite; pointer-events: none;
+        }
+
+        /* NAVBAR */
         .navbar { 
             background: var(--dark-green); 
             padding: 10px 5%; 
@@ -69,7 +79,6 @@
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
         .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        
         .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
 
         .btn-nav { 
@@ -83,7 +92,7 @@
         }
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        /* HERO COM PARALAXE */
+        /* HERO */
         .hero { 
             height: 60vh; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
@@ -101,48 +110,44 @@
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* FILTROS CARDÁPIO */
+        /* FILTROS */
         .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
 
         /* CARDÁPIO */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s ease, opacity 0.4s ease, background 0.5s ease; }
-        .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        
-        @media (hover: hover) {
-            .card:hover .card-img { transform: scale(1.1); }
-            .card:hover { transform: translateY(-5px); }
-        }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s ease; position: relative; }
+        .card-img-container { width: 100%; height: 250px; overflow: hidden; position: relative; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease; }
         .card-info { padding: 25px 20px; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
+        /* MONTE SEU PRATO */
+        .build-section { padding: 80px 5%; text-align: center; background: var(--bg-body); }
+        .build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; max-width: 900px; margin: 30px auto; }
+        .build-opt { padding: 15px; border: 1px solid var(--soft-peach); border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .build-opt.selected { background: var(--soft-peach); color: var(--dark-green); font-weight: bold; }
+        .build-summary { margin-top: 30px; font-style: italic; color: var(--terracotta); font-weight: bold; }
+
         /* SLIDER DE BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--light-grey); position: relative; scroll-margin-top: 80px; }
-        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
-        
-        .slide { 
-            min-width: 280px; height: 460px; 
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 50px; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px 20px; scroll-snap-align: center; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-            opacity: 0.4; transform: scale(0.85); 
-        }
+        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s ease; opacity: 0.4; transform: scale(0.85); }
         .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); }
-        .drink-img { width: auto; height: 220px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 14px 35px; border-radius: 25px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
-        /* ONDA E RODAPÉ */
+        /* RESERVA */
+        .reserve-section { padding: 80px 5%; background: var(--light-grey); text-align: center; }
+        .reserve-form { max-width: 500px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px; }
+        .reserve-form input { padding: 15px; border-radius: 10px; border: 1px solid var(--soft-peach); background: var(--cream); color: var(--text-main); }
+        .btn-reserve { background: var(--dark-green); color: white; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
+
+        /* WAVE E RODAPÉ */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.8s ease; }
-        
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
@@ -151,36 +156,16 @@
         .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
         .dot-offline { background-color: var(--closed-color); }
 
-        .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
-        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
-        .copyright { margin-top: 60px; font-size: 0.8rem; opacity: 0.4; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-
-        /* FIXOS */
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
-            background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px;
-            z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-        .back-to-top {
-            position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px;
-            background: var(--dark-green); color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 999;
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 999; }
         .back-to-top.visible { opacity: 1; }
 
-        @media (max-width: 768px) { 
-            * { cursor: auto; } #custom-cursor { display: none; }
-            .hero { background-attachment: scroll; }
-            .nav-links { gap: 15px; }
-            .theme-switch { margin-right: 5px; }
-        }
+        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } }
     </style>
 </head>
 <body>
 
     <div id="custom-cursor"></div>
-
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" class="back-to-top" id="backToTop">↑</a>
 
@@ -189,7 +174,8 @@
         <div class="nav-links">
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
+            <a href="#build">Customizar</a>
+            <a href="#reserva">Reservar</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
@@ -212,8 +198,8 @@
             <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
         </div>
 
-        <div class="menu-grid" id="menuGrid">
-            <div class="card burger">
+        <div class="menu-grid">
+            <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
                 <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g e queijo meia cura.</p><button class="btn-card">Pedir Agora</button></div>
             </div>
@@ -222,6 +208,19 @@
                 <div class="card-info"><h3>Bowl da Estação</h3><p>Mix de folhas e grãos ancestrais.</p><button class="btn-card">Pedir Agora</button></div>
             </div>
         </div>
+    </section>
+
+    <section id="build" class="build-section reveal">
+        <h2>Monte seu Raiz</h2>
+        <div class="build-grid">
+            <div class="build-opt" data-type="Base" onclick="selectBuild(this)">Arroz Integral</div>
+            <div class="build-opt" data-type="Base" onclick="selectBuild(this)">Quinoa</div>
+            <div class="build-opt" data-type="Proteína" onclick="selectBuild(this)">Frango Grelhado</div>
+            <div class="build-opt" data-type="Proteína" onclick="selectBuild(this)">Cogumelos</div>
+            <div class="build-opt" data-type="Molho" onclick="selectBuild(this)">Pesto de Ervas</div>
+            <div class="build-opt" data-type="Molho" onclick="selectBuild(this)">Tahine</div>
+        </div>
+        <p class="build-summary" id="buildSummary">Selecione suas opções...</p>
     </section>
 
     <section id="especiais" class="drink-slider-section reveal">
@@ -233,16 +232,25 @@
         </div>
     </section>
 
+    <section id="reserva" class="reserve-section reveal">
+        <h2>Reserve sua Mesa</h2>
+        <div class="reserve-form">
+            <input type="text" id="resName" placeholder="Seu Nome">
+            <input type="number" id="resPessoas" placeholder="Pessoas">
+            <input type="datetime-local" id="resData">
+            <button class="btn-reserve" onclick="sendReserva()">Reservar via WhatsApp</button>
+        </div>
+    </section>
+
     <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
-            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a><a href="#">Nossa História</a></div>
-            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123 - São Paulo</p><p>(11) 99999-9999</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div></div>
+            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a></div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
         </div>
-        <a href="#" class="ifood-full-btn">Peça no iFood</a>
-        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
     </footer>
 
     <script>
@@ -261,34 +269,21 @@
             themeToggle.classList.toggle('fa-moon');
         });
 
-        function filterMenu(category) {
-            const cards = document.querySelectorAll('.card');
-            const btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            cards.forEach(card => {
-                if (category === 'todos' || card.classList.contains(category)) {
-                    card.style.display = 'flex';
-                    setTimeout(() => card.style.opacity = '1', 10);
-                } else {
-                    card.style.opacity = '0';
-                    setTimeout(() => card.style.display = 'none', 400);
-                }
-            });
+        let selections = { Base: '', Proteína: '', Molho: '' };
+        function selectBuild(el) {
+            const type = el.dataset.type;
+            document.querySelectorAll(`[data-type="${type}"]`).forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            selections[type] = el.innerText;
+            document.getElementById('buildSummary').innerText = `Seu Raiz: ${selections.Base} + ${selections.Proteína} + ${selections.Molho}`;
         }
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) backToTop.classList.add('visible');
-            else backToTop.classList.remove('visible');
-            reveal();
-        });
-
-        function checkStatus() {
-            const hour = new Date().getHours();
-            const container = document.getElementById('status-container');
-            const isOpen = hour >= 11 && hour < 23;
-            container.innerHTML = isOpen ? `<span class="status-dot dot-online"></span> ABERTO AGORA` : `<span class="status-dot dot-offline"></span> FECHADO NO MOMENTO`;
+        function sendReserva() {
+            const nome = document.getElementById('resName').value;
+            const pessoas = document.getElementById('resPessoas').value;
+            const data = document.getElementById('resData').value;
+            const msg = encodeURIComponent(`Olá! Reserva para: ${nome}\nPessoas: ${pessoas}\nData: ${data}`);
+            window.open(`https://wa.me/556981133218?text=${msg}`);
         }
 
         function updateSlider(element, color) {
@@ -298,13 +293,24 @@
             document.getElementById('wavePath').style.fill = color;
         }
 
+        function filterMenu(category) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = (category === 'todos' || card.classList.contains(category)) ? 'flex' : 'none';
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+            reveal();
+        });
+
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
             });
         }
         
-        checkStatus();
         reveal();
     </script>
 </body>
