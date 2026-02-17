@@ -18,15 +18,28 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* ANIMAÇÃO DE REVELAÇÃO (FADE IN) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        /* REVEAL E ANIMAÇÕES DE ENTRADA */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* EFEITO DE ESCRITA NO HERO */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        .typing-effect { 
+            display: inline-block; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            border-right: 3px solid var(--soft-peach);
+            animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
+
+        /* BOTÃO PULSANTE IFOOD */
+        .btn-nav.pulse {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(217, 125, 84, 0.7); }
+            100% { box-shadow: 0 0 0 15px rgba(217, 125, 84, 0); }
         }
 
         .navbar { 
@@ -45,14 +58,13 @@
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; transition: 0.3s; }
-        .btn-nav:hover { transform: scale(1.05); filter: brightness(1.1); }
 
         .hero { 
             height: 55vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-align: center; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4.5rem); color: var(--white); text-align: center; }
 
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; transition: 0.5s; }
@@ -64,16 +76,10 @@
         
         .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 20px; transition: 0.4s; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
         .card-img { height: 220px; background-size: cover; background-position: center; transition: 0.6s; }
         .card:hover .card-img { transform: scale(1.1); }
 
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 15px 0 5px; }
-        .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center; transition: 0.3s; }
-        .card button:hover { background: var(--dark-green); }
-
-        .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e4; }
+        .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; }
         .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
         
@@ -81,25 +87,24 @@
             min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.5; transform: scale(0.9); 
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
-            padding-bottom: 35px; scroll-snap-align: center; 
+            padding-bottom: 35px; scroll-snap-align: center; cursor: pointer;
         }
         
         .slide.active { opacity: 1; transform: scale(1); background: white; }
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
-        .slide.active .drink-img { transform: translateY(-10px); }
+        .slide.active .drink-img { transform: translateY(-15px); }
         
         .btn-drink { 
             background: var(--terracotta); color: white; border: none; 
-            padding: 10px 25px; border-radius: 20px; font-weight: bold; 
+            padding: 12px 30px; border-radius: 20px; font-weight: bold; 
             margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; 
         }
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
-        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
-        .footer-column h4 { font-family: 'DM Serif Display', serif; color: var(--soft-peach); margin-bottom: 20px; }
-        .footer-column a { display: block; color: var(--white); text-decoration: none; margin-bottom: 10px; opacity: 0.8; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; text-align: center; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
+        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; text-align: center; transition: 0.3s; }
+        .ifood-bar:hover { transform: scale(1.02); }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; text-align: center; opacity: 0.6; }
 
         @media (max-width: 768px) { .footer-container { text-align: center; } }
@@ -112,12 +117,12 @@
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">História</a>
-            <a href="#" class="btn-nav">iFood</a>
+            <a href="#" class="btn-nav pulse">iFood</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1 class="reveal">Sabor que vem da terra.</h1>
+        <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
     <section class="values-bar reveal">
@@ -189,7 +194,6 @@
     </footer>
 
     <script>
-        // Função do Slider
         function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
@@ -197,21 +201,15 @@
             element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
-        // Script para a Animação de Revelação (Scroll Reveal)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
+            reveals.forEach(el => {
                 var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
+                var elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { el.classList.add("active"); }
+            });
         }
-
         window.addEventListener("scroll", reveal);
-        // Executa uma vez ao carregar para mostrar o que já está na tela
         reveal();
     </script>
 </body>
