@@ -538,33 +538,67 @@
                     setTimeout(() => card.classList.remove('hide'), 10);
                 } else {
                     card.classList.add('hide');
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            const isIFood = btn.classList.contains('ifood-full-btn');
+            const leafCount = isIFood ? 100 : 15; 
+
+            btn.innerText = "✓ Adicionado";
+            btn.classList.add('checked');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('checked');
+            }, 2000);
+
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDelay = (Math.random() * 2) + 's';
+                leaf.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                leaf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 4000);
+            }
+        }
+
+        function filterMenu(category) {
+            // Remove 'active' de todos os botões
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Adiciona 'active' no botão clicado usando o evento global
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            document.querySelectorAll('.card').forEach(card => {
+                if (category === 'todos' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.classList.remove('hide'), 10);
+                } else {
+                    card.classList.add('hide');
                     setTimeout(() => card.style.display = 'none', 400);
                 }
             });
         }
 
         function updateStatus() {
-        function updateStatus() {
             const now = new Date();
             const hour = now.getHours();
             const min = now.getMinutes();
             const day = now.getDay();
-            const isOpen = hour >= 11 && hour < 23;
-            const closingSoon = hour === 22 && min >= 30;
+            const isOpen = (hour >= 11 && hour < 23); // Simplificado para teste
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
 
             if(dot && text) {
-                if (closingSoon) {
-                    dot.style.backgroundColor = '#f39c12';
-                    dot.style.boxShadow = '0 0 8px #f39c12';
-                    text.innerText = 'FECHAMOS EM BREVE';
-                    text.style.color = '#f39c12';
-                } else if (isOpen) {
+                if (isOpen) {
                     dot.className = 'nav-dot dot-online';
-                    dot.style.backgroundColor = '';
                     text.innerText = 'ABERTO';
-                    text.style.color = '';
                 } else {
                     dot.className = 'nav-dot dot-offline';
                     text.innerText = 'FECHADO';
@@ -596,9 +630,18 @@
             reveal();
         });
 
-        // Inicializa as funções ao carregar a página
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('focused');
+                else entry.target.classList.remove('focused');
+            });
+        }, { threshold: 0.7 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+        // Inicialização
         updateStatus();
         reveal();
     </script>
 </body>
 </html>
+
