@@ -79,7 +79,6 @@
         .nav-links { display: flex; align-items: center; gap: 15px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         
-        /* AJUSTE LUA E FOLHA */
         .theme-switch { cursor: pointer; font-size: 1.2rem; color: var(--soft-peach); margin-left: auto; margin-right: 5px; }
         .sound-switch { cursor: pointer; font-size: 1.1rem; color: rgba(255,255,255,0.8); transition: 0.4s; }
         .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); }
@@ -95,8 +94,6 @@
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
-        .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
 
@@ -129,7 +126,7 @@
         .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
         .ifood-full-btn { display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; text-align: center; background: var(--terracotta); color: white; text-decoration: none; font-weight: bold; }
 
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50%; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 1000;}
         .back-to-top.visible { opacity: 1; }
 
@@ -182,19 +179,19 @@
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="expressOrder('Burger Raiz', '32,00', this)">Adicionar</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Bowl da Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Bowl da Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="expressOrder('Bowl da Estação', '28,00', this)">Adicionar</button></div>
             </div>
             <div class="card burger">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Cheese Raiz</h3><p>Queijo meia cura.</p><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Cheese Raiz</h3><p>Queijo meia cura.</p><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="expressOrder('Cheese Raiz', '30,00', this)">Adicionar</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Salada Mix</h3><p>Frescor do campo.</p><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Salada Mix</h3><p>Frescor do campo.</p><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="expressOrder('Salada Mix', '25,00', this)">Adicionar</button></div>
             </div>
         </div>
     </section>
@@ -202,9 +199,9 @@
     <section id="especiais" class="drink-slider-section reveal">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
-            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-card" onclick="expressOrder('Coca-Cola', 'Item do Slider', this)">Adicionar</button></div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-card" onclick="expressOrder('Suco de Laranja', 'Item do Slider', this)">Adicionar</button></div>
+            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-card" onclick="expressOrder('Guaraná', 'Item do Slider', this)">Adicionar</button></div>
         </div>
     </section>
 
@@ -253,6 +250,16 @@
             if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
             else { natureSound.pause(); soundToggle.classList.remove('active'); }
         });
+
+        // NOVA FUNÇÃO: PEDIDO EXPRESSO WHATSAPP
+        function expressOrder(produto, preco, btn) {
+            createLeaves(btn);
+            const numero = "556981133218";
+            const mensagem = encodeURIComponent(`Olá! Gostaria de pedir o ${produto} (R$ ${preco}). Poderia me confirmar o tempo de entrega?`);
+            setTimeout(() => {
+                window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+            }, 1000);
+        }
 
         function createLeaves(btn) {
             const originalText = btn.innerText;
