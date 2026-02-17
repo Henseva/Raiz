@@ -80,9 +80,13 @@
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
         
-        /* ESTILO DO BOTÃO DE SOM */
-        .sound-switch { cursor: pointer; font-size: 1.2rem; color: var(--soft-peach); transition: 0.3s; margin-right: 5px; }
-        .sound-switch.active { color: var(--whatsapp-green); text-shadow: 0 0 10px var(--whatsapp-green); }
+        /* ESTILO DA FOLHA DE SOM (ESTILO DA IMAGEM) */
+        .sound-switch { cursor: pointer; font-size: 1.3rem; color: rgba(255,255,255,0.6); transition: 0.4s; margin-right: 5px; }
+        .sound-switch.active { 
+            color: #2ecc71; 
+            filter: drop-shadow(0 0 8px #2ecc71); 
+            transform: scale(1.1);
+        }
 
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
 
@@ -159,7 +163,7 @@
             </div>
         </div>
         <div class="nav-links">
-            <i class="fas fa-tree sound-switch" id="soundToggle" title="Som da Natureza"></i>
+            <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i>
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
@@ -232,8 +236,6 @@
         const cursor = document.getElementById('custom-cursor');
         const backToTop = document.getElementById('backToTop');
         const themeToggle = document.getElementById('themeToggle');
-        
-        // SCRIPT DO SOM
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
 
@@ -248,7 +250,6 @@
             themeToggle.classList.toggle('fa-moon');
         });
 
-        // FUNÇÃO DE TOGGLE DO SOM
         soundToggle.addEventListener('click', () => {
             if (natureSound.paused) {
                 natureSound.play();
@@ -293,12 +294,10 @@
             const hour = now.getHours();
             const day = now.getDay();
             const isOpen = hour >= 11 && hour < 23;
-            
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
             dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
             text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
-
             const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
             if(dayRow) dayRow.classList.add('today');
         }
@@ -327,4 +326,3 @@
     </script>
 </body>
 </html>
-w
