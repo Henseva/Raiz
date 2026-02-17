@@ -486,6 +486,52 @@
         function filterMenu(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if (event && event.target) event.target.classList.add('active');
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            const isIFood = btn.classList.contains('ifood-full-btn');
+            
+            // Aqui está a sua cortina de 100 folhas!
+            const leafCount = isIFood ? 100 : 15; 
+
+            btn.innerText = "✓ Adicionado";
+            btn.classList.add('checked');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('checked');
+            }, 2000);
+
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                
+                leaf.style.left = Math.random() * 100 + 'vw';
+                const delay = Math.random() * 2; 
+                leaf.style.animationDelay = delay + 's';
+                leaf.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                leaf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 4000);
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('focused');
+                else entry.target.classList.remove('focused');
+            });
+        }, { threshold: 0.7 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+        function filterMenu(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target && event.target.classList) {
+                event.target.classList.add('active');
+            }
             document.querySelectorAll('.card').forEach(card => {
                 if (category === 'todos' || card.classList.contains(category)) {
                     card.style.display = 'flex';
@@ -543,11 +589,9 @@
         }
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                if (document.getElementById('backToTop')) document.getElementById('backToTop').classList.add('visible');
-            } else {
-                if (document.getElementById('backToTop')) document.getElementById('backToTop').classList.remove('visible');
-            }
+            const btt = document.getElementById('backToTop');
+            if (window.scrollY > 400) { if(btt) btt.classList.add('visible'); }
+            else { if(btt) btt.classList.remove('visible'); }
             reveal();
         });
 
