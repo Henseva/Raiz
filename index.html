@@ -147,7 +147,29 @@
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
         .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
         .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
-        .ifood-full-btn { text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
+                .ifood-full-btn { 
+            text-decoration: none; 
+            display: block; 
+            width: 100%; 
+            max-width: 400px; 
+            margin: 40px auto 20px; 
+            padding: 20px; 
+            border-radius: 15px; 
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+        }
+
+        /* O brilho neon só aparece no Modo Escuro */
+        body.dark-mode .ifood-full-btn {
+            animation: neonPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 5px rgba(217, 125, 84, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 25px rgba(217, 125, 84, 0.7); transform: scale(1.02); }
+            100% { box-shadow: 0 0 5px rgba(217, 125, 84, 0.4); transform: scale(1); }
+        }
 
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; }
@@ -372,23 +394,94 @@
                     dot.className = 'nav-dot dot-online';
                     dot.style.backgroundColor = '';
                     text.innerText = 'ABERTO';
-                    text.style.color = ''; 
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            const isIFood = btn.classList.contains('ifood-full-btn');
+            const leafCount = isIFood ? 100 : 15; 
+
+            btn.innerText = "✓ Adicionado";
+            btn.classList.add('checked');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('checked');
+            }, 2000);
+
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                const delay = Math.random() * 2; 
+                leaf.style.animationDelay = delay + 's';
+                leaf.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                leaf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 4000);
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('focused');
+                else entry.target.classList.remove('focused');
+            });
+        }, { threshold: 0.7 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+        function filterMenu(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                if (category === 'todos' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.classList.remove('hide'), 10);
+                } else {
+                    card.classList.add('hide');
+                    setTimeout(() => card.style.display = 'none', 400);
+                }
+            });
+        }
+
+        function updateStatus() {
+            const now = new Date();
+            const hour = now.getHours();
+            const min = now.getMinutes();
+            const day = now.getDay();
+            const isOpen = hour >= 11 && hour < 23;
+            const closingSoon = hour === 22 && min >= 30;
+            const dot = document.getElementById('nav-dot');
+            const text = document.getElementById('nav-text');
+
+            if(dot && text) {
+                if (closingSoon) {
+                    dot.style.backgroundColor = '#f39c12';
+                    dot.style.boxShadow = '0 0 8px #f39c12';
+                    text.innerText = 'FECHAMOS EM BREVE';
+                    text.style.color = '#f39c12';
+                } else if (isOpen) {
+                    dot.className = 'nav-dot dot-online';
+                    dot.style.backgroundColor = '';
+                    text.innerText = 'ABERTO';
+                    text.style.color = '';
                 } else {
                     dot.className = 'nav-dot dot-offline';
                     text.innerText = 'FECHADO';
                 }
             }
-            
             const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
             if(dayRow) dayRow.classList.add('today');
-                }
-            
+        }
 
         function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
             element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
+            const esp = document.getElementById('especiais');
+            const wave = document.getElementById('wavePath');
+            if(esp) esp.style.backgroundColor = color;
+            if(wave) wave.style.fill = color;
         }
 
         function reveal() {
@@ -405,5 +498,8 @@
 
         updateStatus();
         reveal();
-        </script>
+    </script>
+</body>
+</html>
+
     
