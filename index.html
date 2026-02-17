@@ -11,7 +11,7 @@
             --soft-peach: #E9C4A6;
             --light-grey: #D9D9D9;
             --cream: #F5F1E3;
-            --terracotta: #D97D54; /* Cor avermelhada do botão */
+            --terracotta: #D97D54; /* Cor restaurada dos botões */
             --white: #FFFFFF;
         }
 
@@ -76,11 +76,11 @@
             50% { transform: translateY(-6px); }
         }
 
-        /* HERO - RESTAURADO */
+        /* HERO - IMAGEM DE FUNDO RESTAURADA */
         .hero { 
             height: 60vh; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('hero.jpg'); 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); 
             background-size: cover; 
             background-position: center; 
             display: flex; 
@@ -93,14 +93,15 @@
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO - IMAGENS E BOTÃO RESTAURADOS */
+        /* CARDÁPIO COM IMAGENS E BOTÕES RESTAURADOS */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; }
         .card-img { height: 250px; background-size: cover; background-position: center; }
+        .card-info { padding: 25px 20px; }
         .btn-card { 
-            background: var(--terracotta); /* Volta a ser vermelho/terracotta */
-            color: var(--white); 
+            background: var(--terracotta); 
+            color: white; 
             border: none; 
             padding: 12px 30px; 
             border-radius: 8px; 
@@ -118,12 +119,12 @@
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; opacity: 0; visibility: hidden; transition: 0.4s; margin-top: 15px; }
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
-        /* ONDA (WAVE) */
+        /* ONDA */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
         .wave { position: absolute; top: 0; width: 100%; line-height: 0; }
         .wave svg { display: block; width: 100%; height: 100px; fill: #fce4e3; transition: fill 0.8s ease; }
 
-        /* RODAPÉ EM COLUNAS */
+        /* RODAPÉ */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
@@ -162,7 +163,7 @@
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('burger.jpg');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80');"></div>
                 <div class="card-info">
                     <h3>Burger Raiz</h3>
                     <p>Blend bovino 180g e queijo meia cura.</p>
@@ -170,7 +171,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('bowl.jpg');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80');"></div>
                 <div class="card-info">
                     <h3>Bowl da Estação</h3>
                     <p>Mix de folhas e grãos ancestrais.</p>
@@ -184,73 +185,32 @@
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
             <div class="slide" onclick="updateSlider(this, '#e74c3c')">
-                <img src="coca.png" class="drink-img">
+                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80" class="drink-img">
                 <h3>Coca-Cola</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <img src="laranja.png" class="drink-img">
+                <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=300&q=80" class="drink-img">
                 <h3>Laranja</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
             <div class="slide active" onclick="updateSlider(this, '#27ae60')">
-                <img src="guarana.png" class="drink-img">
+                <img src="https://m.media-amazon.com/images/I/81xXj6hS6FL._AC_SL1500_.jpg" class="drink-img">
                 <h3>Guaraná</h3>
                 <button class="btn-drink">Pedir Agora</button>
             </div>
         </div>
     </section>
 
-    <div class="wave-container">
-        <div class="wave">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg>
-        </div>
-    </div>
-
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-logo-section">
-                <h2>RAIZ</h2>
-                <p>Sabor que vem da terra.</p>
-            </div>
-            <div class="footer-column">
-                <h4>Navegação</h4>
-                <a href="#menu">Cardápio</a>
-                <a href="#especiais">Especiais</a>
-                <a href="#">Nossa História</a>
-            </div>
-            <div class="footer-column">
-                <h4>Contato</h4>
-                <p>Rua da Terra, 123 - São Paulo</p>
-                <p>(11) 99999-9999</p>
-                <p>contato@restauranteraiz.com</p>
-            </div>
-        </div>
-        <a href="#" class="ifood-full-btn">Peça no iFood</a>
-        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
-    </footer>
-
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+    <footer class="main-footer"><div class="footer-content"><div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor que vem da terra.</p></div><div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a><a href="#">Nossa História</a></div><div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123 - São Paulo</p><p>(11) 99999-9999</p></div></div><a href="#" class="ifood-full-btn">Peça no iFood</a><div class="copyright">&copy; 2026 Restaurante Raiz.</div></footer>
     <script>
         const cursor = document.getElementById('custom-cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.top = e.clientY + 'px';
-            cursor.style.left = e.clientX + 'px';
-        });
-
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.querySelector('.wave svg path').style.fill = color;
-        }
-
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+        document.addEventListener('mousemove', e => { cursor.style.top = e.clientY + 'px'; cursor.style.left = e.clientX + 'px'; });
+        function updateSlider(element, color) { document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); element.classList.add('active'); document.getElementById('especiais').style.backgroundColor = color; document.querySelector('.wave svg path').style.fill = color; }
+        function reveal() { document.querySelectorAll(".reveal").forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active"); }); }
+        window.addEventListener("scroll", reveal); reveal();
     </script>
 </body>
 </html>
+w
