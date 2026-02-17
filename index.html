@@ -58,17 +58,13 @@
         .btn-nav { 
             background: rgba(217, 125, 84, 0.8); 
             backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
             padding: 8px 20px; 
             border-radius: 10px; 
             color: white; 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
             font-weight: bold; 
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             animation: floatingBounce 3s ease-in-out infinite;
-            font-size: 0.8rem;
         }
 
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
@@ -98,45 +94,30 @@
         .card-info { padding: 25px 20px; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; }
 
-        /* SLIDER DE BEBIDAS - AJUSTE DE ESPAÇAMENTO */
+        /* SLIDER DE BEBIDAS - AJUSTE PARA IGUALAR A COCA */
         .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; position: relative; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
         .slide { 
-            min-width: 280px; 
-            height: 440px; 
-            background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(15px); 
-            border-radius: 40px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; /* Centraliza o conteúdo verticalmente */
-            padding: 30px 20px; 
-            scroll-snap-align: center; 
-            transition: 0.5s; 
-            opacity: 0.5; 
-            transform: scale(0.9); 
+            min-width: 280px; height: 440px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 30px 20px; scroll-snap-align: center; transition: 0.5s; opacity: 0.5; transform: scale(0.9); 
         }
         .slide.active { opacity: 1; transform: scale(1); background: white; }
         
-        /* Imagem com tamanho controlado para não apertar os textos */
+        /* Ajuste para todas as imagens de bebidas seguirem o padrão da Coca */
         .drink-img { 
-            width: auto; 
-            height: 180px; 
-            max-width: 150px; 
-            object-fit: contain; 
-            margin-bottom: 25px; /* Espaço entre imagem e nome */
+            width: 100%; 
+            height: 220px; 
+            object-fit: contain; /* Isso garante que a garrafa não seja cortada e mantenha a proporção */
+            margin-bottom: 20px; 
         }
         
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; opacity: 1; visibility: visible; transition: 0.4s; margin-top: 15px; }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
 
-        /* ONDA */
+        /* ONDA E FOOTER */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
-        .wave { position: absolute; top: 0; width: 100%; line-height: 0; }
-        .wave svg { display: block; width: 100%; height: 100px; fill: #fce4e3; transition: fill 0.8s ease; }
-
-        /* RODAPÉ COMPLETO */
+        .wave svg { width: 100%; height: 100px; fill: #fce4e3; transition: fill 0.8s ease; }
         .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
@@ -267,4 +248,3 @@
     </script>
 </body>
 </html>
-a
