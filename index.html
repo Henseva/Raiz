@@ -22,13 +22,14 @@
             --card-shadow: rgba(0,0,0,0.1);
         }
 
+        /* MODO ESCURO */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --text-main: #f0f0f0;
-            --light-grey: #121212; 
-            --cream: #1d1d1d;      
+            --light-grey: #121212;
+            --cream: #1d1d1d;
             --white: #0a0a0a;
-            --dark-green: #1a2e26; 
+            --dark-green: #1a2e26;
             --card-shadow: rgba(255,255,255,0.05);
         }
 
@@ -42,12 +43,9 @@
             transform: translate(-50%, -50%);
         }
 
-        /* CORREÇÃO DO REVEAL PARA NÃO FICAR BRANCO */
-        .reveal { opacity: 1; transform: translateY(0); transition: all 0.8s ease-out; }
-        @media (min-width: 768px) {
-            .reveal { opacity: 0; transform: translateY(30px); }
-            .reveal.active { opacity: 1; transform: translateY(0); }
-        }
+        /* CORREÇÃO DE VISIBILIDADE: Garante que apareça mesmo se o script demorar */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         @keyframes typing { from { width: 0 } to { width: 100% } }
         .typing-effect { 
@@ -56,6 +54,7 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
 
+        /* VAPOR */
         @keyframes steam {
             0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
             40% { opacity: 0.4; }
@@ -68,9 +67,11 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
+        /* FOLHAS */
         .leaf { position: fixed; top: -10%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
+        /* NAVBAR */
         .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
@@ -87,34 +88,41 @@
         .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); transform: scale(1.1); }
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
 
+        @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } .navbar { padding: 0 3%; } .logo { font-size: 1.3rem; } .nav-status { margin-left: 5px; font-size: 0.55rem; } }
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
+        /* HERO */
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
+        /* VALORES */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
+        /* CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; box-shadow: 0 10px 30px var(--card-shadow); }
+        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
-        .card:hover .card-img { transform: scale(1.1); }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
         .card-info { padding: 25px 20px; }
 
-        .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .btn-card:active { transform: scale(0.92); }
-        .btn-card.checked { background: var(--open-color) !important; }
+        .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { background: var(--open-color) !important; transform: scale(0.95); }
 
+        /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; position: relative; transition: background 0.5s; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
-        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .slider-container::-webkit-scrollbar { display: none; }
+        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
+        /* RODAPÉ */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; transition: background 0.5s; }
@@ -124,7 +132,7 @@
         .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
         .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-column p { font-size: 0.9rem; color: #FFFFFF; opacity: 0.8; }
+        .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
         .ifood-full-btn { text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
 
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
@@ -138,6 +146,7 @@
 
     <div id="custom-cursor"></div>
     <audio id="natureSound" loop src="https://assets.mixkit.co/active_storage/sfx/2458/2458-preview.mp3"></audio>
+    
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" class="back-to-top" id="backToTop">↑</a>
 
@@ -150,9 +159,10 @@
             </div>
         </div>
         <div class="nav-links">
-            <i class="fas fa-leaf sound-switch" id="soundToggle"></i>
+            <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i>
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
+            <a href="#especiais">Especiais</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
@@ -169,21 +179,37 @@
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
-        <div class="menu-grid">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterMenu('burger')">Burgers</button>
+            <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
+        </div>
+        <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><button class="btn-card" onclick="createLeaves(this)">Pedir Agora</button></div>
+                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g e queijo meia cura.</p><button class="btn-card" onclick="createLeaves(this)">Pedir Agora</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Bowl Estação</h3><p>Mix de folhas e grãos.</p><button class="btn-card" onclick="createLeaves(this)">Pedir Agora</button></div>
+                <div class="card-info"><h3>Bowl da Estação</h3><p>Mix de folhas e grãos ancestrais.</p><button class="btn-card" onclick="createLeaves(this)">Pedir Agora</button></div>
             </div>
         </div>
     </section>
 
+    <section id="especiais" class="drink-slider-section reveal">
+        <h2>Especiais da Casa</h2>
+        <div class="slider-container">
+            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-drink" onclick="createLeaves(this)">Pedir Agora</button></div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-drink" onclick="createLeaves(this)">Pedir Agora</button></div>
+            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-drink" onclick="createLeaves(this)">Pedir Agora</button></div>
+        </div>
+    </section>
+
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
             <div class="footer-column">
                 <h4>Funcionamento</h4>
                 <ul class="hours-list">
@@ -196,12 +222,15 @@
                     <li data-day="0">Domingo <span>18h - 23h</span></li>
                 </ul>
             </div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123 - São Paulo</p><p>(11) 99999-9999</p></div>
         </div>
         <a href="#" class="ifood-full-btn" onclick="createLeaves(this)">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
     </footer>
 
     <script>
         const cursor = document.getElementById('custom-cursor');
+        const backToTop = document.getElementById('backToTop');
         const themeToggle = document.getElementById('themeToggle');
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
@@ -213,21 +242,34 @@
 
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('fa-sun');
+            themeToggle.classList.toggle('fa-moon');
         });
 
         soundToggle.addEventListener('click', () => {
-            if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
-            else { natureSound.pause(); soundToggle.classList.remove('active'); }
+            if (natureSound.paused) {
+                natureSound.play();
+                soundToggle.classList.add('active');
+            } else {
+                natureSound.pause();
+                soundToggle.classList.remove('active');
+            }
         });
 
         function createLeaves(btn) {
+            const originalText = btn.innerText;
             btn.innerText = "✓ Adicionado";
             btn.classList.add('checked');
-            setTimeout(() => { btn.innerText = "Pedir Agora"; btn.classList.remove('checked'); }, 2000);
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('checked');
+            }, 2000);
+
+            const leaves = ['🌿', '🍃', '🌱'];
             for(let i=0; i<15; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'leaf';
-                leaf.innerText = '🌿';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
                 leaf.style.left = Math.random() * 100 + 'vw';
                 leaf.style.animationDuration = (Math.random() * 2 + 1) + 's';
                 document.body.appendChild(leaf);
@@ -235,23 +277,56 @@
             }
         }
 
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add("active");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('focused');
+                else entry.target.classList.remove('focused');
+            });
+        }, { threshold: 0.7 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+        function filterMenu(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = (category === 'todos' || card.classList.contains(category)) ? 'flex' : 'none';
             });
         }
-        
-        window.addEventListener('scroll', reveal);
-        window.onload = reveal;
 
         function updateStatus() {
             const now = new Date();
             const hour = now.getHours();
+            const day = now.getDay();
             const isOpen = hour >= 11 && hour < 23;
-            document.getElementById('nav-dot').className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
-            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const dot = document.getElementById('nav-dot');
+            const text = document.getElementById('nav-text');
+            dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
+            text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
+            if(dayRow) dayRow.classList.add('today');
         }
-        updateStatus();
-    </script>
-</body>
-</html>
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
+        }
+
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+            reveal();
+        });
+
+        // DISPARO INICIAL PARA GARANTIR QUE O CONTEÚDO APAREÇA
+        window.onload = () => {
+            updateStatus();
+            reveal();
+            // Fallback: se em 1s não aparecer naw
