@@ -13,6 +13,7 @@
             --cream: #F5F1E3;
             --terracotta: #D97D54;
             --white: #FFFFFF;
+            --whatsapp-green: #25D366;
         }
 
         /* RESET E CURSOR */
@@ -84,14 +85,13 @@
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         /* CARDÁPIO - ZOOM SEGURO */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s ease; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         
-        /* Interação apenas em dispositivos com Mouse */
         @media (hover: hover) {
             .card:hover .card-img { transform: scale(1.1); }
             .card:hover { transform: translateY(-5px); }
@@ -101,7 +101,7 @@
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
         /* SLIDER DE BEBIDAS - VIDRO PREMIUM */
-        .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--light-grey); position: relative; }
+        .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--light-grey); position: relative; scroll-margin-top: 80px; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
         .slider-container::-webkit-scrollbar { display: none; }
         
@@ -133,6 +133,25 @@
         .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
         .copyright { margin-top: 60px; font-size: 0.8rem; opacity: 0.4; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
+        /* NOVAS ADIÇÕES DE PRATICIDADE */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
+            background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        .back-to-top {
+            position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px;
+            background: var(--dark-green); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-weight: bold; opacity: 0; transition: 0.3s;
+            z-index: 999; border: 1px solid var(--soft-peach);
+        }
+        .back-to-top.visible { opacity: 1; }
+
         /* AJUSTES MOBILE */
         @media (max-width: 768px) { 
             * { cursor: auto; } 
@@ -142,6 +161,8 @@
             .hero { height: 40vh; }
             .slide { min-width: 250px; height: 400px; }
             .drink-img { height: 160px; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; }
+            .back-to-top { bottom: 75px; right: 20px; }
         }
     </style>
 </head>
@@ -149,11 +170,14 @@
 
     <div id="custom-cursor"></div>
 
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float" target="_blank">📱</a>
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
     <nav class="navbar">
         <div class="logo">RAIZ</div>
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
-            <a href="#">História</a>
+            <a href="#especiais">Especiais</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
@@ -164,7 +188,7 @@
 
     <section class="values-bar reveal">
         <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐&nbsp;</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
         <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
@@ -246,9 +270,21 @@
 
     <script>
         const cursor = document.getElementById('custom-cursor');
+        const backToTop = document.getElementById('backToTop');
+
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
+        });
+
+        // Lógica do botão Voltar ao Topo
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            reveal();
         });
 
         function updateSlider(element, color) {
@@ -263,9 +299,8 @@
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
             });
         }
-        window.addEventListener("scroll", reveal);
+        
         reveal();
     </script>
 </body>
 </html>
-a
