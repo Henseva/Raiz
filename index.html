@@ -19,22 +19,19 @@
             --closed-color: #e74c3c;
             --bg-body: var(--white);
             --text-main: var(--dark-green);
-            --card-border: transparent;
         }
 
-        /* MODO ESCURO MELHORADO */
+        /* AJUSTE CIRÚRGICO PARA O MODO ESCURO */
         body.dark-mode {
-            --bg-body: #0d0d0d;
-            --text-main: #e0e0e0;
-            --light-grey: #151515; /* Seção do Cardápio fica grafite */
-            --cream: #1e1e1e;      /* Cards ficam levemente mais claros que o fundo */
-            --white: #0d0d0d;
-            --dark-green: #1a2e26; /* Navbar mais escura */
-            --card-border: rgba(255,255,255,0.05);
+            --bg-body: #0a0a0a;
+            --text-main: #f0f0f0;
+            --light-grey: #121212; /* Agora o cinza do cardápio fica escuro */
+            --cream: #1a1a1a;      /* Agora os cards ficam escuros */
+            --white: #0a0a0a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: all 0.5s ease; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: background 0.5s ease; }
 
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
@@ -71,7 +68,7 @@
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         /* NAVBAR */
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
@@ -107,7 +104,7 @@
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; border: 1px solid var(--card-border); }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
@@ -126,10 +123,10 @@
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
         .btn-drink { border-radius: 25px; margin-top: 15px; }
 
-        /* RODAPÉ */
-        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
+        /* RODAPÉ ORIGINAL */
+        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
-        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; transition: background 0.5s; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
         .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
@@ -325,4 +322,12 @@
         
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) backToTop.classList.add('visible');
-            else backToTop.classList.remove('vi
+            else backToTop.classList.remove('visible');
+            reveal();
+        });
+
+        updateStatus();
+        reveal();
+    </script>
+</body>
+</html>
