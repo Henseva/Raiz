@@ -52,7 +52,7 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
 
-        /* VAPOR */
+        /* EFEITO VAPOR */
         @keyframes steam {
             0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
             40% { opacity: 0.4; }
@@ -65,7 +65,7 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
-        /* NAVBAR SLIM */
+        /* NAVBAR */
         .navbar { 
             background: var(--dark-green); 
             padding: 10px 5%; 
@@ -78,34 +78,32 @@
             z-index: 1000; 
             height: 60px;
         }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; flex-shrink: 0; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
-        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 10px; white-space: nowrap; }
+        /* STATUS NAVBAR */
+        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
         .nav-dot { width: 7px; height: 7px; border-radius: 50%; }
 
-        .nav-links { display: flex; align-items: center; gap: 20px; margin-left: auto; }
+        .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        
-        .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 10px; color: var(--soft-peach); }
+        .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
 
         .btn-nav { 
             background: rgba(217, 125, 84, 0.8); 
             backdrop-filter: blur(10px); 
-            padding: 8px 15px; 
+            padding: 8px 20px; 
             border-radius: 10px; 
             color: white !important; 
             font-weight: bold; 
             animation: floatingBounce 3s ease-in-out infinite;
-            white-space: nowrap;
         }
 
-        /* CORREÇÃO PARA MOBILE (ACRÉSCIMO) */
-        @media (max-width: 600px) {
-            .nav-links a:not(.btn-nav) { display: none; } /* Esconde links de texto */
+        /* CORREÇÃO DO ERRO DA IMAGEM (MOBILE) */
+        @media (max-width: 650px) {
+            .nav-links a:not(.btn-nav) { display: none; } /* Oculta apenas textos repetidos */
             .navbar { padding: 0 3%; }
             .logo { font-size: 1.3rem; }
-            .nav-status { margin-left: 5px; padding: 4px 8px; }
-            .btn-nav { padding: 6px 12px; font-size: 0.7rem; }
+            .nav-status { margin-left: 5px; font-size: 0.55rem; }
         }
 
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
@@ -133,7 +131,7 @@
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
 
-        /* CARDÁPIO */
+        /* CARDÁPIO + FOCO NO SCROLL */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { 
@@ -161,7 +159,7 @@
             padding: 30px 20px; scroll-snap-align: center; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
             opacity: 0.4; transform: scale(0.85); 
         }
-        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
+        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); }
         .drink-img { width: auto; height: 220px; object-fit: contain; margin-bottom: 20px; }
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 14px 35px; border-radius: 25px; font-weight: bold; margin-top: 15px; cursor: pointer; }
 
@@ -242,13 +240,25 @@
         </div>
     </section>
 
+    <section id="especiais" class="drink-slider-section reveal">
+        <h2>Especiais da Casa</h2>
+        <div class="slider-container">
+            <div class="slide" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-drink">Pedir Agora</button></div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-drink">Pedir Agora</button></div>
+            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-drink">Pedir Agora</button></div>
+        </div>
+    </section>
+
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div></div>
-            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#">Nossa História</a></div>
-            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
+            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a><a href="#">Nossa História</a></div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123 - São Paulo</p><p>(11) 99999-9999</p></div>
         </div>
         <a href="#" class="ifood-full-btn">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
     </footer>
 
     <script>
@@ -293,7 +303,7 @@
             const hour = new Date().getHours();
             const isOpen = hour >= 11 && hour < 23;
             const container = document.getElementById('status-container');
-            if(container) container.innerHTML = isOpen ? `<span class="status-dot dot-online"></span> ABERTO` : `<span class="status-dot dot-offline"></span> FECHADO`;
+            if(container) container.innerHTML = isOpen ? `<span class="status-dot dot-online"></span> ABERTO AGORA` : `<span class="status-dot dot-offline"></span> FECHADO`;
             
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
@@ -301,6 +311,13 @@
                 dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
                 text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
             }
+        }
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
         }
 
         function reveal() {
