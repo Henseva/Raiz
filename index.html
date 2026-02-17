@@ -310,4 +310,27 @@
             const day = now.getDay();
             const isOpen = hour >= 11 && hour < 23;
             const dot = document.getElementById('nav-dot');
-            const text =
+            const text = document.getElementById('nav-text');
+            dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
+            text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
+            if(dayRow) dayRow.classList.add('today');
+        }
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
+        }
+
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+            revea
