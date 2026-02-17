@@ -38,14 +38,15 @@
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
             border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 9999; transition: transform 0.1s ease-out;
-            transform: translate(-50%, -50%);
+            z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease-out;
         }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* TYPING EFFECT */
         @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
         .typing-effect { 
             display: inline-block; overflow: hidden; white-space: nowrap; 
             border-right: 3px solid var(--soft-peach);
@@ -67,74 +68,74 @@
         .leaf { position: fixed; top: -15%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(120vh) rotate(720deg); } }
 
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
+        /* NAVBAR - Essência Plena */
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; }
-
-        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
-        .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
-        .dot-offline { background-color: var(--closed-color); }
-
-        .nav-links { display: flex; align-items: center; gap: 15px; margin-left: auto; }
-        .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        
-        .theme-switch { cursor: pointer; font-size: 1.2rem; color: var(--soft-peach); margin-left: auto; margin-right: 5px; }
         .sound-switch { cursor: pointer; font-size: 1.1rem; color: rgba(255,255,255,0.8); transition: 0.4s; }
         .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); }
 
-        .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
+        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; }
+        .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
+        .dot-offline { background-color: var(--closed-color); }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
+        .nav-links { display: flex; align-items: center; gap: 15px; margin-left: auto; }
+        .theme-switch { cursor: pointer; font-size: 1.2rem; color: var(--soft-peach); margin-right: 5px; }
+        .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; text-decoration: none; animation: floatingBounce 3s ease-in-out infinite; }
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
+        /* HERO */
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
+        /* VALUES BAR */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
-        
+        /* MENU SECTION */
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
-
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid rgba(0,0,0,0.05); }
-        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; box-shadow: 0 10px 30px var(--card-shadow); position: relative; }
         .card-img-container { width: 100%; height: 160px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
         .card-info { padding: 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 5px; }
-        .card-info p { font-size: 0.85rem; opacity: 0.7; line-height: 1.4; margin-bottom: 15px; height: 38px; overflow: hidden; }
-        .price-tag { font-weight: bold; color: var(--terracotta); margin-top: auto; margin-bottom: 12px; font-size: 1.1rem; }
-        .btn-card { background: var(--terracotta); color: white; border: none; padding: 11px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .price-tag { font-weight: bold; color: var(--terracotta); font-size: 1.1rem; margin-top: auto; margin-bottom: 12px; }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 11px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; transition: background 0.5s; }
-        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
-        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
-        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
-
-        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
-        .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
+        /* DRINK SLIDER PREMIUM 3D */
+        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--dark-green); perspective: 1200px; overflow: hidden; transition: background 0.8s ease; }
+        .drink-slider-section h2 { color: var(--soft-peach); font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 50px; }
+        .slider-wrapper { position: relative; width: 100%; height: 450px; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; }
         
+        .slide { 
+            position: absolute; width: 280px; height: 400px; 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); 
+            border-radius: 30px; border: 1px solid rgba(233, 196, 166, 0.2); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+        }
+        .slide.active { transform: translate3d(0, 0, 150px); opacity: 1; z-index: 10; border-color: var(--soft-peach); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .slide.prev { transform: translate3d(-250px, 0, 0) rotateY(45deg) scale(0.8); opacity: 0.4; z-index: 5; }
+        .slide.next { transform: translate3d(250px, 0, 0) rotateY(-45deg) scale(0.8); opacity: 0.4; z-index: 5; }
+        .slide.hidden { transform: translate3d(0, 0, -300px) scale(0.5); opacity: 0; }
+        .drink-img { height: 180px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+        .slide h3 { color: white; font-family: 'DM Serif Display', serif; margin-bottom: 15px; }
+
+        /* WAVE & FOOTER */
+        .wave-container { background: var(--dark-green); height: 100px; margin-top: -2px; }
+        .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
-        .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
-        .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
-        .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
-        .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
-        .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
-        .ifood-full-btn { display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; text-align: center; background: var(--terracotta); color: white; text-decoration: none; font-weight: bold; }
-
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        .hours-list li.today { color: var(--soft-peach); font-weight: bold; }
+        .ifood-full-btn { display: block; width: 100%; max-width: 400px; margin: 40px auto; padding: 20px; background: var(--terracotta); color: white; text-align: center; border-radius: 15px; text-decoration: none; font-weight: bold; }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50%; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 1000;}
         .back-to-top.visible { opacity: 1; }
 
-        @media (max-width: 768px) { #custom-cursor { display: none; } * { cursor: auto; } }
-        @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } }
         @media (max-width: 480px) {
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .values-bar { grid-template-columns: 1fr; }
+            .slide { width: 220px; height: 340px; }
         }
     </style>
 </head>
@@ -148,10 +149,7 @@
 
     <nav class="navbar">
         <div style="display: flex; align-items: center;">
-            <div class="logo">
-                RAIZ
-                <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i>
-            </div>
+            <div class="logo">RAIZ <i class="fas fa-leaf sound-switch" id="soundToggle" title="Som da Natureza"></i></div>
             <div class="nav-status">
                 <div class="nav-dot" id="nav-dot"></div>
                 <span id="nav-text">---</span>
@@ -159,7 +157,7 @@
         </div>
         <div class="nav-links">
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
-            <a href="#menu">Cardápio</a>
+            <a href="#menu" style="color:white; text-decoration:none; font-size:0.8rem; font-weight:bold;">Cardápio</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
@@ -176,14 +174,14 @@
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
-        <div class="menu-grid" id="menuGrid">
+        <div class="menu-grid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
                 <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="expressOrder('Burger Raiz', '32,00', this)">Adicionar</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Bowl da Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="expressOrder('Bowl da Estação', '28,00', this)">Adicionar</button></div>
+                <div class="card-info"><h3>Bowl Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="expressOrder('Bowl da Estação', '28,00', this)">Adicionar</button></div>
             </div>
             <div class="card burger">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500');"></div></div>
@@ -198,10 +196,10 @@
 
     <section id="especiais" class="drink-slider-section reveal">
         <h2>Especiais da Casa</h2>
-        <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-card" onclick="expressOrder('Coca-Cola', 'Item do Slider', this)">Adicionar</button></div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-card" onclick="expressOrder('Suco de Laranja', 'Item do Slider', this)">Adicionar</button></div>
-            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-card" onclick="expressOrder('Guaraná', 'Item do Slider', this)">Adicionar</button></div>
+        <div class="slider-wrapper">
+            <div class="slide" onclick="moveSlider(0, '#7b1113')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-card" style="width:120px" onclick="expressOrder('Coca-Cola', '350ml', this)">Pedir</button></div>
+            <div class="slide" onclick="moveSlider(1, '#e67e22')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-card" style="width:120px" onclick="expressOrder('Suco de Laranja', 'Copo', this)">Pedir</button></div>
+            <div class="slide" onclick="moveSlider(2, '#219150')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-card" style="width:120px" onclick="expressOrder('Guaraná', '350ml', this)">Pedir</button></div>
         </div>
     </section>
 
@@ -209,10 +207,10 @@
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top:10px;">O sabor que vem da terra.</p></div>
             <div class="footer-column">
                 <h4>Funcionamento</h4>
-                <ul class="hours-list">
+                <ul class="hours-list" id="hoursList">
                     <li data-day="1">Segunda <span>11h - 23h</span></li>
                     <li data-day="2">Terça <span>11h - 23h</span></li>
                     <li data-day="3">Quarta <span>11h - 23h</span></li>
@@ -225,14 +223,13 @@
             <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
         </div>
         <a href="#" class="ifood-full-btn" onclick="createLeaves(this)">Peça no iFood</a>
-        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
     </footer>
 
     <script>
         const cursor = document.getElementById('custom-cursor');
-        const themeToggle = document.getElementById('themeToggle');
-        const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
+        const soundToggle = document.getElementById('soundToggle');
+        const themeToggle = document.getElementById('themeToggle');
 
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
@@ -251,40 +248,40 @@
             else { natureSound.pause(); soundToggle.classList.remove('active'); }
         });
 
-        // NOVA FUNÇÃO: PEDIDO EXPRESSO WHATSAPP
+        function moveSlider(index, color) {
+            const slides = document.querySelectorAll('.slide');
+            const section = document.getElementById('especiais');
+            const wave = document.getElementById('wavePath');
+            if(section) section.style.backgroundColor = color;
+            if(wave) wave.style.fill = color;
+            
+            slides.forEach((slide, i) => {
+                slide.className = 'slide';
+                if (i === index) slide.classList.add('active');
+                else if (i === (index - 1 + slides.length) % slides.length) slide.classList.add('prev');
+                else if (i === (index + 1) % slides.length) slide.classList.add('next');
+                else slide.classList.add('hidden');
+            });
+        }
+
         function expressOrder(produto, preco, btn) {
             createLeaves(btn);
-            const numero = "556981133218";
-            const mensagem = encodeURIComponent(`Olá! Gostaria de pedir o ${produto} (R$ ${preco}). Poderia me confirmar o tempo de entrega?`);
-            setTimeout(() => {
-                window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
-            }, 1000);
+            const mensagem = encodeURIComponent(`Olá! Gostaria de pedir o ${produto} (${preco}).`);
+            setTimeout(() => { window.open(`https://wa.me/556981133218?text=${mensagem}`, '_blank'); }, 1000);
         }
 
         function createLeaves(btn) {
-            const originalText = btn.innerText;
-            btn.innerText = "✓";
-            btn.classList.add('checked');
-            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('checked'); }, 2000);
-
-            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
-            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
-            for(let i=0; i < leafCount; i++) {
+            const leaves = ['🌿', '🍃', '🌱', '☘️'];
+            const count = btn.classList.contains('ifood-full-btn') ? 100 : 30;
+            for(let i=0; i < count; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'leaf';
                 leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+                leaf.style.animationDuration = (Math.random() * 2 + 2) + 's';
                 document.body.appendChild(leaf);
-                setTimeout(() => leaf.remove(), 6000);
+                setTimeout(() => leaf.remove(), 5000);
             }
-        }
-
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
         }
 
         function updateStatus() {
@@ -293,8 +290,7 @@
             const isOpen = hour >= 11 && hour < 23;
             document.getElementById('nav-dot').className = 'nav-dot ' + (isOpen ? 'dot-online' : 'dot-offline');
             document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
-            const hoursItems = document.querySelectorAll('.hours-list li');
-            hoursItems.forEach(li => {
+            document.querySelectorAll('.hours-list li').forEach(li => {
                 if(parseInt(li.getAttribute('data-day')) === day) li.classList.add('today');
             });
         }
@@ -309,6 +305,7 @@
         });
 
         updateStatus();
+        moveSlider(1, '#e67e22');
     </script>
 </body>
 </html>
