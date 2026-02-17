@@ -239,7 +239,7 @@
             cursor.style.left = e.clientX + 'px';
         });
 
-        // TEMA: Lógica cirúrgica para memorização
+        // TEMA: Lógica Adicionada (Única Mudança)
         themeToggle.addEventListener('click', () => {
             const isDark = document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun', isDark);
@@ -248,8 +248,7 @@
         });
 
         function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
+            if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
                 themeToggle.classList.replace('fa-moon', 'fa-sun');
             }
@@ -328,4 +327,5 @@
             });
         }
         
-        wi
+        window.addEventListener('scroll', () => {
+   
