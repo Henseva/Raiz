@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+z<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -227,29 +227,32 @@
         <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
     </footer>
 
-    <script>
+        <script>
         const cursor = document.getElementById('custom-cursor');
         const backToTop = document.getElementById('backToTop');
         const themeToggle = document.getElementById('themeToggle');
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
+
+        // 1. CARREGAMENTO: Verifica o tema salvo assim que a página abre
         if (localStorage.getItem('raiz-tema') === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.classList.replace('fa-moon', 'fa-sun');
         }
-        
+
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
         });
 
-                    const tema = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem('raiz-tema', tema);
-        
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun');
             themeToggle.classList.toggle('fa-moon');
+
+            // 2. SALVAMENTO: Salva a escolha aqui dentro
+            const temaAtivo = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('raiz-tema', temaAtivo);
         });
 
         soundToggle.addEventListener('click', () => {
@@ -306,8 +309,10 @@
             const isOpen = hour >= 11 && hour < 23;
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
-            dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
-            text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            if(dot && text) {
+                dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
+                text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            }
             const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
             if(dayRow) dayRow.classList.add('today');
         }
@@ -333,6 +338,5 @@
 
         updateStatus();
         reveal();
-    </script>
-</body>
-</html>
+        </script>
+    
