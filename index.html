@@ -18,7 +18,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* REVEAL E ANIMAÇÕES */
+        /* ANIMAÇÕES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -30,12 +30,6 @@
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
-        .btn-nav.pulse { animation: pulse-animation 2s infinite; }
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(217, 125, 84, 0.7); }
-            100% { box-shadow: 0 0 0 15px rgba(217, 125, 84, 0); }
-        }
-
         /* NAVBAR */
         .navbar { 
             background: var(--dark-green); padding: 10px 5%; 
@@ -45,69 +39,41 @@
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; transition: 0.3s; color: white; border: none; font-weight: bold; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; border: none; color: white; font-weight: bold; }
 
         /* HERO */
         .hero { 
             height: 55vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fundo-hero.jpg'); /* Nome sugerido para sua foto de fundo */
             background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4.5rem); color: var(--white); text-align: center; }
 
-        /* BARRA DE VALORES (ESTAVA NO ANTERIOR) */
+        /* BARRA DE VALORES */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         /* CARDÁPIO */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
-        .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        .menu-section { background: var(--light-grey); padding: 60px 5%; text-align: center; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card-img { height: 240px; background-size: cover; background-position: center; transition: 0.6s; }
-        
-        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 20px 0 5px; color: var(--dark-green); }
-        .card p { font-size: 0.9rem; padding: 0 15px; margin-bottom: 20px; color: #444; height: 40px; }
-        
-        .btn-card { 
-            background: var(--terracotta); color: white; border: none; 
-            padding: 12px 25px; border-radius: 5px; font-weight: bold; 
-            cursor: pointer; align-self: center; transition: 0.3s; 
-        }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; }
+        .card-img { height: 240px; background-size: cover; background-position: center; }
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 20px 0 5px; }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; align-self: center; }
 
-        /* SLIDER BEBIDAS */
+        /* SLIDER BEBIDAS (ONDE ESTÃO SUAS FOTOS) */
         .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; }
-        .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
-        .slider-container::-webkit-scrollbar { display: none; }
+        .slider-container { display: flex; gap: 20px; min-height: 500px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slide { 
-            min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.5; transform: scale(0.9); 
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
-            padding-bottom: 35px; scroll-snap-align: center; cursor: pointer;
+            min-width: 280px; height: 420px; background: white; border-radius: 40px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            padding: 20px; scroll-snap-align: center;
         }
-        .slide.active { opacity: 1; transform: scale(1); background: white; }
-        .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; }
-        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; }
-        .slide.active .btn-drink { opacity: 1; visibility: visible; }
+        .drink-img { width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 15px; }
 
         /* FOOTER */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 40px; text-align: center; }
-        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
-        .ifood-full-btn { 
-            background: var(--terracotta); color: white; text-decoration: none; 
-            display: block; width: 100%; max-width: 350px; margin: 30px auto; 
-            padding: 18px; border-radius: 12px; font-weight: bold; font-size: 1.1rem; 
-        }
-        .footer-nav a { color: #A4B8AF; text-decoration: none; margin: 0 10px; font-size: 0.95rem; }
-        .copyright { font-size: 0.8rem; opacity: 0.5; margin-top: 40px; }
-
-        @media (max-width: 768px) {
-            .nav-links { gap: 10px; }
-            .nav-links a { font-size: 0.7rem; }
-            .footer-nav a { display: block; margin: 10px 0; }
-        }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 350px; margin: 30px auto; padding: 18px; border-radius: 12px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -117,7 +83,7 @@
         <div class="nav-links">
             <a href="#menu">Cardápio</a>
             <a href="#especiais">História</a>
-            <a href="#" class="btn-nav pulse">iFood</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -126,23 +92,21 @@
     </header>
 
     <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
+        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
+        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800');"></div>
-                <h3>Burger Raiz</h3>
+                <div class="card-img" style="background-image: url('burger.jpg');"></div> <h3>Burger Raiz</h3>
                 <p>Blend bovino 180g e queijo meia cura.</p>
                 <button class="btn-card">Pedir Agora</button>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800');"></div>
-                <h3>Bowl da Estação</h3>
+                <div class="card-img" style="background-image: url('bowl.jpg');"></div> <h3>Bowl da Estação</h3>
                 <p>Mix de folhas e grãos ancestrais.</p>
                 <button class="btn-card">Pedir Agora</button>
             </div>
@@ -153,47 +117,38 @@
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
             <div class="slide" onclick="updateSlider(this, '#e74c3c')">
-                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400" class="drink-img">
+                <img src="coca.png" class="drink-img">
                 <h3>Coca-Cola</h3>
-                <button class="btn-drink">Pedir Agora</button>
+                <button class="btn-card">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=400" class="drink-img">
+                <img src="laranja.png" class="drink-img">
                 <h3>Laranja</h3>
-                <button class="btn-drink">Pedir Agora</button>
+                <button class="btn-card">Pedir Agora</button>
             </div>
             <div class="slide" onclick="updateSlider(this, '#27ae60')">
-                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=400" class="drink-img">
+                <img src="guarana.png" class="drink-img">
                 <h3>Guaraná</h3>
-                <button class="btn-drink">Pedir Agora</button>
+                <button class="btn-card">Pedir Agora</button>
             </div>
         </div>
     </section>
 
     <footer class="main-footer">
         <div class="footer-logo">RAIZ</div>
-        <div class="footer-nav">
-            <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
-        </div>
+        <p>Sabor que vem da terra.</p>
         <a href="#" class="ifood-full-btn">Peça no iFood</a>
-        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
+        <p>&copy; 2026 Restaurante Raiz.</p>
     </footer>
 
     <script>
         function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
             document.getElementById('especiais').style.backgroundColor = color;
-            element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
-
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             reveals.forEach(el => {
-                var windowHeight = window.innerHeight;
-                var elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) { el.classList.add("active"); }
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) { el.classList.add("active"); }
             });
         }
         window.addEventListener("scroll", reveal);
