@@ -233,25 +233,23 @@
         const themeToggle = document.getElementById('themeToggle');
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
-
+        if (localStorage.getItem('raiz-tema') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.replace('fa-moon', 'fa-sun');
+        }
+        
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
         });
 
-        // ACRESCIMO: MEMÓRIA DO TEMA
-        if (localStorage.getItem('dark-mode') === 'active') {
-            document.body.classList.add('dark-mode');
-            themeToggle.classList.replace('fa-moon', 'fa-sun');
-        }
-
+                    const tema = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('raiz-tema', tema);
+        
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun');
             themeToggle.classList.toggle('fa-moon');
-            // ACRESCIMO: SALVAR STATUS
-            const status = document.body.classList.contains('dark-mode') ? 'active' : 'inactive';
-            localStorage.setItem('dark-mode', status);
         });
 
         soundToggle.addEventListener('click', () => {
@@ -323,4 +321,18 @@
 
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < win
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+            reveal();
+        });
+
+        updateStatus();
+        reveal();
+    </script>
+</body>
+</html>
