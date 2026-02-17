@@ -64,7 +64,6 @@
             text-decoration: none;
             animation: floatingBounce 3s ease-in-out infinite;
         }
-
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
         /* HERO */
@@ -84,26 +83,32 @@
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO */
+        /* CARDÁPIO - ZOOM SEGURO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; }
-        .card-img { height: 250px; background-size: cover; background-position: center; }
-        .card-info { padding: 25px 20px; }
-        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; }
+        
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s ease; }
+        .card-img-container { width: 100%; height: 250px; overflow: hidden; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        
+        /* Interação apenas em dispositivos com Mouse */
+        @media (hover: hover) {
+            .card:hover .card-img { transform: scale(1.1); }
+            .card:hover { transform: translateY(-5px); }
+        }
 
-        /* SLIDER DE BEBIDAS - O NOVO DESIGN DO CARD */
+        .card-info { padding: 25px 20px; }
+        .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* SLIDER DE BEBIDAS - VIDRO PREMIUM */
         .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--light-grey); position: relative; }
-        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
+        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
         .slider-container::-webkit-scrollbar { display: none; }
         
         .slide { 
             min-width: 280px; height: 460px; 
-            /* Transparência real para efeito de vidro */
             background: rgba(255, 255, 255, 0.25); 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px);
-            /* Borda fina de "luz" */
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.4); 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
             border-radius: 50px; 
@@ -112,15 +117,7 @@
             opacity: 0.5; transform: scale(0.85); 
         }
         
-        .slide.active { 
-            opacity: 1; 
-            transform: scale(1); 
-            /* Ao ativar, ele fica um pouco mais visível mas mantém o vidro */
-            background: rgba(255, 255, 255, 0.7); 
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-        
+        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.7); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); }
         .drink-img { width: auto; height: 220px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 14px 35px; border-radius: 25px; font-weight: bold; margin-top: 15px; cursor: pointer; }
 
@@ -136,7 +133,16 @@
         .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
         .copyright { margin-top: 60px; font-size: 0.8rem; opacity: 0.4; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } .footer-content { text-align: center; } .nav-links { gap: 15px; } }
+        /* AJUSTES MOBILE */
+        @media (max-width: 768px) { 
+            * { cursor: auto; } 
+            #custom-cursor { display: none; } 
+            .footer-content { text-align: center; } 
+            .nav-links { gap: 15px; }
+            .hero { height: 40vh; }
+            .slide { min-width: 250px; height: 400px; }
+            .drink-img { height: 160px; }
+        }
     </style>
 </head>
 <body>
@@ -158,7 +164,7 @@
 
     <section class="values-bar reveal">
         <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
+        <div><span class="icon">🖐&nbsp;</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
         <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
@@ -166,7 +172,9 @@
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-img-container">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div>
+                </div>
                 <div class="card-info">
                     <h3>Burger Raiz</h3>
                     <p>Blend bovino 180g e queijo meia cura.</p>
@@ -174,7 +182,9 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-img-container">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div>
+                </div>
                 <div class="card-info">
                     <h3>Bowl da Estação</h3>
                     <p>Mix de folhas e grãos ancestrais.</p>
@@ -258,3 +268,4 @@
     </script>
 </body>
 </html>
+a
