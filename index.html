@@ -15,9 +15,19 @@
             --white: #FFFFFF;
         }
 
-        /* --- BASE DO CÓDIGO RAIZ --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* ANIMAÇÃO DE REVELAÇÃO (FADE IN) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .navbar { 
             background: var(--dark-green); 
@@ -32,10 +42,10 @@
         }
 
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
-        
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; }
+        .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; transition: 0.3s; }
+        .btn-nav:hover { transform: scale(1.05); filter: brightness(1.1); }
 
         .hero { 
             height: 55vh; 
@@ -45,43 +55,44 @@
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-align: center; }
 
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; transition: 0.5s; }
+        .values-bar div:hover .icon { transform: rotate(15deg) scale(1.2); }
 
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 20px;}
-        .card-img { height: 220px; background-size: cover; background-position: center; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 20px; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        
+        .card-img { height: 220px; background-size: cover; background-position: center; transition: 0.6s; }
+        .card:hover .card-img { transform: scale(1.1); }
+
         .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 15px 0 5px; }
         .card p { font-size: 0.85rem; padding: 0 15px; margin-bottom: 15px; color: #444; height: 40px; }
-        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center;}
+        .card button { background: var(--terracotta); color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; align-self: center; transition: 0.3s; }
+        .card button:hover { background: var(--dark-green); }
 
-        /* --- AJUSTE NO SLIDER --- */
         .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e4; }
         .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
         
         .slide { 
             min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
-            transition: 0.5s; opacity: 0.5; transform: scale(0.9); 
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.5; transform: scale(0.9); 
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
             padding-bottom: 35px; scroll-snap-align: center; 
         }
         
-        /* Slide fica opaco e cresce apenas quando clicado */
         .slide.active { opacity: 1; transform: scale(1); background: white; }
+        .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
+        .slide.active .drink-img { transform: translateY(-10px); }
         
-        .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; }
-        
-        /* O botão agora nasce invisível e sem ocupar espaço no slide comum */
         .btn-drink { 
             background: var(--terracotta); color: white; border: none; 
             padding: 10px 25px; border-radius: 20px; font-weight: bold; 
             margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; 
         }
-        
-        /* Só aparece quando ganha a classe .active */
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
@@ -106,16 +117,16 @@
     </nav>
 
     <header class="hero">
-        <h1>Sabor que vem da terra.</h1>
+        <h1 class="reveal">Sabor que vem da terra.</h1>
     </header>
 
-    <section class="values-bar">
+    <section class="values-bar reveal">
         <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
         <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
         <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
     </section>
 
-    <section id="menu" class="menu-section">
+    <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
@@ -133,7 +144,7 @@
         </div>
     </section>
 
-    <section id="especiais" class="drink-slider-section">
+    <section id="especiais" class="drink-slider-section reveal">
         <h2>Especiais da Casa</h2>
         <div class="slider-container">
             <div class="slide" onclick="updateSlider(this, '#e74c3c')">
@@ -178,19 +189,30 @@
     </footer>
 
     <script>
+        // Função do Slider
         function updateSlider(element, color) {
-            // Remove o estado ativo de todos
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            
-            // Adiciona apenas no que foi clicado
             element.classList.add('active');
-            
-            // Muda a cor de fundo da seção
             document.getElementById('especiais').style.backgroundColor = color;
-            
-            // Centraliza o slide clicado (bom para mobile)
             element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
+
+        // Script para a Animação de Revelação (Scroll Reveal)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Executa uma vez ao carregar para mostrar o que já está na tela
+        reveal();
     </script>
 </body>
 </html>
