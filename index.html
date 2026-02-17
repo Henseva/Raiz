@@ -19,19 +19,22 @@
             --closed-color: #e74c3c;
             --bg-body: var(--white);
             --text-main: var(--dark-green);
+            --card-shadow: rgba(0,0,0,0.1);
         }
 
-        /* AJUSTE CIRÚRGICO PARA O MODO ESCURO */
+        /* O PONTO CHAVE: MODO ESCURO REAL */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --text-main: #f0f0f0;
-            --light-grey: #121212; /* Agora o cinza do cardápio fica escuro */
-            --cream: #1a1a1a;      /* Agora os cards ficam escuros */
+            --light-grey: #121212; /* Fundo da seção cardápio fica Dark */
+            --cream: #1d1d1d;      /* Fundo dos cards fica Dark */
             --white: #0a0a0a;
+            --dark-green: #1a2e26; /* Navbar e Footer ficam mais profundos */
+            --card-shadow: rgba(255,255,255,0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: background 0.5s ease; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: all 0.5s ease; }
 
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
@@ -68,7 +71,7 @@
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         /* NAVBAR */
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
@@ -80,10 +83,8 @@
         .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
-        
         .sound-switch { cursor: pointer; font-size: 1.3rem; color: rgba(255,255,255,0.6); transition: 0.4s; margin-right: 5px; }
         .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); transform: scale(1.1); }
-
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
 
         @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } .navbar { padding: 0 3%; } .logo { font-size: 1.3rem; } .nav-status { margin-left: 5px; font-size: 0.55rem; } }
@@ -94,21 +95,19 @@
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
         /* VALORES */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         /* CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
-        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; box-shadow: 0 10px 30px var(--card-shadow); }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
-        .card:hover .card-img { transform: scale(1.1); }
         .card-info { padding: 25px 20px; }
 
         .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
@@ -121,12 +120,11 @@
         .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
         .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
-        .btn-drink { border-radius: 25px; margin-top: 15px; }
 
-        /* RODAPÉ ORIGINAL */
-        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
+        /* RODAPÉ ORIGINAL RESTAURADO */
+        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
-        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; transition: background 0.5s; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
         .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
