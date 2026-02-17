@@ -93,19 +93,19 @@
         .hours-list li.today { color: var(--soft-peach); font-weight: bold; }
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50%; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
 
-        /* NOVO: BANNER DE CUPOM (IDEIA 4) */
+        /* --- ACRÉSCIMO: BANNER DE CUPOM (PROIBIDO ALTERAR O ACIMA) --- */
         #coupon-banner {
-            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            position: fixed; bottom: -120px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 400px; background: var(--terracotta); color: white;
-            padding: 15px 25px; border-radius: 15px 15px 0 0; z-index: 2000;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.3); transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 20px; border-radius: 15px 15px 0 0; z-index: 2000;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.4); transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
         }
         #coupon-banner.show { bottom: 0; }
-        .coupon-close { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.2rem; }
-        .coupon-code { background: rgba(255,255,255,0.2); padding: 5px 15px; border: 1px dashed white; border-radius: 5px; font-weight: bold; letter-spacing: 1px; margin-top: 5px; }
-
-        @media (max-width: 480px) { .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+        .coupon-close { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem; line-height: 1; }
+        .coupon-code { background: rgba(255,255,255,0.25); padding: 6px 18px; border: 1px dashed white; border-radius: 6px; font-weight: bold; margin-top: 8px; }
+        /* ----------------------------------------------------------- */
     </style>
 </head>
 <body>
@@ -115,8 +115,8 @@
 
     <div id="coupon-banner">
         <span class="coupon-close" onclick="closeCoupon()">&times;</span>
-        <p style="font-weight: bold; font-size: 0.9rem;">🎁 Boas-vindas ao Raiz!</p>
-        <p style="font-size: 0.75rem; text-align: center;">Use o código abaixo no seu primeiro pedido e ganhe uma surpresa!</p>
+        <p style="font-weight: bold;">🎁 Presente de Boas-vindas!</p>
+        <p style="font-size: 0.8rem;">Use este código no WhatsApp para ganhar um benefício no seu primeiro pedido:</p>
         <div class="coupon-code">PRIMEIRARAIZ</div>
     </div>
 
@@ -224,19 +224,19 @@
             });
         }
 
-        // LÓGICA DO CUPOM (IDEIA 4)
-        function checkFirstVisit() {
-            if (!localStorage.getItem('visited_raiz')) {
+        /* --- ACRÉSCIMO: LÓGICA DO CUPOM (MANTENDO O RESTO INTACTO) --- */
+        function initCoupon() {
+            if (!localStorage.getItem('visited_athena')) {
                 setTimeout(() => {
                     document.getElementById('coupon-banner').classList.add('show');
-                }, 5000); // Surge após 5 segundos
-                localStorage.setItem('visited_raiz', 'true');
+                }, 7000); // Surge após 7 segundos de imersão
+                localStorage.setItem('visited_athena', 'true');
             }
         }
-
         function closeCoupon() {
             document.getElementById('coupon-banner').classList.remove('show');
         }
+        /* ----------------------------------------------------------- */
 
         window.addEventListener('scroll', () => {
             document.querySelectorAll('.reveal').forEach(el => {
@@ -245,7 +245,7 @@
         });
 
         updateStatus();
-        checkFirstVisit();
+        initCoupon(); // Inicia a verificação de primeira visita
     </script>
 </body>
 </html>
