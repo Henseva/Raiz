@@ -11,54 +11,43 @@
             --soft-peach: #E9C4A6;
             --light-grey: #D9D9D9;
             --cream: #F5F1E3;
-            --terracotta: #D97D54;
+            --terracotta: #D97D54; /* O tom avermelhado original */
             --white: #FFFFFF;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* REVEAL E ANIMAÇÕES DE ENTRADA */
+        /* REVEAL E ANIMAÇÕES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* EFEITO DE ESCRITA NO HERO */
         @keyframes typing { from { width: 0 } to { width: 100% } }
         .typing-effect { 
-            display: inline-block; 
-            overflow: hidden; 
-            white-space: nowrap; 
+            display: inline-block; overflow: hidden; white-space: nowrap; 
             border-right: 3px solid var(--soft-peach);
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
-        /* BOTÃO PULSANTE IFOOD */
-        .btn-nav.pulse {
-            animation: pulse-animation 2s infinite;
-        }
+        .btn-nav.pulse { animation: pulse-animation 2s infinite; }
         @keyframes pulse-animation {
             0% { box-shadow: 0 0 0 0px rgba(217, 125, 84, 0.7); }
             100% { box-shadow: 0 0 0 15px rgba(217, 125, 84, 0); }
         }
 
+        /* NAVBAR */
         .navbar { 
-            background: var(--dark-green); 
-            padding: 10px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            color: var(--white); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
+            background: var(--dark-green); padding: 10px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            color: var(--white); position: sticky; top: 0; z-index: 1000; 
         }
-
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .btn-nav { background: var(--terracotta); padding: 8px 15px; border-radius: 4px; transition: 0.3s; }
 
+        /* HERO */
         .hero { 
             height: 55vh; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200'); 
@@ -66,45 +55,47 @@
         }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4.5rem); color: var(--white); text-align: center; }
 
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; transition: 0.5s; }
-        .values-bar div:hover .icon { transform: rotate(15deg) scale(1.2); }
-
+        /* CARDÁPIO COM BOTÃO VERMELHO VOLTADO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
         .menu-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 20px; transition: 0.4s; }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; transition: 0.4s; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card-img { height: 220px; background-size: cover; background-position: center; transition: 0.6s; }
+        .card-img { height: 240px; background-size: cover; background-position: center; transition: 0.6s; }
         .card:hover .card-img { transform: scale(1.1); }
 
+        .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin: 20px 0 5px; color: var(--dark-green); }
+        .card p { font-size: 0.9rem; padding: 0 15px; margin-bottom: 20px; color: #444; height: 40px; }
+        
+        /* BOTÃO VERMELHO (TERRACOTTA) RESTAURADO */
+        .btn-card { 
+            background: var(--terracotta); color: white; border: none; 
+            padding: 12px 25px; border-radius: 5px; font-weight: bold; 
+            cursor: pointer; align-self: center; transition: 0.3s; 
+        }
+        .btn-card:hover { background: var(--dark-green); transform: scale(1.05); }
+
+        /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 80px 0; text-align: center; transition: background-color 0.8s ease; background-color: #fce4e3; }
         .slider-container { display: flex; gap: 20px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
-        
         .slide { 
             min-width: 280px; height: 450px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 40px; 
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.5; transform: scale(0.9); 
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end; 
             padding-bottom: 35px; scroll-snap-align: center; cursor: pointer;
         }
-        
         .slide.active { opacity: 1; transform: scale(1); background: white; }
         .drink-img { width: 180px; height: 250px; object-fit: contain; margin-bottom: 15px; transition: 0.5s; }
         .slide.active .drink-img { transform: translateY(-15px); }
-        
-        .btn-drink { 
-            background: var(--terracotta); color: white; border: none; 
-            padding: 12px 30px; border-radius: 20px; font-weight: bold; 
-            margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; 
-        }
+        .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 20px; font-weight: bold; margin-top: 15px; opacity: 0; visibility: hidden; transition: 0.4s; }
         .slide.active .btn-drink { opacity: 1; visibility: visible; }
 
+        /* FOOTER */
         .main-footer { background: var(--dark-green); color: var(--white); padding: 60px 5% 20px; }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
-        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; text-align: center; transition: 0.3s; }
-        .ifood-bar:hover { transform: scale(1.02); }
+        .ifood-bar { background: var(--terracotta); padding: 20px; font-weight: bold; display: block; text-decoration: none; color: white; border-radius: 8px; max-width: 400px; margin: 0 auto 30px; text-align: center; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; text-align: center; opacity: 0.6; }
 
         @media (max-width: 768px) { .footer-container { text-align: center; } }
@@ -125,26 +116,20 @@
         <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
-    <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
         <div class="menu-grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800');"></div>
                 <h3>Burger Raiz</h3>
                 <p>Blend bovino 180g e queijo meia cura.</p>
-                <button>Pedir Agora</button>
+                <button class="btn-card">Pedir Agora</button>
             </div>
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800');"></div>
                 <h3>Bowl da Estação</h3>
                 <p>Mix de folhas e grãos ancestrais.</p>
-                <button>Pedir Agora</button>
+                <button class="btn-card">Pedir Agora</button>
             </div>
         </div>
     </section>
