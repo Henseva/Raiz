@@ -49,19 +49,6 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
 
-        /* VAPOR */
-        @keyframes steam {
-            0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
-            40% { opacity: 0.4; }
-            100% { transform: translate(-50%, -60px) scale(2); opacity: 0; }
-        }
-        .steam-effect::after {
-            content: "☁"; font-size: 40px; position: absolute; 
-            top: 15%; left: 50%; transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.8); filter: blur(12px); 
-            animation: steam 3s infinite; pointer-events: none; z-index: 10;
-        }
-
         /* FOLHAS */
         .leaf { position: fixed; top: -10%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
@@ -80,15 +67,13 @@
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
         .theme-switch, .sound-switch { cursor: pointer; font-size: 1.1rem; color: var(--soft-peach); transition: 0.3s; }
         .sound-switch.active { color: var(--whatsapp-green); text-shadow: 0 0 10px var(--whatsapp-green); }
-        .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
+        .btn-nav { background: var(--terracotta); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; }
 
-        @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        /* BARRA DE VALORES (RESTAURADA) */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); }
+        .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
 
-        /* BARRA DE VALORES (INTEGRAL) */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-
-        /* CARDÁPIO E FILTROS (INTEGRAL) */
+        /* CARDÁPIO E FILTROS (RESTAURADOS) */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
         .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
@@ -97,38 +82,30 @@
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
         
-        /* IDEIA 1: PARALLAX ZOOM (Apenas acréscimo) */
-        .card:hover .card-img { transform: scale(1.1) translateY(-10px); }
-        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
-        
+        /* ACRÉSCIMO 1: PARALLAX */
+        .card:hover .card-img { transform: scale(1.1); }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.8s ease; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease; }
         .card-info { padding: 25px 20px; }
-        
-        /* BOTÕES ORIGINAIS PRESERVADOS */
-        .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; position: relative; }
-        .btn-drink { border-radius: 25px; margin-top: 15px; } /* Estilo pílula das bebidas preservado */
-        
-        /* IDEIA 2: MICRO-INTERAÇÃO (Apenas acréscimo) */
-        .btn-card.loading, .btn-drink.loading { color: transparent; }
-        .btn-card.loading::after, .btn-drink.loading::after { content: "✓"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-size: 1.2rem; }
 
-        /* SLIDER BEBIDAS */
-        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; }
-        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
-        .slider-container::-webkit-scrollbar { display: none; }
-        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
-        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; transition: 0.5s; }
+        /* BOTÕES ORIGINAIS */
+        .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
+        .btn-card.success::after { content: " ✓"; }
 
-        /* WAVE E FOOTER INTEGRAL */
+        /* SLIDER BEBIDAS (RESTAURADO) */
+        .drink-slider-section { padding: 80px 0; text-align: center; background-color: var(--light-grey); }
+        .slider-container { display: flex; gap: 25px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .slide { min-width: 280px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 40px; padding: 40px 20px; scroll-snap-align: center; }
+        .drink-img { height: 200px; object-fit: contain; margin-bottom: 20px; }
+
+        /* FOOTER E WAVE (RESTAURADOS) */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); }
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
-        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
 
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
     </style>
@@ -141,30 +118,27 @@
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <nav class="navbar">
-        <div style="display: flex; align-items: center;">
-            <div class="logo">RAIZ</div>
-            <div class="nav-status">
-                <div class="nav-dot" id="nav-dot"></div>
-                <span id="nav-text">---</span>
-            </div>
+        <div class="logo">RAIZ</div>
+        <div class="nav-status">
+            <div class="nav-dot" id="nav-dot"></div>
+            <span id="nav-text">---</span>
         </div>
         <div class="nav-links">
             <i class="fas fa-tree sound-switch" id="soundToggle" title="Som da Natureza"></i>
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
-            <a href="#especiais">Especiais</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
-    <header class="hero" style="height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
-        <h1 style="color: white; font-family: 'DM Serif Display'; font-size: 3rem;"><span class="typing-effect">Sabor que vem da terra.</span></h1>
+    <header class="hero" style="height: 70vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
+        <h1 style="color: white; font-family: 'DM Serif Display'; font-size: 3.5rem;"><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
     <section class="values-bar reveal">
         <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais de produtores parceiros.</p></div>
         <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Cada detalhe feito à mão com carinho.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega rápida.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega limpa.</p></div>
     </section>
 
     <section id="menu" class="menu-section reveal">
@@ -175,7 +149,7 @@
             <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
         </div>
         <div class="menu-grid" id="menuGrid">
-            <div class="card burger steam-effect">
+            <div class="card burger">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
                 <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g, queijo meia cura e maionese da casa.</p><button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button></div>
             </div>
@@ -187,14 +161,17 @@
     </section>
 
     <section id="especiais" class="drink-slider-section reveal">
-        <h2>Especiais da Casa</h2>
+        <h2 style="margin-bottom: 40px;">Especiais da Casa</h2>
         <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button></div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button></div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80" class="drink-img" style="border-radius: 20px;">
+                <h3>Coca-Cola</h3>
+                <button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button>
+            </div>
         </div>
     </section>
 
-    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
 
     <footer class="main-footer">
         <div class="footer-content">
@@ -229,7 +206,6 @@
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun');
-            themeToggle.classList.toggle('fa-moon');
         });
 
         soundToggle.addEventListener('click', () => {
@@ -238,9 +214,10 @@
         });
 
         function actionOrder(btn) {
-            btn.classList.add('loading');
+            const originalText = btn.innerText;
+            btn.innerText = originalText + " ✓";
             createLeaves();
-            setTimeout(() => btn.classList.remove('loading'), 1500);
+            setTimeout(() => { btn.innerText = originalText; }, 2000);
         }
 
         function createLeaves() {
@@ -266,26 +243,21 @@
 
         function updateStatus() {
             const now = new Date();
-            const isOpen = now.getHours() >= 11 && now.getHours() < 23;
+            const hour = now.getHours();
+            const isOpen = hour >= 11 && hour < 23;
             document.getElementById('nav-dot').className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
             document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
             const dayRow = document.querySelector(`.hours-list li[data-day="${now.getDay()}"]`);
             if(dayRow) dayRow.classList.add('today');
         }
 
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
-        }
-
-        updateStatus();
         window.addEventListener('scroll', () => {
             document.querySelectorAll(".reveal").forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
             });
         });
+
+        updateStatus();
     </script>
 </body>
 </html>
