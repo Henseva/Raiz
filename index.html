@@ -49,7 +49,7 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
 
-        /* VAPOR (RESTAURADO) */
+        /* VAPOR */
         @keyframes steam {
             0% { transform: translate(-50%, 0) scale(1); opacity: 0; }
             40% { opacity: 0.4; }
@@ -62,7 +62,7 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
-        /* FOLHAS */
+        /* FOLHAS (NOVO) */
         .leaf { position: fixed; top: -10%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
@@ -70,7 +70,7 @@
         .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
-        /* STATUS LUZES (RESTAURADO) */
+        /* LUZES DE STATUS */
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; }
         .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -82,31 +82,19 @@
         .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; animation: floatingBounce 3s infinite; }
 
-        @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } .navbar { padding: 0 3%; } .nav-status { margin-left: 5px; font-size: 0.55rem; } }
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        /* HERO */
-        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; }
-
-        /* VALORES */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-
-        /* MENU */
-        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
-        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; font-weight: bold; }
-        .filter-btn.active { background: var(--terracotta); color: white; }
+        /* MENU CARDS */
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; transition: 0.5s; position: relative; }
-        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); }
-        .card-img-container { height: 250px; overflow: hidden; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
+        .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
+        .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
         .card-info { padding: 25px; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; }
 
-        /* DRINK SLIDER */
+        /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; }
         .slider-container { display: flex; gap: 25px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
@@ -115,17 +103,22 @@
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
         .btn-drink { background: var(--terracotta); color: white; border: none; padding: 14px 35px; border-radius: 25px; font-weight: bold; }
 
-        /* FOOTER & HORARIOS */
+        /* RODAPÉ E HORARIOS */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); }
-        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
-        .hours-list { list-style: none; font-size: 0.85rem; margin-top: 10px; }
-        .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.6; }
-        .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
-        .ifood-full-btn { background: var(--terracotta); color: white; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; text-decoration: none; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
+        .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
         
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; z-index: 1000; }
+        .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
+        .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
+        .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
+        
+        .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
+        .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
+
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; }
         .back-to-top.visible { opacity: 1; }
 
@@ -158,37 +151,25 @@
         <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
-    <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
-    </section>
-
-    <section id="menu" class="menu-section reveal">
-        <h2>Cardápio Completo</h2>
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterMenu('todos')">Todos</button>
-            <button class="filter-btn" onclick="filterMenu('burger')">Burgers</button>
-            <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
-        </div>
-        <div class="menu-grid" id="menuGrid">
+    <section class="menu-section reveal">
+        <h2>Nosso Cardápio</h2>
+        <div class="menu-grid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g e queijo meia cura.</p><button class="btn-card" onclick="createLeaves()">Pedir Agora</button></div>
+                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><button class="btn-card" onclick="createLeaves()">Pedir Agora</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div></div>
-                <div class="card-info"><h3>Bowl da Estação</h3><p>Mix de folhas e grãos ancestrais.</p><button class="btn-card" onclick="createLeaves()">Pedir Agora</button></div>
+                <div class="card-info"><h3>Bowl Estação</h3><p>Grãos ancestrais.</p><button class="btn-card" onclick="createLeaves()">Pedir Agora</button></div>
             </div>
         </div>
     </section>
 
     <section id="especiais" class="drink-slider-section reveal">
-        <h2>Especiais da Casa</h2>
+        <h2>Especiais</h2>
         <div class="slider-container">
-            <div class="slide" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-drink" onclick="createLeaves()">Pedir Agora</button></div>
+            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-drink" onclick="createLeaves()">Pedir Agora</button></div>
             <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-drink" onclick="createLeaves()">Pedir Agora</button></div>
-            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-drink" onclick="createLeaves()">Pedir Agora</button></div>
         </div>
     </section>
 
@@ -196,20 +177,20 @@
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor que vem da terra.</p></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
             <div class="footer-column">
                 <h4>Funcionamento</h4>
-                <ul class="hours-list" id="hoursGrid">
-                    <li data-day="1"><span>Segunda</span> <span>11h - 23h</span></li>
-                    <li data-day="2"><span>Terça</span> <span>11h - 23h</span></li>
-                    <li data-day="3"><span>Quarta</span> <span>11h - 23h</span></li>
-                    <li data-day="4"><span>Quinta</span> <span>11h - 23h</span></li>
-                    <li data-day="5"><span>Sexta</span> <span>11h - 00h</span></li>
-                    <li data-day="6"><span>Sábado</span> <span>11h - 00h</span></li>
-                    <li data-day="0"><span>Domingo</span> <span>18h - 23h</span></li>
+                <ul class="hours-list">
+                    <li data-day="1">Segunda <span>11h - 23h</span></li>
+                    <li data-day="2">Terça <span>11h - 23h</span></li>
+                    <li data-day="3">Quarta <span>11h - 23h</span></li>
+                    <li data-day="4">Quinta <span>11h - 23h</span></li>
+                    <li data-day="5">Sexta <span>11h - 00h</span></li>
+                    <li data-day="6">Sábado <span>11h - 00h</span></li>
+                    <li data-day="0">Domingo <span>18h - 23h</span></li>
                 </ul>
             </div>
-            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a></div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
         </div>
         <a href="#" class="ifood-full-btn" onclick="createLeaves()">Peça no iFood</a>
         <div class="copyright">&copy; 2026 Restaurante Raiz. Todos os direitos reservados.</div>
