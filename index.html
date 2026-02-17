@@ -324,20 +324,40 @@
                 }
             
 
-        function updateStatus() {
+                function updateStatus() {
             const now = new Date();
             const hour = now.getHours();
+            const min = now.getMinutes();
             const day = now.getDay();
+            
             const isOpen = hour >= 11 && hour < 23;
+            const closingSoon = hour === 22 && min >= 30;
+
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
+
             if(dot && text) {
-                dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
-                text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
+                if (closingSoon) {
+                    dot.className = 'nav-dot'; 
+                    dot.style.backgroundColor = '#f39c12';
+                    dot.style.boxShadow = '0 0 8px #f39c12';
+                    text.innerText = 'FECHAMOS EM BREVE';
+                    text.style.color = '#f39c12';
+                } else if (isOpen) {
+                    dot.className = 'nav-dot dot-online';
+                    dot.style.backgroundColor = '';
+                    text.innerText = 'ABERTO';
+                    text.style.color = ''; 
+                } else {
+                    dot.className = 'nav-dot dot-offline';
+                    text.innerText = 'FECHADO';
+                }
             }
+            
             const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
             if(dayRow) dayRow.classList.add('today');
-        }
+                }
+            
 
         function updateSlider(element, color) {
             document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
