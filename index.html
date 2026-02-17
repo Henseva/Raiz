@@ -107,23 +107,30 @@
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; box-shadow: 0 10px 30px var(--card-shadow); }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        
-        /* AJUSTE PREMIUM: PARALAXE SUAVE NA IMAGEM */
-        .card-img { 
-            width: 100%; 
-            height: 100%; 
-            background-size: cover; 
-            background-position: center; 
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1); /* Transição suave e elegante */
-        }
-        .card:hover .card-img { 
-            transform: scale(1.1); /* Zoom leve ao passar o mouse */
-        }
-
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .card:hover .card-img { transform: scale(1.1); }
         .card-info { padding: 25px 20px; }
 
-        .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { background: var(--open-color) !important; transform: scale(0.95); }
+        /* AJUSTE CIRÚRGICO: BOTÃO PREMIUM COM FEEDBACK */
+        .btn-card, .btn-drink, .ifood-full-btn { 
+            background: var(--terracotta); 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .btn-card:active, .btn-drink:active { 
+            transform: scale(0.92); /* Efeito de pressão física */
+        }
+        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { 
+            background: var(--open-color) !important; 
+        }
 
         /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; position: relative; transition: background 0.5s; }
@@ -268,9 +275,11 @@
         });
 
         function createLeaves(btn) {
+            // FEEDBACK VISUAL PREMIUM NO CLIQUE
             const originalText = btn.innerText;
             btn.innerText = "✓ Adicionado";
             btn.classList.add('checked');
+            
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('checked');
@@ -326,18 +335,4 @@
 
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        }
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) backToTop.classList.add('visible');
-            else backToTop.classList.remove('visible');
-            reveal();
-        });
-
-        updateStatus();
-        reveal();
-    </script>
-</body>
-</html>
+                if (ela
