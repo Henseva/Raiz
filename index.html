@@ -84,6 +84,10 @@
 
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
+        /* HERO */
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
+
         /* BARRA DE VALORES */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
@@ -96,24 +100,25 @@
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
-        .card:hover .card-img { transform: scale(1.1) translateY(-10px); } /* Ideia 1: Parallax */
+        .card:hover .card-img { transform: scale(1.1) translateY(-10px); } /* IDEIA 1: Parallax */
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.8s ease; }
         .card-info { padding: 25px 20px; }
         
-        /* BOTÕES */
+        /* BOTÕES E MICRO-INTERAÇÃO (IDEIA 2) */
         .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; position: relative; }
-        .btn-drink { border-radius: 25px; margin-top: 15px; } /* Botão pílula preservado */
+        .btn-drink { border-radius: 25px; margin-top: 15px; } 
         
         .btn-card.loading, .btn-drink.loading { color: transparent; }
-        .btn-card.loading::after, .btn-drink.loading::after { content: "✓"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-size: 1.2rem; }
+        .btn-card.loading::after, .btn-drink.loading::after { content: "✓"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-size: 1.2rem; animation: popCheck 0.5s forwards; }
+        @keyframes popCheck { 0% { scale: 0; } 100% { scale: 1.2; } }
 
         /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
-        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--dark-green);}
+        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--dark-green); }
         .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; transition: 0.5s; }
 
@@ -123,9 +128,10 @@
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
+        .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
         .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
         .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
-        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
 
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
     </style>
