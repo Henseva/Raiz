@@ -21,6 +21,7 @@
             --text-main: var(--dark-green);
         }
 
+        /* ULTRA DARK MODE */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --text-main: #d1d1d1;
@@ -29,6 +30,7 @@
             --white: #0a0a0a;
         }
 
+        /* RESET E CURSOR */
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
         body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: background 0.5s ease; }
 
@@ -39,6 +41,7 @@
             transform: translate(-50%, -50%);
         }
 
+        /* ANIMAÇÕES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -62,7 +65,7 @@
             animation: steam 3s infinite; pointer-events: none; z-index: 10;
         }
 
-        /* NAVBAR SLIM + IDEIA 1 (STATUS) */
+        /* NAVBAR SLIM + ACRÉSCIMO IDEIA 1 */
         .navbar { 
             background: var(--dark-green); 
             padding: 10px 5%; 
@@ -78,21 +81,23 @@
         .logo-area { display: flex; align-items: center; gap: 15px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
         
-        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; }
+        .nav-status { font-size: 0.6rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 20px; }
         .nav-dot { width: 7px; height: 7px; border-radius: 50%; }
 
         .nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
         .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-        
         .theme-switch { cursor: pointer; font-size: 1.2rem; margin-right: 15px; color: var(--soft-peach); }
 
         .btn-nav { 
-            background: var(--terracotta); 
+            background: rgba(217, 125, 84, 0.8); 
+            backdrop-filter: blur(10px); 
             padding: 8px 20px; 
             border-radius: 10px; 
             color: white !important; 
             font-weight: bold; 
+            animation: floatingBounce 3s ease-in-out infinite;
         }
+        @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
         /* HERO */
         .hero { 
@@ -112,92 +117,61 @@
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
-        /* CARDÁPIO + IDEIA 2 (GLASSMORMISHM FOCUS) */
+        /* FILTROS CARDÁPIO */
+        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
+
+        /* CARDÁPIO + ACRÉSCIMO IDEIA 2 */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        
         .card { 
-            background: var(--cream); 
-            border-radius: 20px; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); 
-            position: relative;
-            border: 1px solid transparent;
+            background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; 
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); position: relative; border: 1px solid transparent; 
         }
-
-        /* Efeito de foco Ideia 2 */
-        .card.focused { 
-            transform: scale(1.05); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border-color: var(--terracotta);
-            z-index: 5;
-        }
+        /* Estilo para Ideia 2 */
+        .card.focused { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-color: var(--terracotta); z-index: 5; }
 
         .card-img-container { width: 100%; height: 250px; overflow: hidden; position: relative; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         .card-info { padding: 25px 20px; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* SLIDER BEBIDAS */
+        /* SLIDER DE BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; transition: background-color 0.8s ease; background-color: var(--light-grey); position: relative; scroll-margin-top: 80px; }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
         .slider-container::-webkit-scrollbar { display: none; }
-        
         .slide { 
-            min-width: 280px; height: 460px; 
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 50px; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px 20px; scroll-snap-align: center; transition: all 0.6s ease; 
-            opacity: 0.4; transform: scale(0.85); 
+            min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); 
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 30px 20px; scroll-snap-align: center; 
+            transition: 0.6s ease; opacity: 0.4; transform: scale(0.85); 
         }
         .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
-        .drink-img { width: auto; height: 220px; object-fit: contain; margin-bottom: 20px; }
+        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
         /* ONDA E RODAPÉ */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; z-index: 5; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.8s ease; }
-        
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
-        
+        .status-badge { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
         .dot-offline { background-color: var(--closed-color); }
 
-        .footer-column h4 { font-family: 'DM Serif Display', serif; margin-bottom: 20px; color: var(--soft-peach); }
-        .footer-column p, .footer-column a { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; line-height: 1.8; display: block; opacity: 0.8; }
         .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
-
-        /* FIXOS */
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
-            background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px;
-            z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-        .back-to-top {
-            position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px;
-            background: var(--dark-green); color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 999;
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
+        .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 999; }
         .back-to-top.visible { opacity: 1; }
 
-        @media (max-width: 768px) { 
-            * { cursor: auto; } #custom-cursor { display: none; }
-            .hero { background-attachment: scroll; }
-            .nav-links { display: none; } /* Mobile simplificado */
-        }
+        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } }
     </style>
 </head>
 <body>
 
     <div id="custom-cursor"></div>
-
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" class="back-to-top" id="backToTop">↑</a>
 
@@ -213,7 +187,7 @@
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
             <a href="#especiais">Especiais</a>
-            <a href="#" class="btn-nav">Peça Agora</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
@@ -229,7 +203,12 @@
 
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
-        <br><br>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterMenu('burger')">Burgers</button>
+            <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
+        </div>
+
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
@@ -255,11 +234,12 @@
 
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor que vem da terra.</p></div>
-            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a></div>
+            <div class="footer-logo-section"><h2>RAIZ</h2><div id="status-container" class="status-badge"></div></div>
+            <div class="footer-column"><h4>Navegação</h4><a href="#menu">Cardápio</a><a href="#especiais">Especiais</a><a href="#">Nossa História</a></div>
             <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
         </div>
         <a href="#" class="ifood-full-btn">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
     </footer>
 
     <script>
@@ -279,15 +259,22 @@
         });
 
         // IDEIA 2: FOCO NO SCROLL
-        const observerOptions = { threshold: 0.7 };
-        const cardObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('focused');
                 else entry.target.classList.remove('focused');
             });
-        }, observerOptions);
+        }, { threshold: 0.7 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
-        document.querySelectorAll('.card').forEach(card => cardObserver.observe(card));
+        function filterMenu(category) {
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            if(event) event.target.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = (category === 'todos' || card.classList.contains(category)) ? 'flex' : 'none';
+            });
+        }
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) backToTop.classList.add('visible');
@@ -295,20 +282,18 @@
             reveal();
         });
 
-        // IDEIA 1: STATUS REAL TIME
         function updateStatus() {
             const hour = new Date().getHours();
             const isOpen = hour >= 11 && hour < 23;
             const dot = document.getElementById('nav-dot');
             const text = document.getElementById('nav-text');
+            const footerStatus = document.getElementById('status-container');
             
-            if(isOpen) {
-                dot.className = 'nav-dot dot-online';
-                text.innerText = 'ABERTO';
-            } else {
-                dot.className = 'nav-dot dot-offline';
-                text.innerText = 'FECHADO';
-            }
+            const content = isOpen ? `<span class="status-dot dot-online"></span> ABERTO AGORA` : `<span class="status-dot dot-offline"></span> FECHADO`;
+            if(footerStatus) footerStatus.innerHTML = content;
+            
+            dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
+            text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
         }
 
         function updateSlider(element, color) {
