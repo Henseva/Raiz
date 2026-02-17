@@ -239,7 +239,6 @@
             cursor.style.left = e.clientX + 'px';
         });
 
-        // ACRESCIMO CIRÚRGICO: Recuperar tema salvo
         if (localStorage.getItem('raiz-theme') === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.classList.add('fa-sun');
@@ -250,7 +249,6 @@
             document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun');
             themeToggle.classList.toggle('fa-moon');
-            // ACRESCIMO CIRÚRGICO: Salvar preferência
             const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
             localStorage.setItem('raiz-theme', theme);
         });
@@ -323,4 +321,5 @@
         }
 
         function reveal() {
-            document.querySelectorAll(".reveal").forEach(el 
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active
