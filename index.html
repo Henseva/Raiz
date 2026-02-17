@@ -38,10 +38,10 @@
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
 
-        /* NAVBAR COM EFEITO BLINDADO E PULINHO NO IFOOD */
+        /* NAVBAR AJUSTADA: MENOR E COM ESPAÇAMENTO CENTRAL */
         .navbar { 
             background: var(--dark-green); 
-            padding: 15px 5%; 
+            padding: 10px 5%; /* Reduzido de 15px para 10px para diminuir a altura */
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -49,30 +49,44 @@
             position: sticky; 
             top: 0; 
             z-index: 1000; 
+            height: 60px; /* Altura fixa menor */
         }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 35px; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: bold; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; } /* Diminuído levemente */
         
-        /* BOTÃO IFOOD BLINDADO */
+        .nav-links { 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; /* Aumentado o espaço no meio entre os links e o botão */
+            margin-left: auto; /* Empurra tudo para a direita, criando o vácuo no centro */
+        }
+        
+        .nav-links a { 
+            color: var(--white); 
+            text-decoration: none; 
+            font-size: 0.8rem; /* Diminuído levemente */
+            font-weight: bold; 
+        }
+        
+        /* MANTIDO: BOTÃO IFOOD BLINDADO */
         .btn-nav { 
             background: rgba(217, 125, 84, 0.8); 
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
-            padding: 10px 25px; 
-            border-radius: 12px; 
+            padding: 8px 20px; /* Diminuído o padding interno */
+            border-radius: 10px; 
             color: white; 
             border: 1px solid rgba(255, 255, 255, 0.2); 
             font-weight: bold; 
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: floatingBounce 3s ease-in-out infinite; /* Efeito de pulinho */
+            animation: floatingBounce 3s ease-in-out infinite;
+            font-size: 0.8rem;
         }
 
         @keyframes floatingBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
         /* MANTIDO: HERO */
