@@ -26,19 +26,11 @@
         body.dark-mode {
             --bg-body: #0a0a0a;
             --text-main: #f0f0f0;
-            --light-grey: #121212;
-            --cream: #1d1d1d;
+            --light-grey: #121212; 
+            --cream: #1d1d1d;      
             --white: #0a0a0a;
-            --dark-green: #1a2e26;
+            --dark-green: #1a2e26; 
             --card-shadow: rgba(255,255,255,0.05);
-        }
-
-        /* AJUSTE CIRÚRGICO: NEON APENAS NO MODO ESCURO */
-        body.dark-mode .btn-card, 
-        body.dark-mode .btn-drink, 
-        body.dark-mode .ifood-full-btn {
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
-            border: 1px solid var(--open-color);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
@@ -115,7 +107,19 @@
         .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; box-shadow: 0 10px 30px var(--card-shadow); }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
+        
+        /* AJUSTE PREMIUM: PARALAXE SUAVE NA IMAGEM */
+        .card-img { 
+            width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1); /* Transição suave e elegante */
+        }
+        .card:hover .card-img { 
+            transform: scale(1.1); /* Zoom leve ao passar o mouse */
+        }
+
         .card-info { padding: 25px 20px; }
 
         .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
@@ -328,4 +332,4 @@
         
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) backToTop.classList.add('visible');
-            else backToTop.classList.remove
+       
