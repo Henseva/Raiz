@@ -19,23 +19,29 @@
             --closed-color: #e74c3c;
             --bg-body: var(--white);
             --text-main: var(--dark-green);
-            --card-shadow: rgba(0,0,0,0.1);
-            --neon-glow: transparent;
         }
 
         body.dark-mode {
-            --bg-body: #0a0a0a;
+            --bg-body: #1a1a1a;
             --text-main: #f0f0f0;
-            --light-grey: #121212;
-            --cream: #1d1d1d;
-            --white: #0a0a0a;
-            --dark-green: #1a2e26;
-            --card-shadow: rgba(255,255,255,0.05);
-            --neon-glow: 0 0 10px rgba(46, 204, 113, 0.4); /* Brilho verde neon */
+            --white: #1a1a1a;
+        }
+
+        /* EFEITO NEON CIRÚRGICO PARA OS BOTÕES NO MODO ESCURO */
+        body.dark-mode .btn-card, 
+        body.dark-mode .btn-drink, 
+        body.dark-mode .ifood-full-btn {
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        body.dark-mode .btn-card:hover, 
+        body.dark-mode .btn-drink:hover {
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.8);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: all 0.5s ease; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: background 0.5s ease; }
 
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
@@ -72,7 +78,7 @@
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         /* NAVBAR */
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
 
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
@@ -88,7 +94,6 @@
         .sound-switch.active { color: #2ecc71; filter: drop-shadow(0 0 8px #2ecc71); transform: scale(1.1); }
         .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; animation: floatingBounce 3s ease-in-out infinite; }
 
-        @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } .navbar { padding: 0 3%; } .logo { font-size: 1.3rem; } .nav-status { margin-left: 5px; font-size: 0.55rem; } }
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
         /* HERO */
@@ -96,32 +101,24 @@
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
         /* VALORES */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); }
         .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
 
         /* CARDÁPIO */
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; margin: 5px; }
+        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; }
         .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid transparent; }
-        
-        /* FOCO NEON NO MODO ESCURO */
-        body.dark-mode .card.focused { border: 1px solid var(--open-color); box-shadow: 0 0 20px rgba(46, 204, 113, 0.2); }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
         .card.focused { transform: scale(1.05); border: 1px solid var(--terracotta); z-index: 5; }
-
         .card-img-container { width: 100%; height: 250px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
         .card-info { padding: 25px 20px; }
 
-        /* BOTÕES NEON */
-        .btn-card, .btn-drink, .ifood-full-btn { 
-            background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; 
-            transition: 0.3s; box-shadow: var(--neon-glow); 
-        }
-        .btn-card:hover, .btn-drink:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4); }
-        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { background: var(--open-color) !important; transform: scale(0.95); box-shadow: 0 0 20px var(--open-color); }
+        .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { background: var(--open-color) !important; transform: scale(0.95); }
 
         /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; position: relative; transition: background 0.5s; }
@@ -132,9 +129,9 @@
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
         /* RODAPÉ ORIGINAL */
-        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
+        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
-        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; transition: background 0.5s; }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
         .footer-logo-section h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; }
         .hours-list { list-style: none; font-size: 0.85rem; margin-top: 15px; }
@@ -324,4 +321,18 @@
 
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 10
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+            reveal();
+        });
+
+        updateStatus();
+        reveal();
+    </script>
+</body>
+</html>
