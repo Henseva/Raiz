@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raiz - Sabor que vem da terra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -133,15 +134,15 @@
         .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 100%; max-width: 400px; margin: 40px auto 20px; padding: 20px; border-radius: 15px; font-weight: bold; text-align: center; }
         .copyright { margin-top: 60px; font-size: 0.8rem; opacity: 0.4; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        /* NOVAS ADIÇÕES DE PRATICIDADE */
+        /* BOTÃO WHATSAPP OFICIAL */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
             background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px;
-            text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            text-align: center; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
             z-index: 1000; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: transform 0.3s ease;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128C7E; }
 
         .back-to-top {
             position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px;
@@ -161,7 +162,7 @@
             .hero { height: 40vh; }
             .slide { min-width: 250px; height: 400px; }
             .drink-img { height: 160px; }
-            .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; font-size: 30px; }
             .back-to-top { bottom: 75px; right: 20px; }
         }
     </style>
@@ -170,7 +171,10 @@
 
     <div id="custom-cursor"></div>
 
-    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float" target="_blank">📱</a>
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <a href="#" class="back-to-top" id="backToTop">↑</a>
 
     <nav class="navbar">
@@ -277,7 +281,6 @@
             cursor.style.left = e.clientX + 'px';
         });
 
-        // Lógica do botão Voltar ao Topo
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
                 backToTop.classList.add('visible');
