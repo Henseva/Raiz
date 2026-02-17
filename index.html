@@ -17,64 +17,100 @@
             --whatsapp-green: #25D366;
             --open-color: #2ecc71;
             --closed-color: #e74c3c;
+            --bg-body: var(--white);
+            --text-main: var(--dark-green);
+        }
+
+        body.dark-mode {
+            --bg-body: #0a0a0a;
+            --text-main: #d1d1d1;
+            --light-grey: #141414;
+            --cream: #1a1a1a;
+            --white: #0a0a0a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: background 0.5s ease; }
 
-        /* CURSOR */
-        #custom-cursor { width: 20px; height: 20px; border: 2px solid var(--terracotta); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s ease-out; transform: translate(-50%, -50%); }
+        #custom-cursor {
+            width: 20px; height: 20px; border: 2px solid var(--terracotta);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transition: transform 0.1s ease-out;
+            transform: translate(-50%, -50%);
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        .typing-effect { 
+            display: inline-block; overflow: hidden; white-space: nowrap; 
+            border-right: 3px solid var(--soft-peach);
+            animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
+        }
+
+        .leaf { position: fixed; top: -10%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
         /* NAVBAR */
-        .navbar { background: var(--dark-green); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .sound-switch { cursor: pointer; color: var(--soft-peach); font-size: 1.2rem; transition: 0.3s; }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; }
+
+        .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
+        .nav-dot { width: 8px; height: 8px; border-radius: 50%; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .dot-online { background-color: var(--open-color); box-shadow: 0 0 8px var(--open-color); animation: pulse 2s infinite; }
+        .dot-offline { background-color: var(--closed-color); }
+
+        .nav-links { display: flex; align-items: center; gap: 20px; margin-left: auto; }
+        .nav-links a { color: #FFFFFF; text-decoration: none; font-size: 0.8rem; font-weight: bold; }
+        
+        /* ADIÇÃO: SOM DA NATUREZA */
+        .sound-switch { cursor: pointer; font-size: 1.1rem; color: var(--soft-peach); transition: 0.3s; margin-right: 5px; }
         .sound-switch.active { color: var(--whatsapp-green); text-shadow: 0 0 10px var(--whatsapp-green); }
+        
+        .theme-switch { cursor: pointer; font-size: 1.1rem; color: var(--soft-peach); transition: 0.3s; }
+        .btn-nav { background: rgba(217, 125, 84, 0.8); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 10px; color: white !important; font-weight: bold; }
 
         /* HERO */
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 4rem; margin-bottom: 20px; }
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
 
-        /* BARRA DE VALORES ROBUSTA */
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(3, 1fr); padding: 80px 10%; gap: 50px; text-align: center; }
-        .value-item i { font-size: 3rem; margin-bottom: 20px; display: block; }
-        .value-item h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
-        .value-item p { font-size: 1.1rem; line-height: 1.6; }
+        /* VALORES (RAIZ) */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); }
+        .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
 
-        /* CARDÁPIO COM FILTROS */
-        .menu-section { padding: 100px 8%; background: var(--light-grey); text-align: center; }
-        .filter-btns { margin-bottom: 50px; display: flex; justify-content: center; gap: 20px; }
-        .filter-btn { padding: 12px 30px; border-radius: 30px; border: 2px solid var(--terracotta); background: transparent; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .filter-btn.active { background: var(--terracotta); color: white; }
-
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { background: var(--cream); border-radius: 30px; overflow: hidden; transition: 0.5s; text-align: left; position: relative; }
+        /* CARDÁPIO (RAIZ) */
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; }
+        .filter-container { margin-bottom: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--terracotta); background: transparent; color: var(--text-main); font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .filter-btn.active, .filter-btn:hover { background: var(--terracotta); color: white; }
         
-        /* PARALLAX NO CARD */
-        .card-img-wrap { width: 100%; height: 280px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.5s; position: relative; }
+        
+        /* ADIÇÃO: PARALLAX ZOOM */
+        .card-img-container { width: 100%; height: 250px; overflow: hidden; }
+        .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.8s ease; }
         .card:hover .card-img { transform: scale(1.1); }
         
-        .card-body { padding: 30px; }
-        .btn-order { background: var(--terracotta); color: white; border: none; padding: 15px 35px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .card-info { padding: 25px 20px; text-align: left; }
+        .btn-card, .btn-drink { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
 
-        /* BEBIDAS SLIDER PROFISSIONAL */
-        .drinks-section { padding: 100px 0; background: var(--dark-green); color: white; text-align: center; }
-        .slider-wrap { display: flex; gap: 30px; padding: 40px 10%; overflow-x: auto; scrollbar-width: none; }
-        .drink-card { min-width: 300px; background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 40px; padding: 40px; border: 1px solid rgba(255,255,255,0.1); }
-        .drink-img { height: 250px; object-fit: contain; margin-bottom: 25px; }
+        /* BEBIDAS (GLASSMORPHISM RAIZ) */
+        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; }
+        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
+        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
-        /* FOOTER COMPLETO */
-        .footer { background: var(--dark-green); color: white; padding: 100px 10% 50px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; }
-        .footer-logo h2 { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--soft-peach); }
-        .footer-hours li { display: flex; justify-content: space-between; margin-bottom: 10px; opacity: 0.8; }
-        
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp-green); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; text-decoration: none; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        /* FOOTER (RAIZ) */
+        .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
+        .wave svg { width: 100%; height: 100px; fill: var(--light-grey); }
+        .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .hours-list li { display: flex; justify-content: space-between; padding: 4px 0; opacity: 0.7; }
+        .hours-list li.today { opacity: 1; color: var(--soft-peach); font-weight: bold; }
 
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -82,126 +118,154 @@
     <div id="custom-cursor"></div>
     <audio id="natureSound" loop src="https://assets.mixkit.co/active_storage/sfx/2458/2458-preview.mp3"></audio>
 
+    <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
     <nav class="navbar">
-        <div class="logo">RAIZ</div>
+        <div style="display: flex; align-items: center;">
+            <div class="logo">RAIZ</div>
+            <div class="nav-status">
+                <div class="nav-dot" id="nav-dot"></div>
+                <span id="nav-text">---</span>
+            </div>
+        </div>
         <div class="nav-links">
-            <i class="fas fa-leaf sound-switch" id="soundToggle"></i>
+            <i class="fas fa-tree sound-switch" id="soundToggle" title="Som da Natureza"></i>
+            <i class="fas fa-moon theme-switch" id="themeToggle"></i>
             <a href="#menu">Cardápio</a>
-            <a href="#sobre">Nossa História</a>
-            <a href="#contato">Contato</a>
+            <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1 class="reveal">O Sabor da Terra<br>na sua Mesa</h1>
-        <p class="reveal" style="font-size: 1.5rem; max-width: 600px;">Ingredientes colhidos hoje, preparados com alma para você.</p>
+        <h1 style="color: white; font-family: 'DM Serif Display'; font-size: 3.5rem;"><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
-    <section class="values-bar">
-        <div class="value-item reveal">
-            <i class="fas fa-seedling"></i>
-            <h3>100% Orgânico</h3>
-            <p>Trabalhamos exclusivamente com pequenos produtores locais que respeitam a terra.</p>
-        </div>
-        <div class="value-item reveal">
-            <i class="fas fa-hand-holding-heart"></i>
-            <h3>Feito à Mão</h3>
-            <p>Dos nossos molhos ao pão brioche, tudo é produzido artesanalmente na nossa cozinha.</p>
-        </div>
-        <div class="value-item reveal">
-            <i class="fas fa-bicycle"></i>
-            <h3>Eco-Friendly</h3>
-            <p>Entregas feitas de bike e embalagens totalmente compostáveis. Lixo zero é nossa meta.</p>
-        </div>
+    <section class="values-bar reveal">
+        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais de produtores parceiros.</p></div>
+        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Cada detalhe feito à mão com carinho.</p></div>
+        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Embalagens biodegradáveis e entrega rápida.</p></div>
     </section>
 
-    <section id="menu" class="menu-section">
-        <h2 style="font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 50px;">O que temos hoje</h2>
-        <div class="filter-btns">
-            <button class="filter-btn active">Todos</button>
-            <button class="filter-btn">Burgers</button>
-            <button class="filter-btn">Saladas</button>
+    <section id="menu" class="menu-section reveal">
+        <h2 style="font-family: 'DM Serif Display'; font-size: 2.5rem; margin-bottom: 40px;">Cardápio Completo</h2>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterMenu('burger')">Burgers</button>
+            <button class="filter-btn" onclick="filterMenu('bowl')">Bowls</button>
         </div>
-        <div class="menu-grid">
-            <div class="card reveal">
-                <div class="card-img-wrap"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800');"></div></div>
-                <div class="card-body">
-                    <h3>Burger Raiz Especial</h3>
-                    <p>Blend de angus 200g, queijo coalho grelhado, mel de engenho e rúcula baby no pão de macaxeira.</p>
-                    <button class="btn-order" onclick="confirmOrder(this)">Pedir Agora</button>
-                </div>
+        <div class="menu-grid" id="menuGrid">
+            <div class="card burger">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');"></div></div>
+                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g, queijo meia cura e maionese da casa.</p><button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button></div>
+            </div>
+            <div class="card bowl">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');"></div></div>
+                <div class="card-info"><h3>Bowl da Estação</h3><p>Mix de folhas, grãos ancestrais e legumes grelhados.</p><button class="btn-card" onclick="actionOrder(this)">Pedir Agora</button></div>
             </div>
         </div>
     </section>
 
-    <section class="drinks-section">
-        <h2 style="font-family: 'DM Serif Display', serif; font-size: 3rem;">Bebidas da Casa</h2>
-        <div class="slider-wrap">
-            <div class="drink-card reveal">
-                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" class="drink-img">
-                <h3>Kombucha de Gengibre</h3>
-                <button class="btn-order" onclick="confirmOrder(this)">Pedir Agora</button>
+    <section id="especiais" class="drink-slider-section reveal">
+        <h2 style="font-family: 'DM Serif Display'; font-size: 2.5rem; margin-bottom: 40px;">Especiais da Casa</h2>
+        <div class="slider-container">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80" class="drink-img">
+                <h3>Coca-Cola</h3>
+                <button class="btn-drink" onclick="actionOrder(this)">Pedir Agora</button>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-logo">
-            <h2>RAIZ</h2>
-            <p>Av. das Palmeiras, 888 - Jardim Botânico</p>
-        </div>
-        <div>
-            <h4>Horários</h4>
-            <ul class="footer-hours" style="list-style: none; margin-top: 20px;">
-                <li><span>Segunda:</span> <span>Fechado</span></li>
-                <li><span>Ter - Qui:</span> <span>18h - 23h</span></li>
-                <li><span>Sex - Dom:</span> <span>12h - 00h</span></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Siga-nos</h4>
-            <div style="gap: 20px; display: flex; margin-top: 20px; font-size: 1.5rem;">
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-facebook"></i>
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo-section"><h2>RAIZ</h2><p>Sabor que vem da terra.</p></div>
+            <div class="footer-column">
+                <h4>Funcionamento</h4>
+                <ul class="hours-list">
+                    <li data-day="1">Segunda <span>11h - 23h</span></li>
+                    <li data-day="2">Terça <span>11h - 23h</span></li>
+                    <li data-day="3">Quarta <span>11h - 23h</span></li>
+                    <li data-day="4">Quinta <span>11h - 23h</span></li>
+                    <li data-day="5">Sexta <span>11h - 00h</span></li>
+                    <li data-day="6">Sábado <span>11h - 00h</span></li>
+                    <li data-day="0">Domingo <span>18h - 23h</span></li>
+                </ul>
             </div>
         </div>
     </footer>
 
-    <a href="#" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
-
     <script>
-        // CURSOR
         const cursor = document.getElementById('custom-cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // SOM
+        const themeToggle = document.getElementById('themeToggle');
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
-        soundToggle.onclick = () => {
-            if(natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
-            else { natureSound.pause(); soundToggle.classList.remove('active'); }
-        };
 
-        // CHECK NO PEDIDO
-        function confirmOrder(btn) {
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "✓ Adicionado!";
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('fa-sun');
+        });
+
+        soundToggle.addEventListener('click', () => {
+            if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); } 
+            else { natureSound.pause(); soundToggle.classList.remove('active'); }
+        });
+
+        // ADIÇÃO: MICRO-INTERAÇÃO CHECK
+        function actionOrder(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = "✓ Adicionado";
             btn.style.background = "#2ecc71";
-            setTimeout(() => {
-                btn.innerHTML = originalText;
+            createLeaves();
+            setTimeout(() => { 
+                btn.innerText = originalText; 
                 btn.style.background = "var(--terracotta)";
             }, 2000);
         }
 
-        // REVEAL ON SCROLL
+        function createLeaves() {
+            const leaves = ['🌿', '🍃', '🌱'];
+            for(let i=0; i<15; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 3000);
+            }
+        }
+
+        function filterMenu(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = (category === 'todos' || card.classList.contains(category)) ? 'flex' : 'none';
+            });
+        }
+
+        function updateStatus() {
+            const now = new Date();
+            const isOpen = now.getHours() >= 11 && now.getHours() < 23;
+            document.getElementById('nav-dot').className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
+            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const dayRow = document.querySelector(`.hours-list li[data-day="${now.getDay()}"]`);
+            if(dayRow) dayRow.classList.add('today');
+        }
+
         window.addEventListener('scroll', () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
             });
         });
+
+        updateStatus();
     </script>
 </body>
 </html>
