@@ -21,23 +21,21 @@
             --text-main: var(--dark-green);
         }
 
+        /* MODO ESCURO RAIZ - SEM ALTERAÇÕES DE ESTRUTURA */
         body.dark-mode {
-            --bg-body: #1a1a1a;
+            --bg-body: #0a0a0a;
             --text-main: #f0f0f0;
-            --white: #1a1a1a;
+            --light-grey: #121212;
+            --cream: #1a1a1a;
+            --white: #0a0a0a;
         }
 
-        /* EFEITO NEON CIRÚRGICO PARA OS BOTÕES NO MODO ESCURO */
+        /* INCLUSÃO CIRÚRGICA DO NEON - APENAS VISUAL */
         body.dark-mode .btn-card, 
         body.dark-mode .btn-drink, 
         body.dark-mode .ifood-full-btn {
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-        }
-
-        body.dark-mode .btn-card:hover, 
-        body.dark-mode .btn-drink:hover {
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.8);
+            box-shadow: 0 0 12px rgba(46, 204, 113, 0.6);
+            border: 1px solid var(--open-color);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
@@ -128,7 +126,7 @@
         .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
         .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
-        /* RODAPÉ ORIGINAL */
+        /* RODAPÉ ORIGINAL RESTAURADO */
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; }
         .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
