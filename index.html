@@ -233,6 +233,8 @@
         const themeToggle = document.getElementById('themeToggle');
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
+
+        // 1. CARREGAMENTO: Verifica o tema assim que o script roda
         if (localStorage.getItem('raiz-tema') === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.classList.replace('fa-moon', 'fa-sun');
@@ -243,13 +245,14 @@
             cursor.style.left = e.clientX + 'px';
         });
 
-                    const tema = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem('raiz-tema', tema);
-        
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.classList.toggle('fa-sun');
             themeToggle.classList.toggle('fa-moon');
+
+            // 2. SALVAMENTO: Salva a escolha dentro da função de clique
+            const tema = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('raiz-tema', tema);
         });
 
         soundToggle.addEventListener('click', () => {
@@ -320,19 +323,4 @@
         }
 
         function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
-        }
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) backToTop.classList.add('visible');
-            else backToTop.classList.remove('visible');
-            reveal();
-        });
-
-        updateStatus();
-        reveal();
-    </script>
-</body>
-</html>
+            document.querySelectorAll(".reveal").forEach(el s
