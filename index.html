@@ -122,24 +122,8 @@
 
         .card-info { padding: 25px 20px; }
 
-        /* ALTERAÇÃO CIRÚRGICA: FEEDBACK TÁTIL NOS BOTÕES */
-        .btn-card, .btn-drink, .ifood-full-btn { 
-            background: var(--terracotta); 
-            color: white; 
-            border: none; 
-            padding: 12px 30px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-        }
-        .btn-card:active, .btn-drink:active { 
-            transform: scale(0.92); /* Efeito de apertar o botão */
-        }
-        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { 
-            background: var(--open-color) !important; 
-        }
+        .btn-card, .btn-drink, .ifood-full-btn { background: var(--terracotta); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-card.checked, .btn-drink.checked, .ifood-full-btn.checked { background: var(--open-color) !important; transform: scale(0.95); }
 
         /* SLIDER BEBIDAS */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; position: relative; transition: background 0.5s; }
@@ -326,19 +310,4 @@
             const day = now.getDay();
             const isOpen = hour >= 11 && hour < 23;
             const dot = document.getElementById('nav-dot');
-            const text = document.getElementById('nav-text');
-            dot.className = isOpen ? 'nav-dot dot-online' : 'nav-dot dot-offline';
-            text.innerText = isOpen ? 'ABERTO' : 'FECHADO';
-            const dayRow = document.querySelector(`.hours-list li[data-day="${day}"]`);
-            if(dayRow) dayRow.classList.add('today');
-        }
-
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
-        }
-
-        function reveal() {
-            document.querySelectorAll(".reveal")
+            const text =
