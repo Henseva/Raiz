@@ -9,14 +9,15 @@
         :root {
             --dark-green: #2D4A3E;
             --soft-peach: #E9C4A6;
+            --light-grey: #D9D9D9;
             --cream: #F5F1E3;
             --terracotta: #D97D54;
             --white: #FFFFFF;
         }
 
-        /* VOLTANDO COM O CURSOR QUE VOCÊ GOSTOU */
+        /* 1. CURSOR PERSONALIZADO (A IDEIA QUE VOCÊ GOSTOU) */
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: #f0f0f0; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark-green); background: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
@@ -25,11 +26,26 @@
             transform: translate(-50%, -50%);
         }
 
-        /* ANIMAÇÕES DE REVELAÇÃO */
+        /* 2. ANIMAÇÕES DE REVELAÇÃO */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* EFEITO DE ESCRITA NO TÍTULO */
+        /* NAVBAR (ESTILO ORIGINAL DO SEU PRINT) */
+        .navbar { 
+            background: var(--dark-green); padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            color: var(--white); position: sticky; top: 0; z-index: 1000; 
+        }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: 2px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: bold; margin-left: 20px; }
+        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 6px; }
+
+        /* HERO (COM EFEITO DE ESCRITA) */
+        .hero { 
+            height: 60vh; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero.jpg'); 
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
+        }
         @keyframes typing { from { width: 0 } to { width: 100% } }
         .typing-effect { 
             display: inline-block; overflow: hidden; white-space: nowrap; 
@@ -37,45 +53,30 @@
             animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
         }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--soft-peach); } }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 5vw, 4rem); color: var(--white); text-align: center; }
 
-        /* NAVBAR CONFORME SEU PRINT */
-        .navbar { 
-            background: var(--dark-green); padding: 15px 5%; 
-            display: flex; justify-content: space-between; align-items: center; 
-            color: var(--white); position: sticky; top: 0; z-index: 1000; 
-        }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; }
-        .btn-nav { background: var(--terracotta); padding: 10px 20px; border-radius: 8px; color: white; border: none; font-weight: bold; text-decoration: none; }
+        /* BARRA DE VALORES (MANTIDA) */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; }
 
-        /* HERO */
-        .hero { 
-            height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero.jpg'); 
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; 
-        }
-        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--white); text-align: center; }
+        /* CARDÁPIO (FIEL AO SEU PRINT) */
+        .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--cream); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; }
+        .card-img { height: 250px; background-size: cover; background-position: center; }
+        .card-info { padding: 25px 20px; }
+        .btn-card { background: #e0e0e0; color: #333; border: 1px solid #999; padding: 12px 30px; border-radius: 8px; font-weight: bold; }
 
-        /* CARDÁPIO (ESTILO DO SEU PRINT) */
-        .menu-section { padding: 40px 5%; text-align: center; }
-        .card { background: var(--cream); border-radius: 25px; overflow: hidden; margin-bottom: 25px; max-width: 450px; margin-inline: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .card-img { width: 100%; height: 250px; object-fit: cover; display: block; }
-        .card-info { padding: 15px; border-top: 1px solid #ddd; }
-        .btn-card { background: #e0e0e0; color: #333; border: 1px solid #999; width: 100%; padding: 10px; font-weight: bold; }
-
-        /* SEÇÃO DE BEBIDAS (FUNDO QUE VOCÊ ESCOLHEU) */
-        .drink-section { background: var(--terracotta); padding: 50px 5%; text-align: center; }
-        .drink-slide { background: white; border-radius: 30px; padding: 25px; display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+        /* SLIDER DE BEBIDAS (COM AS SUAS IMAGENS ORIGINAIS) */
+        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--terracotta); }
+        .slider-container { display: flex; gap: 25px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
+        .slide { min-width: 300px; background: white; border-radius: 40px; padding: 40px 20px; scroll-snap-align: center; }
         .drink-img { width: 100%; max-height: 200px; object-fit: contain; }
 
-        /* FOOTER */
-        .main-footer { background: var(--dark-green); color: var(--white); padding: 40px 5%; text-align: center; }
-        .ifood-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; padding: 18px; border-radius: 15px; font-weight: bold; margin: 20px 0; }
+        /* FOOTER (MANTIDO) */
+        .main-footer { background: var(--dark-green); color: var(--white); padding: 80px 5% 40px; text-align: center; }
+        .ifood-full-btn { background: var(--terracotta); color: white; text-decoration: none; display: block; width: 90%; max-width: 400px; margin: 40px auto; padding: 20px; border-radius: 15px; font-weight: bold; }
 
-        /* AJUSTE PARA CELULAR */
-        @media (max-width: 768px) {
-            * { cursor: auto; }
-            #custom-cursor { display: none; }
-        }
+        @media (max-width: 768px) { * { cursor: auto; } #custom-cursor { display: none; } }
     </style>
 </head>
 <body>
@@ -84,8 +85,9 @@
 
     <nav class="navbar">
         <div class="logo">RAIZ</div>
-        <div style="display: flex; gap: 15px; font-weight: bold; font-size: 0.8rem;">
-            <span>Cardápio</span> <span>História</span>
+        <div class="nav-links">
+            <a href="#menu">Cardápio</a>
+            <a href="#">História</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
     </nav>
@@ -94,45 +96,54 @@
         <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
-    <section class="menu-section reveal">
-        <div class="card">
-            <img src="burger.jpg" class="card-img"> <div class="card-info">
-                <h3>Burger Raiz</h3>
-                <p>Blend bovino 180g e queijo meia cura.</p>
-                <button class="btn-card">Pedir Agora</button>
+    <section class="values-bar reveal">
+        <div><h3>🌿 Puro</h3><p>Orgânicos locais.</p></div>
+        <div><h3>🖐️ Artesanal</h3><p>Feito à mão.</p></div>
+        <div><h3>🚲 Consciente</h3><p>Entrega rápida.</p></div>
+    </section>
+
+    <section id="menu" class="menu-section reveal">
+        <div class="menu-grid">
+            <div class="card">
+                <div class="card-img" style="background-image: url('burger.jpg');"></div>
+                <div class="card-info">
+                    <h3>Burger Raiz</h3>
+                    <p>Blend bovino 180g e queijo meia cura.</p>
+                    <button class="btn-card">Pedir Agora</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="especiais" class="drink-section reveal">
-        <div class="drink-slide">
-            <img src="coca.png" class="drink-img"> <h3 style="margin: 15px 0;">Coca-Cola</h3>
-            <button class="btn-nav" style="width: 100%;">Pedir Agora</button>
+    <section id="especiais" class="drink-slider-section reveal">
+        <div class="slider-container">
+            <div class="slide">
+                <img src="coca.png" class="drink-img"> <h3 style="margin: 15px 0;">Coca-Cola</h3>
+                <button class="btn-nav" style="width: 100%;">Pedir Agora</button>
+            </div>
+            <div class="slide">
+                <img src="laranja.png" class="drink-img"> <h3 style="margin: 15px 0;">Laranja</h3>
+                <button class="btn-nav" style="width: 100%;">Pedir Agora</button>
+            </div>
         </div>
     </section>
 
     <footer class="main-footer">
-        <h2 class="logo">RAIZ</h2>
-        <p>Sabor que vem da terra.</p>
-        <a href="#" class="ifood-btn">Peça no iFood</a>
-        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Restaurante Raiz.</p>
+        <div class="footer-logo">RAIZ</div>
+        <a href="#" class="ifood-full-btn">Peça no iFood</a>
+        <p>&copy; 2026 Restaurante Raiz.</p>
     </footer>
 
     <script>
-        // Lógica do Cursor
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
         });
 
-        // Lógica de Revelação no Scroll
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                    el.classList.add("active");
-                }
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
             });
         }
         window.addEventListener("scroll", reveal);
