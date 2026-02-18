@@ -46,7 +46,6 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { 0%, 100% { border-color: var(--soft-peach); } 50% { border-color: transparent; } }
         .typing-effect { 
             display: inline-block; overflow: hidden; white-space: nowrap; 
             border-right: 3px solid var(--soft-peach);
@@ -68,9 +67,7 @@
         .leaf { position: fixed; top: -15%; z-index: 9999; pointer-events: none; font-size: 20px; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(120vh) rotate(720deg); } }
 
-        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: height 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease, background 0.5s; }
-        .navbar.shrunk { height: 48px; padding: 5px 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .navbar.shrunk .logo { font-size: 1.2rem; }
+        .navbar { background: var(--dark-green); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; position: sticky; top: 0; z-index: 1000; height: 60px; transition: background 0.5s; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; }
 
         .nav-status { font-size: 0.65rem; font-weight: bold; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.2); padding: 4px 10px; border-radius: 20px; margin-left: 15px; white-space: nowrap; }
@@ -90,7 +87,7 @@
 
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); transition: background 0.5s; }
@@ -108,11 +105,7 @@
         
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
 
-        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid rgba(0,0,0,0.05); will-change: transform; }
-        .card::before { content: ''; position: absolute; inset: 0; border-radius: 15px; background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; z-index: 0; pointer-events: none; }
-        .card > * { position: relative; z-index: 1; }
-        .card:hover::before { opacity: 1; }
-        .card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+        .card { background: var(--cream); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; position: relative; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid rgba(0,0,0,0.05); }
         .card.hidden { display: none; }
         .card-img-container { width: 100%; height: 160px; overflow: hidden; }
         .card-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s ease; }
@@ -166,35 +159,6 @@
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .values-bar { grid-template-columns: 1fr; }
         }
-
-        /* ===== BANNER DE PROMOÇÃO ===== */
-        #promo-banner { background: linear-gradient(90deg, #b5451b, var(--terracotta), #e8925a, var(--terracotta), #b5451b); background-size: 300% 100%; animation: bannerSlide 5s linear infinite; color: white; text-align: center; padding: 10px 50px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; position: relative; z-index: 1001; display: flex; align-items: center; justify-content: center; gap: 15px; }
-        @keyframes bannerSlide { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
-        #promo-banner .promo-icon { animation: spinIcon 4s linear infinite; display: inline-block; }
-        @keyframes spinIcon { to { transform: rotate(360deg); } }
-        #promo-banner .promo-highlight { background: rgba(255,255,255,0.25); border-radius: 20px; padding: 2px 12px; animation: highlightPulse 2s ease-in-out infinite; }
-        @keyframes highlightPulse { 0%, 100% { background: rgba(255,255,255,0.2); } 50% { background: rgba(255,255,255,0.4); } }
-        #promo-banner .promo-close { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; font-size: 1.1rem; cursor: pointer; opacity: 0.7; transition: 0.2s; padding: 5px; }
-        #promo-banner .promo-close:hover { opacity: 1; }
-        #promo-banner.hidden { display: none; }
-
-        /* ===== CURSOR: RASTRO ===== */
-        .cursor-trail { width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); }
-
-        /* ===== HERO PARTÍCULAS ===== */
-        #hero-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-        .particle { position: absolute; border-radius: 50%; background: rgba(233, 196, 166, 0.4); animation: floatParticle linear infinite; }
-        @keyframes floatParticle { 0% { transform: translateY(100%) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 0.5; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
-
-        /* ===== SHIMMER NO PREÇO ===== */
-        .price-tag { position: relative; display: inline-block; overflow: hidden; }
-        .price-tag::after { content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(90deg, transparent, rgba(217,125,84,0.4), transparent); animation: shimmer 3s ease-in-out infinite; }
-        @keyframes shimmer { 0% { left: -60%; } 60%, 100% { left: 120%; } }
-
-        /* ===== FOOTER SHINE ===== */
-        .ifood-full-btn { position: relative; overflow: hidden; }
-        .ifood-full-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: translateX(-100%); transition: transform 0.6s; }
-        .ifood-full-btn:hover::after { transform: translateX(100%); }
     </style>
 </head>
 <body>
@@ -204,16 +168,6 @@
     
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" class="back-to-top" id="backToTop">↑</a>
-
-    <div id="promo-banner">
-        <span class="promo-icon">🌿</span>
-        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:center;">
-            <span>🎉 Promoção do dia:</span>
-            <span class="promo-highlight">2° Bowl com 50% OFF — Só hoje!</span>
-            <span>Use o código <strong>RAIZ50</strong> no iFood</span>
-        </div>
-        <button class="promo-close" onclick="this.parentElement.classList.add('hidden')">✕</button>
-    </div>
 
     <nav class="navbar">
         <div style="display: flex; align-items: center;">
@@ -234,7 +188,6 @@
     </nav>
 
     <header class="hero">
-        <div id="hero-particles"></div>
         <h1><span class="typing-effect">Sabor que vem da terra.</span></h1>
     </header>
 
@@ -280,4 +233,165 @@
                 <div class="card-info"><h3>Cheese Raiz</h3><p>Queijo meia cura.</p><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
             <div class="card bowl">
-                <div class="card-img-container"><div class="card-img" style="back
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Salada Mix</h3><p>Frescor do campo.</p><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card dessert">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Brownie Terra</h3><p>Chocolate 70% e nozes.</p><span class="price-tag">R$ 18,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card dessert">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Mousse Frutas</h3><p>Cacau e frutas vermelhas.</p><span class="price-tag">R$ 16,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="especiais" class="drink-slider-section reveal">
+        <h2 style="color: white; margin-bottom: 40px; font-family: 'DM Serif Display', serif; font-size: 2.5rem;">Especiais da Casa</h2>
+        <div class="slider-container">
+            <div class="slide active" onclick="updateSlider(this, '#c0392b')">
+                <img src="https://www.cocacolabrasil.com.br/content/dam/journey/br/pt/brands/coca-cola/coca-cola-original.png" class="drink-img">
+                <h3>Coca-Cola Classic</h3>
+                <p class="drink-desc">O sabor original que todo mundo ama, ultra gelada.</p>
+                <span class="drink-price">R$ 8,00</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')">
+                <img src="https://images.tcdn.com.br/img/img_prod/704127/suco_de_laranja_integral_1_litro_233_1_20200505115206.png" class="drink-img">
+                <h3>Suco do Pomar</h3>
+                <p class="drink-desc">Laranjas colhidas hoje. 100% natural e sem açúcar.</p>
+                <span class="drink-price">R$ 12,00</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+            <div class="slide" onclick="updateSlider(this, '#1e8449')">
+                <img src="https://static.paodeacucar.com/img/uploads/1/592/20120592.png" class="drink-img">
+                <h3>Guaraná Raiz</h3>
+                <p class="drink-desc">O puro sabor da Amazônia em versão refrescante.</p>
+                <span class="drink-price">R$ 7,50</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
+            <div class="footer-column">
+                <h4>Funcionamento</h4>
+                <ul class="hours-list">
+                    <li data-day="1">Segunda <span>11h - 23h</span></li>
+                    <li data-day="2">Terça <span>11h - 23h</span></li>
+                    <li data-day="3">Quarta <span>11h - 23h</span></li>
+                    <li data-day="4">Quinta <span>11h - 23h</span></li>
+                    <li data-day="5">Sexta <span>11h - 00h</span></li>
+                    <li data-day="6">Sábado <span>11h - 00h</span></li>
+                    <li data-day="0">Domingo <span>18h - 23h</span></li>
+                </ul>
+            </div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
+        </div>
+        <a href="#" class="ifood-full-btn" onclick="createLeaves(this)">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        const themeToggle = document.getElementById('themeToggle');
+        const soundToggle = document.getElementById('soundToggle');
+        const natureSound = document.getElementById('natureSound');
+
+        // --- CORREÇÃO: MEMÓRIA DO MODO DARK ---
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.add('fa-sun');
+            themeToggle.classList.remove('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDark);
+            themeToggle.classList.toggle('fa-sun');
+            themeToggle.classList.toggle('fa-moon');
+        });
+        // --------------------------------------
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
+            else { natureSound.pause(); soundToggle.classList.remove('active'); }
+        });
+
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.menu-grid .card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = "✓";
+            btn.classList.add('checked');
+            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('checked'); }, 2000);
+
+            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 6000);
+            }
+        }
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
+        }
+
+        function updateStatus() {
+            const hour = new Date().getHours();
+            const day = new Date().getDay();
+            const isOpen = hour >= 11 && hour < 23;
+            document.getElementById('nav-dot').className = 'nav-dot ' + (isOpen ? 'dot-online' : 'dot-offline');
+            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const hoursItems = document.querySelectorAll('.hours-list li');
+            hoursItems.forEach(li => {
+                if(parseInt(li.getAttribute('data-day')) === day) li.classList.add('today');
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+            const btt = document.getElementById('backToTop');
+            if (window.scrollY > 400) btt.classList.add('visible');
+            else btt.classList.remove('visible');
+        });
+
+        updateStatus();
+    </script>
+</body>
+</html>
