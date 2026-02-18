@@ -90,8 +90,14 @@
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+        /* ALTERAÇÃO NA VALUES-BAR */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); transition: background 0.5s; }
+        .value-item { transition: 0.4s ease; padding: 20px; border-radius: 15px; }
+        .value-item:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
+        .value-item i { font-size: 2.5rem; color: var(--terracotta); margin-bottom: 15px; display: block; transition: 0.3s; }
+        .value-item:hover i { transform: scale(1.2); }
+        .value-item h3 { font-family: 'DM Serif Display', serif; margin-bottom: 8px; font-size: 1.4rem; }
+        .value-item p { font-size: 0.9rem; opacity: 0.8; font-weight: 400; }
 
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .filter-container { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
@@ -172,9 +178,21 @@
     </header>
 
     <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div class="value-item">
+            <i class="fas fa-seedling"></i>
+            <h3>Puro</h3>
+            <p>Ingredientes 100% orgânicos e colhidos de produtores locais.</p>
+        </div>
+        <div class="value-item">
+            <i class="fas fa-mortar-pestle"></i>
+            <h3>Artesanal</h3>
+            <p>Processos manuais que preservam o sabor e a textura real.</p>
+        </div>
+        <div class="value-item">
+            <i class="fas fa-bicycle"></i>
+            <h3>Consciente</h3>
+            <p>Logística de baixo impacto e embalagens biodegradáveis.</p>
+        </div>
     </section>
 
     <section id="menu" class="menu-section reveal">
@@ -270,7 +288,6 @@
             else { natureSound.pause(); soundToggle.classList.remove('active'); }
         });
 
-        // FUNÇÃO DE FILTRO RESTAURADA
         function filterMenu(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
