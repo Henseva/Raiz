@@ -1099,6 +1099,9 @@
             else { cart.push({ name, price, qty: 1 }); }
             renderCart();
             showToast(name + ' adicionado ✓');
+            springBadge();
+            checkDesconto();
+            checkSugestao(name);
         }
         function renderCart() {
             const container = document.getElementById('cartItems');
@@ -1108,7 +1111,10 @@
             const totalVal = document.getElementById('cartTotalValue');
             if (cart.length === 0) {
                 container.innerHTML = '<p class="cart-empty">Nenhum item ainda.<br>Adicione algo do cardápio!</p>';
-                badge.style.display = 'none'; totalEl.style.display = 'none'; checkoutEl.style.display = 'none'; return;
+                badge.style.display = 'none'; totalEl.style.display = 'none'; checkoutEl.style.display = 'none';
+                const shareBtn = document.getElementById('share-btn');
+                if (shareBtn) shareBtn.style.display = 'none';
+                atualizarNivel(); atualizarFidelidade(); return;
             }
             const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
             const totalQty = cart.reduce((s, i) => s + i.qty, 0);
@@ -1125,6 +1131,11 @@
                     </div>
                     <span class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</span>
                 </div>`).join('');
+            atualizarNivel();
+            atualizarFidelidade();
+            resetCartTimer();
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) shareBtn.style.display = 'block';
         }
         function changeQty(idx, delta) {
             cart[idx].qty += delta;
@@ -1396,15 +1407,6 @@
             }, 260);
         }
 
-        // === HOOK NO addToCart PARA MOLA + SUGESTÃO + DESCONTO ===
-        const _origAddToCart = addToCart;
-        function addToCart(name, price) {
-            _origAddToCart(name, price);
-            springBadge();
-            checkDesconto();
-            checkSugestao(name);
-        }
-
         // === MODO NOTURNO AUTOMÁTICO (após 20h) ===
         const hAtual = new Date().getHours();
         if ((hAtual >= 20 || hAtual < 6) && !document.body.classList.contains('dark-mode')) {
@@ -1632,17 +1634,6 @@
                 navigator.clipboard.writeText(texto);
                 showToast('📋 Pedido copiado! Cole no WhatsApp');
             }
-        }
-
-        // Hook no renderCart para atualizar fidelidade, nível, share e lembrete
-        const _origRenderCart = renderCart;
-        function renderCart() {
-            _origRenderCart();
-            atualizarNivel();
-            atualizarFidelidade();
-            resetCartTimer();
-            const shareBtn = document.getElementById('share-btn');
-            if (shareBtn) shareBtn.style.display = cart.length > 0 ? 'block' : 'none';
         }
 
         updateStatus();
