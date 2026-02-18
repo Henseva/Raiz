@@ -301,12 +301,63 @@
         body.almoco-mode .navbar { background: #1a3a2e; }
         #almoco-banner { background:linear-gradient(90deg,#e67e22,#f39c12); color:#fff; text-align:center; padding:8px; font-size:0.82rem; font-weight:bold; display:none; }
         #almoco-banner.show { display:block; }
+
+        /* === CORTINA DE TRANSIÇÃO === */
+        #page-wipe { position:fixed; inset:0; background:var(--dark-green); z-index:99999; transform:translateX(-100%); pointer-events:none; }
+        @keyframes wipeIn  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+        @keyframes wipeOut { from{transform:translateX(0)} to{transform:translateX(100%)} }
+        #page-wipe.wipe-in  { animation:wipeIn  0.35s ease-in  forwards; }
+        #page-wipe.wipe-out { animation:wipeOut 0.35s ease-out forwards; }
+        #page-wipe-leaf { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font-size:4rem; z-index:100000; opacity:0; pointer-events:none; transition:opacity 0.2s; }
+        #page-wipe.wipe-in  #page-wipe-leaf, #page-wipe.wipe-out #page-wipe-leaf { opacity:1; }
+
+        /* === BADGE MOLA NO CARRINHO === */
+        @keyframes springBadge { 0%{transform:scale(1)} 30%{transform:scale(1.6)} 60%{transform:scale(0.85)} 80%{transform:scale(1.15)} 100%{transform:scale(1)} }
+        #cart-badge.spring { animation:springBadge 0.5s ease; }
+
+        /* === HERO CROSSFADE === */
+        .hero { transition: background-image 1.2s ease; }
+        .hero.fading { opacity:0.5; }
+
+        /* === CONTADOR REGRESSIVO === */
+        #countdown { font-family:'DM Serif Display',serif; font-size:1rem; background:rgba(0,0,0,0.25); padding:3px 14px; border-radius:20px; letter-spacing:1px; }
+
+        /* === BOLHA DE SUGESTÃO === */
+        #sugestao-bubble { position:fixed; bottom:170px; right:20px; background:var(--cream); color:var(--dark-green); border-radius:16px; padding:14px 18px; font-size:0.8rem; font-weight:bold; box-shadow:0 8px 30px rgba(0,0,0,0.15); z-index:8000; opacity:0; transform:translateY(10px); transition:opacity 0.4s,transform 0.4s; pointer-events:none; max-width:200px; line-height:1.4; border:2px solid var(--soft-peach); }
+        #sugestao-bubble::after { content:''; position:absolute; bottom:-10px; right:20px; width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:10px solid var(--soft-peach); }
+        #sugestao-bubble.show { opacity:1; transform:translateY(0); pointer-events:all; }
+        #sugestao-bubble a { color:var(--terracotta); text-decoration:none; font-weight:bold; display:block; margin-top:6px; }
+
+        /* === VISUALIZAÇÕES NOS CARDS === */
+        .card-views { font-size:0.7rem; color:var(--terracotta); opacity:0.75; margin-bottom:6px; }
+
+        /* === AVALIAÇÃO POR ESTRELAS NOS CARDS === */
+        .card-stars { display:flex; gap:3px; margin-bottom:8px; }
+        .card-star { font-size:0.85rem; color:#ccc; cursor:pointer; transition:color 0.2s, transform 0.15s; }
+        .card-star.filled { color:#f39c12; }
+        .card-star:hover { transform:scale(1.3); }
+
+        /* === CARD ESGOTADO === */
+        .card.esgotado { position:relative; }
+        .card.esgotado .card-img { filter:grayscale(0.7) brightness(0.7); }
+        .card.esgotado::after { content:'Esgotado'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-15deg); background:rgba(200,50,50,0.85); color:#fff; font-weight:bold; font-size:1rem; padding:6px 20px; border-radius:8px; z-index:5; letter-spacing:1px; pointer-events:none; }
+        .card.esgotado .btn-card { opacity:0.4; pointer-events:none; }
+
+        /* === DESCONTO AUTOMÁTICO === */
+        #desconto-toast { position:fixed; top:80px; left:50%; transform:translateX(-50%) translateY(-20px); background:linear-gradient(90deg,#27ae60,#2ecc71); color:#fff; padding:12px 28px; border-radius:30px; font-size:0.85rem; font-weight:bold; z-index:9800; opacity:0; transition:opacity 0.4s,transform 0.4s; pointer-events:none; white-space:nowrap; }
+        #desconto-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+        /* === DIGITAÇÃO NAS DESCRIÇÕES === */
+        .card-info p.typing-desc { height:38px; overflow:hidden; }
     </style>
 </head>
 <body>
 
     <div id="scroll-progress"></div>
     <div id="custom-cursor"></div>
+    <div id="page-wipe"><span id="page-wipe-leaf">🌿</span></div>
+    <div id="desconto-toast">🎉 3 itens! Desconto de 10% aplicado automaticamente</div>
+    <div id="sugestao-bubble">🥤 Que tal uma bebida?<a href="#especiais" onclick="document.getElementById('sugestao-bubble').classList.remove('show')">Ver Especiais →</a></div>
     <audio id="natureSound" loop src="https://assets.mixkit.co/active_storage/sfx/2458/2458-preview.mp3"></audio>
 
     <!-- Toast -->
@@ -351,6 +402,7 @@
         <span>🎉 Promoção do dia:</span>
         <span class="promo-highlight">2° Bowl com 50% OFF — Só hoje!</span>
         <span>Use o código <strong>RAIZ50</strong> no iFood</span>
+        <span id="countdown">--:--:--</span>
         <button class="promo-close" onclick="this.parentElement.classList.add('hidden')">✕</button>
     </div>
 
@@ -450,27 +502,27 @@
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Burger Raiz</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span></div><p class="typing-desc">Blend bovino 180g.</p><span class="card-views">👁 247 pessoas viram hoje</span><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Bowl da Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Bowl da Estação</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star">★</span></div><p class="typing-desc">Grãos e folhas.</p><span class="card-views">👁 183 pessoas viram hoje</span><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
             <div class="card burger">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Cheese Raiz</h3><p>Queijo meia cura.</p><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Cheese Raiz</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span></div><p class="typing-desc">Queijo meia cura.</p><span class="card-views">👁 312 pessoas viram hoje</span><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
-            <div class="card bowl">
+            <div class="card bowl esgotado">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Salada Mix</h3><p>Frescor do campo.</p><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Salada Mix</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star">★</span></div><p class="typing-desc">Frescor do campo.</p><span class="card-views">👁 98 pessoas viram hoje</span><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
             <div class="card dessert">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Brownie Terra</h3><p>Chocolate 70% e nozes.</p><span class="price-tag">R$ 18,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Brownie Terra</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span></div><p class="typing-desc">Chocolate 70% e nozes.</p><span class="card-views">👁 156 pessoas viram hoje</span><span class="price-tag">R$ 18,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
             <div class="card dessert">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Mousse Frutas</h3><p>Cacau e frutas vermelhas.</p><span class="price-tag">R$ 16,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Mousse Frutas</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star">★</span></div><p class="typing-desc">Cacau e frutas vermelhas.</p><span class="card-views">👁 74 pessoas viram hoje</span><span class="price-tag">R$ 16,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
             </div>
         </div>
     </section>
@@ -921,6 +973,193 @@
                 showToast('🎉 Easter egg encontrado!');
             }
         });
+
+        // === CORTINA DE TRANSIÇÃO ===
+        const wipe = document.getElementById('page-wipe');
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (!target) return;
+                e.preventDefault();
+                wipe.className = 'wipe-in';
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'instant' });
+                    wipe.className = 'wipe-out';
+                    setTimeout(() => { wipe.className = ''; }, 380);
+                }, 360);
+            });
+        });
+
+        // === COUNTDOWN REGRESSIVO (meia-noite) ===
+        function updateCountdown() {
+            const now = new Date();
+            const end = new Date(); end.setHours(23,59,59,0);
+            const diff = end - now;
+            const h = String(Math.floor(diff / 3600000)).padStart(2,'0');
+            const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+            const s = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+            const el = document.getElementById('countdown');
+            if (el) el.textContent = `⏱ ${h}:${m}:${s}`;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // === HERO CROSSFADE A CADA 8s ===
+        const heroImgs = [
+            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80',
+            'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1350&q=80',
+            'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1350&q=80',
+        ];
+        let heroIdx = 0;
+        const heroEl = document.querySelector('.hero');
+        setInterval(() => {
+            heroEl.classList.add('fading');
+            setTimeout(() => {
+                heroIdx = (heroIdx + 1) % heroImgs.length;
+                heroEl.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('${heroImgs[heroIdx]}')`;
+                heroEl.classList.remove('fading');
+            }, 600);
+        }, 8000);
+
+        // === BADGE MOLA NO CARRINHO ===
+        function springBadge() {
+            const b = document.getElementById('cart-badge');
+            b.classList.remove('spring');
+            void b.offsetWidth;
+            b.classList.add('spring');
+        }
+
+        // === DESCONTO AUTOMÁTICO (3+ itens) ===
+        let descontoAtivo = false;
+        function checkDesconto() {
+            const total = cart.reduce((s,i) => s + i.qty, 0);
+            if (total >= 3 && !descontoAtivo) {
+                descontoAtivo = true;
+                const dt = document.getElementById('desconto-toast');
+                dt.classList.add('show');
+                setTimeout(() => dt.classList.remove('show'), 4000);
+            } else if (total < 3) {
+                descontoAtivo = false;
+            }
+        }
+
+        // === SUGESTÃO DE BEBIDA AO ADICIONAR BURGER ===
+        function checkSugestao(name) {
+            const isBurger = document.querySelector(`.card.burger .card-info h3`)
+                ? [...document.querySelectorAll('.card.burger .card-info h3')].some(h => h.textContent === name)
+                : false;
+            if (isBurger) {
+                const b = document.getElementById('sugestao-bubble');
+                b.classList.add('show');
+                setTimeout(() => b.classList.remove('show'), 5000);
+            }
+        }
+
+        // === CARDÁPIO INTELIGENTE POR HORÁRIO ===
+        function filtrarPorHorario() {
+            const hora = new Date().getHours();
+            let categoria = null;
+            let msg = null;
+            if (hora >= 7 && hora < 11)  { categoria = 'bowl';    msg = '🌅 Bom dia! Mostrando bowls e saladas para começar bem o dia.'; }
+            else if (hora >= 14 && hora < 17) { categoria = 'dessert'; msg = '☕ Hora do café! Que tal uma sobremesa?'; }
+            else if (hora >= 22 || hora < 7)  { categoria = 'burger';  msg = '🌙 Noite! Nossas melhores pedidas para a madrugada.'; }
+            if (categoria) {
+                const btn = [...document.querySelectorAll('.filter-btn')].find(b => b.textContent.toLowerCase().includes(categoria === 'bowl' ? 'bowl' : categoria === 'dessert' ? 'sobre' : 'burger'));
+                if (btn) { filterMenu(categoria, btn); showToast(msg); }
+            }
+        }
+        filtrarPorHorario();
+
+        // === ESTRELAS CLICÁVEIS NOS CARDS ===
+        document.querySelectorAll('.card-stars').forEach(starsEl => {
+            const stars = starsEl.querySelectorAll('.card-star');
+            stars.forEach((star, idx) => {
+                star.addEventListener('click', () => {
+                    stars.forEach((s, i) => s.classList.toggle('filled', i <= idx));
+                    showToast('Obrigado pela avaliação! ⭐');
+                });
+                star.addEventListener('mouseenter', () => {
+                    stars.forEach((s, i) => s.style.color = i <= idx ? '#f39c12' : '#ccc');
+                });
+                starsEl.addEventListener('mouseleave', () => {
+                    stars.forEach(s => s.style.color = '');
+                });
+            });
+        });
+
+        // === VISUALIZAÇÕES: incrementa lentamente ===
+        document.querySelectorAll('.card-views').forEach(el => {
+            const base = parseInt(el.textContent.match(/\d+/)?.[0] || '100');
+            setInterval(() => {
+                if (Math.random() < 0.15) {
+                    const cur = parseInt(el.textContent.match(/\d+/)?.[0]);
+                    el.textContent = `👁 ${cur + 1} pessoas viram hoje`;
+                }
+            }, 8000);
+        });
+
+        // === DIGITAÇÃO NAS DESCRIÇÕES AO HOVER ===
+        document.querySelectorAll('.typing-desc').forEach(p => {
+            const full = p.textContent.trim();
+            p.dataset.full = full;
+            p.addEventListener('mouseenter', () => {
+                p.textContent = '';
+                let i = 0;
+                const iv = setInterval(() => {
+                    p.textContent += full[i++];
+                    if (i >= full.length) clearInterval(iv);
+                }, 40);
+                p._iv = iv;
+            });
+            p.addEventListener('mouseleave', () => {
+                clearInterval(p._iv);
+                p.textContent = full;
+            });
+        });
+
+        // === FILTRO COM ANIMAÇÃO DE EMBARALHAMENTO ===
+        const _origFilter = filterMenu;
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cards = document.querySelectorAll('.menu-grid .card');
+            cards.forEach(card => {
+                card.style.transition = 'opacity 0.25s, transform 0.25s';
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.85)';
+            });
+            setTimeout(() => {
+                cards.forEach(card => {
+                    const show = category === 'all' || card.classList.contains(category);
+                    card.classList.toggle('hidden', !show);
+                    if (show) {
+                        card.style.opacity = '1';
+                        card.style.transform = '';
+                    }
+                });
+            }, 260);
+        }
+
+        // === HOOK NO addToCart PARA MOLA + SUGESTÃO + DESCONTO ===
+        const _origAddToCart = addToCart;
+        function addToCart(name, price) {
+            _origAddToCart(name, price);
+            springBadge();
+            checkDesconto();
+            checkSugestao(name);
+        }
+
+        // === MODO NOTURNO AUTOMÁTICO (após 20h) ===
+        const hAtual = new Date().getHours();
+        if ((hAtual >= 20 || hAtual < 6) && !document.body.classList.contains('dark-mode')) {
+            setTimeout(() => {
+                document.body.classList.add('dark-mode');
+                themeToggle.classList.add('fa-sun');
+                themeToggle.classList.remove('fa-moon');
+                localStorage.setItem('dark-mode', 'true');
+                showToast('🌙 Modo noturno ativado automaticamente');
+            }, 1200);
+        }
 
         updateStatus();
     </script>
