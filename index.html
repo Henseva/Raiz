@@ -283,4 +283,321 @@
         <div class="value-item">
             <i class="fas fa-bicycle"></i>
             <h3>Consciente</h3>
-            <p>Logística de baixo impacto e embalagens biodegra
+            <p>Logística de baixo impacto e embalagens biodegradáveis.</p>
+            <span class="counter" data-target="3" data-suffix=" anos">0</span>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section reveal">
+        <h2>Cardápio Completo</h2>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterMenu('burger', this)">Burgers</button>
+            <button class="filter-btn" onclick="filterMenu('bowl', this)">Bowls</button>
+            <button class="filter-btn" onclick="filterMenu('dessert', this)">Sobremesas</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="card burger steam-effect">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Burger Raiz</h3><p>Blend bovino 180g.</p><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card bowl">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Bowl da Estação</h3><p>Grãos e folhas.</p><span class="price-tag">R$ 28,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card burger">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Cheese Raiz</h3><p>Queijo meia cura.</p><span class="price-tag">R$ 30,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card bowl">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Salada Mix</h3><p>Frescor do campo.</p><span class="price-tag">R$ 25,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card dessert">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Brownie Terra</h3><p>Chocolate 70% e nozes.</p><span class="price-tag">R$ 18,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+            <div class="card dessert">
+                <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500');"></div></div>
+                <div class="card-info"><h3>Mousse Frutas</h3><p>Cacau e frutas vermelhas.</p><span class="price-tag">R$ 16,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="especiais" class="drink-slider-section reveal">
+        <div id="drink-bubbles"></div>
+        <h2 style="color: white; margin-bottom: 40px; font-family: 'DM Serif Display', serif; font-size: 2.5rem;">Especiais da Casa</h2>
+        <div class="slider-container" id="sliderContainer">
+            <div class="slide active" onclick="updateSlider(this, '#c0392b')" style="position:relative">
+                <span class="slide-badge">🔥 Mais Pedido</span>
+                <span class="slide-icon">🥤</span>
+                <img src="https://www.cocacolabrasil.com.br/content/dam/journey/br/pt/brands/coca-cola/coca-cola-original.png" class="drink-img">
+                <h3>Coca-Cola Classic</h3>
+                <p class="drink-desc">O sabor original que todo mundo ama, ultra gelada.</p>
+                <p class="slide-info">Lata 350ml · 150 kcal · Gelo incluso</p>
+                <span class="drink-price">R$ 8,00</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')" style="position:relative">
+                <span class="slide-badge">🌿 Natural</span>
+                <span class="slide-icon">🧃</span>
+                <img src="https://images.tcdn.com.br/img/img_prod/704127/suco_de_laranja_integral_1_litro_233_1_20200505115206.png" class="drink-img">
+                <h3>Suco do Pomar</h3>
+                <p class="drink-desc">Laranjas colhidas hoje. 100% natural e sem açúcar.</p>
+                <p class="slide-info">500ml · 95 kcal · Vitamina C · Sem conservantes</p>
+                <span class="drink-price">R$ 12,00</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+            <div class="slide" onclick="updateSlider(this, '#1e8449')" style="position:relative">
+                <span class="slide-badge">⭐ Novidade</span>
+                <span class="slide-icon">🌱</span>
+                <img src="https://static.paodeacucar.com/img/uploads/1/592/20120592.png" class="drink-img">
+                <h3>Guaraná Raiz</h3>
+                <p class="drink-desc">O puro sabor da Amazônia em versão refrescante.</p>
+                <p class="slide-info">Lata 350ml · 120 kcal · Guaraná natural</p>
+                <span class="drink-price">R$ 7,50</span>
+                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
+            </div>
+        </div>
+        <div class="slider-dots" id="sliderDots">
+            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+            <div class="slider-dot" onclick="goToSlide(1)"></div>
+            <div class="slider-dot" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
+    <div class="wave-container"><div class="wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path id="wavePath" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div></div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo-section"><h2>RAIZ</h2><p style="margin-top: 10px;">Sabor que vem da terra.</p></div>
+            <div class="footer-column">
+                <h4>Funcionamento</h4>
+                <ul class="hours-list">
+                    <li data-day="1">Segunda <span>11h - 23h</span></li>
+                    <li data-day="2">Terça <span>11h - 23h</span></li>
+                    <li data-day="3">Quarta <span>11h - 23h</span></li>
+                    <li data-day="4">Quinta <span>11h - 23h</span></li>
+                    <li data-day="5">Sexta <span>11h - 00h</span></li>
+                    <li data-day="6">Sábado <span>11h - 00h</span></li>
+                    <li data-day="0">Domingo <span>18h - 23h</span></li>
+                </ul>
+            </div>
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
+        </div>
+        <a href="#" class="ifood-full-btn" onclick="createLeaves(this)">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        const themeToggle = document.getElementById('themeToggle');
+        const soundToggle = document.getElementById('soundToggle');
+        const natureSound = document.getElementById('natureSound');
+
+        // --- CORREÇÃO: MEMÓRIA DO MODO DARK ---
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.add('fa-sun');
+            themeToggle.classList.remove('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDark);
+            themeToggle.classList.toggle('fa-sun');
+            themeToggle.classList.toggle('fa-moon');
+        });
+        // --------------------------------------
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        // Rastro do cursor
+        const trails = [];
+        for (let i = 0; i < 8; i++) {
+            const t = document.createElement('div');
+            t.className = 'cursor-trail';
+            t.style.opacity = (1 - i / 8) * 0.45;
+            t.style.width = t.style.height = Math.max(2, 6 - i * 0.5) + 'px';
+            document.body.appendChild(t);
+            trails.push({ el: t, x: 0, y: 0 });
+        }
+        let mx = 0, my = 0;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        (function loop() {
+            trails.forEach((tr, i) => {
+                const src = i === 0 ? { x: mx, y: my } : trails[i - 1];
+                tr.x += (src.x - tr.x) * 0.35;
+                tr.y += (src.y - tr.y) * 0.35;
+                tr.el.style.left = tr.x + 'px';
+                tr.el.style.top  = tr.y + 'px';
+            });
+            requestAnimationFrame(loop);
+        })();
+
+        // Partículas no hero
+        const heroP = document.getElementById('hero-particles');
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const s = Math.random() * 12 + 4;
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*6}s;`;
+            heroP.appendChild(p);
+        }
+
+        // Tilt 3D nos cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const rx = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -7;
+                const ry = ((e.clientX - r.left - r.width  / 2) / (r.width  / 2)) *  7;
+                card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+        });
+
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
+            else { natureSound.pause(); soundToggle.classList.remove('active'); }
+        });
+
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.menu-grid .card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = "✓";
+            btn.classList.add('checked');
+            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('checked'); }, 2000);
+
+            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 6000);
+            }
+        }
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
+
+            // Preço saltando
+            const price = element.querySelector('.drink-price');
+            if (price) { price.classList.remove('pop'); void price.offsetWidth; price.classList.add('pop'); }
+
+            // Atualiza dots
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const idx = slides.indexOf(element);
+            document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        // Ir para slide por índice (dots)
+        function goToSlide(idx) {
+            const slides = document.querySelectorAll('.slide');
+            const colors = ['#c0392b', '#f39c12', '#1e8449'];
+            if (slides[idx]) updateSlider(slides[idx], colors[idx]);
+            const container = document.getElementById('sliderContainer');
+            container.scrollTo({ left: slides[idx].offsetLeft - container.offsetLeft - 40, behavior: 'smooth' });
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', e => {
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const activeIdx = slides.findIndex(s => s.classList.contains('active'));
+            if (e.key === 'ArrowRight' && activeIdx < slides.length - 1) goToSlide(activeIdx + 1);
+            if (e.key === 'ArrowLeft'  && activeIdx > 0)               goToSlide(activeIdx - 1);
+        });
+
+        // Drag to scroll no slider
+        const sliderEl = document.getElementById('sliderContainer');
+        let isDragging = false, startX, scrollLeft;
+        sliderEl.addEventListener('mousedown',  e => { isDragging = true; startX = e.pageX - sliderEl.offsetLeft; scrollLeft = sliderEl.scrollLeft; sliderEl.style.cursor = 'grabbing'; });
+        sliderEl.addEventListener('mouseleave', () => { isDragging = false; sliderEl.style.cursor = ''; });
+        sliderEl.addEventListener('mouseup',    () => { isDragging = false; sliderEl.style.cursor = ''; });
+        sliderEl.addEventListener('mousemove',  e => { if (!isDragging) return; e.preventDefault(); sliderEl.scrollLeft = scrollLeft - (e.pageX - sliderEl.offsetLeft - startX); });
+
+        // Bolhas na seção especiais
+        const bubblesEl = document.getElementById('drink-bubbles');
+        for (let i = 0; i < 20; i++) {
+            const b = document.createElement('div');
+            b.className = 'bubble';
+            const s = Math.random() * 20 + 6;
+            b.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*8}s;`;
+            bubblesEl.appendChild(b);
+        }
+
+        function updateStatus() {
+            const hour = new Date().getHours();
+            const day = new Date().getDay();
+            const isOpen = hour >= 11 && hour < 23;
+            document.getElementById('nav-dot').className = 'nav-dot ' + (isOpen ? 'dot-online' : 'dot-offline');
+            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const hoursItems = document.querySelectorAll('.hours-list li');
+            hoursItems.forEach(li => {
+                if(parseInt(li.getAttribute('data-day')) === day) li.classList.add('today');
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+            const btt = document.getElementById('backToTop');
+            if (window.scrollY > 400) btt.classList.add('visible');
+            else btt.classList.remove('visible');
+            document.querySelector('.navbar').classList.toggle('shrunk', window.scrollY > 80);
+
+            // Paralaxe no hero
+            document.querySelector('.hero').style.backgroundPositionY = (window.scrollY * 0.4) + 'px';
+
+            // Barra de progresso de scroll
+            const total = document.body.scrollHeight - window.innerHeight;
+            document.getElementById('scroll-progress').style.width = (window.scrollY / total * 100) + '%';
+
+            // Dispara contadores quando a seção de valores fica visível
+            document.querySelectorAll('.counter:not(.counted)').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add('counted');
+                    const target = +el.dataset.target;
+                    const suffix = el.dataset.suffix;
+                    let current = 0;
+                    const step = target / 60;
+                    const timer = setInterval(() => {
+                        current = Math.min(current + step, target);
+                        el.textContent = Math.floor(current) + suffix;
+                        if (current >= target) clearInterval(timer);
+                    }, 16);
+                }
+            });
+        });
+
+        updateStatus();
+    </script>
+</body>
+</html>
