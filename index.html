@@ -33,7 +33,8 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; scroll-behavior: smooth; transition: all 0.5s ease; }
+        html { overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background: var(--bg-body); overflow-x: hidden; max-width: 100vw; scroll-behavior: smooth; transition: background 0.5s ease, color 0.5s ease; }
 
         #custom-cursor {
             width: 20px; height: 20px; border: 2px solid var(--terracotta);
@@ -90,6 +91,7 @@
         @keyframes floatingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        @supports (-webkit-touch-callout: none) { .hero { background-attachment: scroll; } }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); transition: background 0.5s; }
@@ -186,11 +188,114 @@
         .back-to-top { position: fixed; bottom: 90px; right: 25px; width: 40px; height: 40px; background: var(--dark-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 1000;}
         .back-to-top.visible { opacity: 1; }
 
-        @media (max-width: 768px) { #custom-cursor { display: none; } * { cursor: auto; } }
-        @media (max-width: 650px) { .nav-links a:not(.btn-nav) { display: none; } }
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            /* Cursor desligado */
+            #custom-cursor, .cursor-trail { display: none; }
+            * { cursor: auto; }
+
+            /* Navbar */
+            .navbar { padding: 8px 4%; height: auto; min-height: 54px; flex-wrap: nowrap; gap: 6px; }
+            .logo { font-size: 1.2rem; }
+            #clima-widget { display: none; }
+            #nivel-badge { display: none; }
+            .nav-status { font-size: 0.55rem; padding: 3px 7px; }
+            .nav-links { gap: 8px; }
+            .nav-links a:not(.btn-nav) { display: none; }
+            .btn-nav { padding: 6px 12px; font-size: 0.75rem; }
+            #cart-btn { font-size: 1rem; }
+            #mesa-btn { display: none; }
+
+            /* Hero */
+            .hero { height: 50vh; background-attachment: scroll; }
+
+            /* Nossa história */
+            .historia-section { grid-template-columns: 1fr; padding: 50px 5%; gap: 30px; }
+            .historia-img { height: 220px; }
+            .historia-text h2 { font-size: 1.7rem; }
+
+            /* Values */
+            .values-bar { grid-template-columns: 1fr; padding: 40px 6%; gap: 24px; }
+
+            /* Depoimentos */
+            .depo-track { flex-direction: column; }
+            .depo-card { min-width: unset; }
+
+            /* Menu */
+            .menu-section { padding: 50px 4%; }
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .values-bar { grid-template-columns: 1fr; }
+            .card-info h3 { font-size: 1rem; }
+            #surpresa-btn { width: 100%; justify-content: center; }
+
+            /* Galeria */
+            .galeria-section { padding: 50px 4%; }
+            .galeria-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+            /* Especiais slider */
+            .drink-slider-section { padding: 60px 0; }
+            .slider-container { padding: 10px 5%; gap: 14px; }
+            .slide { min-width: 240px; height: 400px; }
+
+            /* Carrinho lateral — ocupa tela toda no mobile */
+            #cart-panel { width: 100%; right: -100%; }
+
+            /* Botões flutuantes da esquerda — reorganiza empilhado */
+            #chat-btn   { bottom: 160px; left: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
+            #roleta-btn { bottom: 210px; left: 12px; padding: 7px 12px; font-size: 0.7rem; }
+
+            /* Toast — não sai da tela */
+            #toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.78rem; }
+            #desconto-toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.75rem; }
+
+            /* Sugestão bubble */
+            #sugestao-bubble { right: 12px; bottom: 150px; max-width: 160px; font-size: 0.72rem; }
+
+            /* Desafio banner */
+            #desafio-banner { flex-direction: column; gap: 8px; padding: 12px 5%; text-align: center; }
+
+            /* Promo banner */
+            #promo-banner { padding: 8px 40px 8px 12px; font-size: 0.72rem; gap: 6px; }
+
+            /* Footer */
+            .footer-content { grid-template-columns: 1fr; gap: 24px; }
+            .main-footer { padding: 50px 5% 30px; }
+
+            /* Seção historia responsive */
+            .historia-section { grid-template-columns: 1fr; }
+
+            /* Modais — sempre 95% da tela */
+            #detail-modal .modal-box,
+            #roleta-box,
+            #custom-box { width: 95%; padding: 20px; }
+            #modal-img { height: 180px; }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .card-info { padding: 12px; }
+            .card-info h3 { font-size: 0.9rem; }
+            .card-info p { font-size: 0.75rem; height: 32px; }
+            .price-tag { font-size: 0.95rem; }
+            .btn-card { padding: 8px; font-size: 0.75rem; }
+
+            .slide { min-width: 200px; height: 360px; }
+            .drink-img { height: 150px; }
+
+            .historia-text h2 { font-size: 1.4rem; }
+            .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+
+            /* Roleta e chat ainda mais compactos */
+            #roleta-btn { display: none; } /* aparece só via menu */
+            #chat-panel { width: 100%; left: 0; border-radius: 20px 20px 0 0; bottom: 0; top: auto; }
+
+            /* Promo banner esconde extras */
+            #promo-banner span:not(.promo-highlight) { display: none; }
+            #countdown { display: none; }
+        }
+
+        @media (min-width: 769px) {
+            /* Garante que no desktop o carrinho tem largura fixa */
+            #cart-panel { width: 360px; right: -380px; }
+            #cart-panel.open { right: 0; }
         }
 
         /* === ADIÇÕES === */
@@ -231,7 +336,7 @@
         #cart-badge { position:absolute; top:-6px; right:-6px; background:var(--terracotta); color:#fff; font-size:0.6rem; font-weight:bold; width:16px; height:16px; border-radius:50%; display:none; align-items:center; justify-content:center; }
         #cart-btn { position:relative; cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.85); transition:0.3s; }
         #cart-btn:hover { color:#fff; }
-        #cart-panel { position:fixed; top:0; right:-380px; width:360px; height:100vh; background:var(--cream); z-index:9000; box-shadow:-10px 0 40px rgba(0,0,0,0.15); transition:right 0.4s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; padding:30px 24px; overflow-y:auto; }
+        #cart-panel { position:fixed; top:0; right:-110%; width:360px; height:100vh; background:var(--cream); z-index:9000; box-shadow:-10px 0 40px rgba(0,0,0,0.15); transition:right 0.4s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; padding:30px 24px; overflow-y:auto; overflow-x:hidden; }
         #cart-panel.open { right:0; }
         #cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:8999; opacity:0; pointer-events:none; transition:opacity 0.4s; }
         #cart-overlay.open { opacity:1; pointer-events:all; }
