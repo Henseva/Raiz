@@ -90,8 +90,14 @@
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
-        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 40px 10%; text-align: center; gap: 30px; color: var(--dark-green); transition: background 0.5s; }
-        .icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+        /* ALTERAÇÃO NA VALUES-BAR */
+        .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); transition: background 0.5s; }
+        .value-item { transition: 0.4s ease; padding: 20px; border-radius: 15px; }
+        .value-item:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
+        .value-item i { font-size: 2.5rem; color: var(--terracotta); margin-bottom: 15px; display: block; transition: 0.3s; }
+        .value-item:hover i { transform: scale(1.2); }
+        .value-item h3 { font-family: 'DM Serif Display', serif; margin-bottom: 8px; font-size: 1.4rem; }
+        .value-item p { font-size: 0.9rem; opacity: 0.8; font-weight: 400; }
 
         .menu-section { background: var(--light-grey); padding: 80px 5%; text-align: center; scroll-margin-top: 80px; transition: background 0.5s ease; }
         .filter-container { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
@@ -110,29 +116,14 @@
         .price-tag { font-weight: bold; color: var(--terracotta); margin-top: auto; margin-bottom: 12px; font-size: 1.1rem; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 11px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
 
-        /* UPGRADE BEBIDAS */
-        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 20px 10%; overflow-x: auto; scroll-snap-type: x mandatory; align-items: center; }
-        .slide { 
-            min-width: 280px; height: 460px; 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px; padding: 30px 20px; 
-            scroll-snap-align: center; transition: 0.6s ease; 
-            opacity: 0.4; transform: scale(0.85); 
-            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-            color: white;
-        }
-        .slide.active { opacity: 1; transform: scale(1.05); background: rgba(255, 255, 255, 0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .drink-img { height: 200px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); transition: 0.5s; }
-        .slide.active .drink-img { transform: translateY(-10px) rotate(5deg); }
-        .drink-desc { font-size: 0.8rem; opacity: 0.9; margin: 10px 0; line-height: 1.4; }
-        .drink-price { font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; }
+        .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; transition: background 0.5s; }
+        .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 0 10%; overflow-x: auto; scroll-snap-type: x mandatory; }
+        .slide { min-width: 280px; height: 460px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 50px; padding: 30px 20px; scroll-snap-align: center; transition: 0.6s; opacity: 0.4; transform: scale(0.85); display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .slide.active { opacity: 1; transform: scale(1); background: rgba(255, 255, 255, 0.15); }
+        .drink-img { height: 220px; object-fit: contain; margin-bottom: 20px; }
 
         .wave-container { position: relative; background: var(--dark-green); height: 100px; margin-top: -100px; transition: background 0.5s; }
-        .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .wave svg { width: 100%; height: 100px; fill: var(--light-grey); transition: fill 0.5s; }
         
         .main-footer { background: var(--dark-green); color: #FFFFFF; padding: 80px 5% 40px; text-align: center; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; text-align: left; }
@@ -187,9 +178,21 @@
     </header>
 
     <section class="values-bar reveal">
-        <div><span class="icon">🌿</span><h3>Puro</h3><p>Orgânicos locais.</p></div>
-        <div><span class="icon">🖐️</span><h3>Artesanal</h3><p>Feito à mão.</p></div>
-        <div><span class="icon">🚲</span><h3>Consciente</h3><p>Entrega rápida.</p></div>
+        <div class="value-item">
+            <i class="fas fa-seedling"></i>
+            <h3>Puro</h3>
+            <p>Ingredientes 100% orgânicos e colhidos de produtores locais.</p>
+        </div>
+        <div class="value-item">
+            <i class="fas fa-mortar-pestle"></i>
+            <h3>Artesanal</h3>
+            <p>Processos manuais que preservam o sabor e a textura real.</p>
+        </div>
+        <div class="value-item">
+            <i class="fas fa-bicycle"></i>
+            <h3>Consciente</h3>
+            <p>Logística de baixo impacto e embalagens biodegradáveis.</p>
+        </div>
     </section>
 
     <section id="menu" class="menu-section reveal">
@@ -231,29 +234,11 @@
     </section>
 
     <section id="especiais" class="drink-slider-section reveal">
-        <h2 style="color: white; margin-bottom: 40px; font-family: 'DM Serif Display', serif; font-size: 2.5rem;">Especiais da Casa</h2>
+        <h2>Especiais da Casa</h2>
         <div class="slider-container">
-            <div class="slide active" onclick="updateSlider(this, '#c0392b')">
-                <img src="https://www.cocacolabrasil.com.br/content/dam/journey/br/pt/brands/coca-cola/coca-cola-original.png" class="drink-img">
-                <h3>Coca-Cola Classic</h3>
-                <p class="drink-desc">O sabor original que todo mundo ama, gelada no ponto.</p>
-                <span class="drink-price">R$ 8,00</span>
-                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
-            </div>
-            <div class="slide" onclick="updateSlider(this, '#f39c12')">
-                <img src="https://images.tcdn.com.br/img/img_prod/704127/suco_de_laranja_integral_1_litro_233_1_20200505115206.png" class="drink-img">
-                <h3>Suco do Pomar</h3>
-                <p class="drink-desc">Laranjas frescas colhidas hoje. 100% natural e sem açúcar.</p>
-                <span class="drink-price">R$ 12,00</span>
-                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
-            </div>
-            <div class="slide" onclick="updateSlider(this, '#1e8449')">
-                <img src="https://static.paodeacucar.com/img/uploads/1/592/20120592.png" class="drink-img">
-                <h3>Guaraná Raiz</h3>
-                <p class="drink-desc">O puro sabor da Amazônia em uma versão ultra gelada.</p>
-                <span class="drink-price">R$ 7,50</span>
-                <button class="btn-card" onclick="createLeaves(this)">Adicionar</button>
-            </div>
+            <div class="slide active" onclick="updateSlider(this, '#e74c3c')"><img src="coca.png" class="drink-img"><h3>Coca-Cola</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            <div class="slide" onclick="updateSlider(this, '#f39c12')"><img src="laranja.png" class="drink-img"><h3>Laranja</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+            <div class="slide" onclick="updateSlider(this, '#27ae60')"><img src="guarana.png" class="drink-img"><h3>Guaraná</h3><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
         </div>
     </section>
 
