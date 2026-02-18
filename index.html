@@ -115,6 +115,7 @@
         .price-tag { font-weight: bold; color: var(--terracotta); margin-top: auto; margin-bottom: 12px; font-size: 1.1rem; }
         .btn-card { background: var(--terracotta); color: white; border: none; padding: 11px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
 
+        /* UPGRADE BEBIDAS REFILTRADO */
         .drink-slider-section { padding: 100px 0; text-align: center; background-color: var(--light-grey); scroll-margin-top: 80px; transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .slider-container { display: flex; gap: 25px; min-height: 520px; padding: 20px 10%; overflow-x: auto; scroll-snap-type: x mandatory; align-items: center; }
         .slide { 
@@ -290,4 +291,107 @@
                     <li data-day="0">Domingo <span>18h - 23h</span></li>
                 </ul>
             </div>
-            <di
+            <div class="footer-column"><h4>Contato</h4><p>Rua da Terra, 123</p><p>(11) 99999-9999</p></div>
+        </div>
+        <a href="#" class="ifood-full-btn" onclick="createLeaves(this)">Peça no iFood</a>
+        <div class="copyright">&copy; 2026 Restaurante Raiz.</div>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        const themeToggle = document.getElementById('themeToggle');
+        const soundToggle = document.getElementById('soundToggle');
+        const natureSound = document.getElementById('natureSound');
+
+        // --- CORREÇÃO: MEMÓRIA DO MODO DARK ---
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.add('fa-sun');
+            themeToggle.classList.remove('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDark);
+            themeToggle.classList.toggle('fa-sun');
+            themeToggle.classList.toggle('fa-moon');
+        });
+        // --------------------------------------
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
+            else { natureSound.pause(); soundToggle.classList.remove('active'); }
+        });
+
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.menu-grid .card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function createLeaves(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = "✓";
+            btn.classList.add('checked');
+            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('checked'); }, 2000);
+
+            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
+            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
+            for(let i=0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 6000);
+            }
+        }
+
+        function updateSlider(element, color) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('especiais').style.backgroundColor = color;
+            document.getElementById('wavePath').style.fill = color;
+        }
+
+        function updateStatus() {
+            const hour = new Date().getHours();
+            const day = new Date().getDay();
+            const isOpen = hour >= 11 && hour < 23;
+            document.getElementById('nav-dot').className = 'nav-dot ' + (isOpen ? 'dot-online' : 'dot-offline');
+            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
+            const hoursItems = document.querySelectorAll('.hours-list li');
+            hoursItems.forEach(li => {
+                if(parseInt(li.getAttribute('data-day')) === day) li.classList.add('today');
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+            const btt = document.getElementById('backToTop');
+            if (window.scrollY > 400) btt.classList.add('visible');
+            else btt.classList.remove('visible');
+        });
+
+        updateStatus();
+    </script>
+</body>
+</html>
