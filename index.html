@@ -349,6 +349,89 @@
 
         /* === DIGITAÇÃO NAS DESCRIÇÕES === */
         .card-info p.typing-desc { height:38px; overflow:hidden; }
+
+        /* === CHAT DE ATENDIMENTO === */
+        #chat-btn { position:fixed; bottom:90px; left:20px; width:52px; height:52px; background:var(--dark-green); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; z-index:8000; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:transform 0.2s; }
+        #chat-btn:hover { transform:scale(1.1); }
+        #chat-panel { position:fixed; bottom:150px; left:20px; width:300px; background:var(--cream); border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.15); z-index:8001; display:none; flex-direction:column; overflow:hidden; border:1px solid rgba(0,0,0,0.07); }
+        #chat-panel.open { display:flex; }
+        .chat-head { background:var(--dark-green); color:#fff; padding:14px 18px; font-weight:bold; font-size:0.85rem; display:flex; justify-content:space-between; align-items:center; }
+        .chat-messages { padding:14px; display:flex; flex-direction:column; gap:10px; max-height:240px; overflow-y:auto; }
+        .chat-msg { padding:10px 14px; border-radius:14px; font-size:0.78rem; line-height:1.5; max-width:85%; }
+        .chat-msg.bot { background:rgba(0,0,0,0.06); align-self:flex-start; }
+        .chat-msg.user { background:var(--terracotta); color:#fff; align-self:flex-end; }
+        .chat-options { display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 14px; }
+        .chat-opt { background:var(--soft-peach); color:var(--dark-green); border:none; border-radius:20px; padding:6px 14px; font-size:0.72rem; font-weight:bold; cursor:pointer; transition:0.2s; }
+        .chat-opt:hover { background:var(--terracotta); color:#fff; }
+
+        /* === WIDGET DE CLIMA === */
+        #clima-widget { background:rgba(255,255,255,0.12); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:0.7rem; padding:4px 12px; border-radius:20px; display:flex; align-items:center; gap:6px; margin-left:10px; white-space:nowrap; }
+
+        /* === FIDELIDADE NO CARRINHO === */
+        #fidelidade-bar { padding:14px 0 0; border-top:1px solid rgba(0,0,0,0.08); margin-top:14px; }
+        #fidelidade-bar p { font-size:0.75rem; color:var(--dark-green); margin-bottom:6px; }
+        #fidelidade-track { height:8px; background:rgba(0,0,0,0.08); border-radius:10px; overflow:hidden; }
+        #fidelidade-fill { height:100%; background:linear-gradient(90deg,var(--terracotta),#e8925a); border-radius:10px; width:0%; transition:width 0.6s ease; }
+
+        /* === ROLETA DA SORTE === */
+        #roleta-btn { position:fixed; bottom:160px; left:20px; background:var(--terracotta); color:#fff; border:none; border-radius:30px; padding:10px 18px; font-size:0.8rem; font-weight:bold; cursor:pointer; z-index:7999; box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:transform 0.2s; display:flex; align-items:center; gap:6px; }
+        #roleta-btn:hover { transform:scale(1.05); }
+        #roleta-modal { position:fixed; inset:0; z-index:9600; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+        #roleta-modal.open { opacity:1; pointer-events:all; }
+        #roleta-modal .modal-bg { position:absolute; inset:0; background:rgba(0,0,0,0.7); }
+        #roleta-box { position:relative; background:var(--cream); border-radius:24px; padding:36px 32px; max-width:360px; width:90%; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.3); transform:scale(0.9); transition:transform 0.3s; }
+        #roleta-modal.open #roleta-box { transform:scale(1); }
+        #roleta-wheel { font-size:5rem; display:block; transition:transform 1.5s cubic-bezier(0.17,0.67,0.12,0.99); }
+        #roleta-result { margin-top:16px; font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--dark-green); min-height:40px; }
+        #roleta-spin-btn { margin-top:18px; background:var(--terracotta); color:#fff; border:none; padding:12px 30px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:0.95rem; transition:0.2s; }
+        #roleta-spin-btn:hover { background:#c0642e; }
+        #roleta-close { position:absolute; top:12px; right:16px; background:none; border:none; font-size:1.3rem; cursor:pointer; opacity:0.5; }
+
+        /* === NÍVEL DO CLIENTE === */
+        #nivel-badge { font-size:0.7rem; background:rgba(255,255,255,0.15); border-radius:20px; padding:3px 10px; color:#fff; margin-left:8px; transition:0.3s; }
+
+        /* === DESAFIO DIÁRIO === */
+        #desafio-banner { background:linear-gradient(90deg,var(--dark-green),#3d6b5a); color:#fff; padding:10px 5%; display:flex; align-items:center; justify-content:center; gap:14px; font-size:0.82rem; flex-wrap:wrap; }
+        #desafio-banner strong { color:var(--soft-peach); }
+        #desafio-btn { background:var(--soft-peach); color:var(--dark-green); border:none; border-radius:20px; padding:5px 16px; font-weight:bold; font-size:0.75rem; cursor:pointer; transition:0.2s; }
+        #desafio-btn:hover { background:#fff; }
+
+        /* === MODO MESA DO RESTAURANTE === */
+        body.mesa-mode { --bg-body:#2a1a0e; --cream:#3d2a1a; --light-grey:#2a1a0e; --text-main:#f5e6d3; --card-shadow:rgba(0,0,0,0.4); }
+        body.mesa-mode .navbar { background:#1a0f08; }
+        body.mesa-mode .values-bar { background:#3d2a1a; }
+        #mesa-btn { cursor:pointer; font-size:1rem; color:rgba(255,255,255,0.75); transition:0.3s; }
+        #mesa-btn:hover { color:#fff; }
+        body.mesa-mode #mesa-btn { color:#f39c12; filter:drop-shadow(0 0 6px #f39c12); }
+
+        /* === ANIMAÇÃO DE PREPARO === */
+        #preparo-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99000; display:none; align-items:center; justify-content:center; flex-direction:column; gap:20px; color:#fff; text-align:center; }
+        #preparo-overlay.show { display:flex; }
+        #preparo-pan { font-size:5rem; animation:panShake 0.4s ease-in-out infinite; display:block; }
+        @keyframes panShake { 0%,100%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)} }
+        #preparo-msg { font-family:'DM Serif Display',serif; font-size:1.8rem; }
+        #preparo-sub { font-size:0.9rem; opacity:0.7; }
+
+        /* === PERSONALIZAÇÃO DO PEDIDO === */
+        #custom-modal { position:fixed; inset:0; z-index:9700; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+        #custom-modal.open { opacity:1; pointer-events:all; }
+        #custom-modal .modal-bg { position:absolute; inset:0; background:rgba(0,0,0,0.7); }
+        #custom-box { position:relative; background:var(--cream); border-radius:24px; padding:30px; max-width:400px; width:90%; box-shadow:0 30px 80px rgba(0,0,0,0.3); transform:scale(0.9); transition:transform 0.3s; }
+        #custom-modal.open #custom-box { transform:scale(1); }
+        #custom-box h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--dark-green); margin-bottom:18px; }
+        .custom-opt { display:flex; align-items:center; gap:10px; margin-bottom:12px; font-size:0.85rem; color:var(--text-main); }
+        .custom-opt input[type=checkbox] { width:16px; height:16px; cursor:pointer; accent-color:var(--terracotta); }
+        .custom-opt input[type=text] { flex:1; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:6px 10px; font-size:0.8rem; background:var(--white); color:var(--text-main); }
+        #custom-confirm { width:100%; margin-top:18px; background:var(--terracotta); color:#fff; border:none; padding:12px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:0.95rem; }
+        #custom-close { position:absolute; top:12px; right:16px; background:none; border:none; font-size:1.3rem; cursor:pointer; opacity:0.5; color:var(--text-main); }
+
+        /* === COMPARTILHAR PEDIDO === */
+        #share-btn { margin-top:10px; width:100%; background:rgba(0,0,0,0.06); color:var(--dark-green); border:none; padding:10px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:0.82rem; transition:0.2s; display:none; }
+        #share-btn:hover { background:rgba(0,0,0,0.1); }
+
+        /* === SURPRESA DO CHEF === */
+        #surpresa-btn { background:linear-gradient(135deg,var(--dark-green),#3d6b5a); color:#fff; border:none; padding:10px 24px; border-radius:25px; font-weight:bold; font-size:0.85rem; cursor:pointer; margin-bottom:20px; transition:0.3s; display:flex; align-items:center; gap:8px; margin:0 auto 24px; }
+        #surpresa-btn:hover { transform:scale(1.05); }
     </style>
 </head>
 <body>
@@ -359,6 +442,60 @@
     <div id="desconto-toast">🎉 3 itens! Desconto de 10% aplicado automaticamente</div>
     <div id="sugestao-bubble">🥤 Que tal uma bebida?<a href="#especiais" onclick="document.getElementById('sugestao-bubble').classList.remove('show')">Ver Especiais →</a></div>
     <audio id="natureSound" loop src="https://assets.mixkit.co/active_storage/sfx/2458/2458-preview.mp3"></audio>
+
+    <!-- Chat de Atendimento -->
+    <div id="chat-btn" onclick="toggleChat()" title="Atendimento">💬</div>
+    <div id="chat-panel">
+        <div class="chat-head">
+            <span>🌿 Atendimento Raiz</span>
+            <span onclick="toggleChat()" style="cursor:pointer;opacity:0.7">✕</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg bot">Olá! 👋 Seja bem-vindo ao Raiz. Como posso ajudar?</div>
+        </div>
+        <div class="chat-options" id="chatOptions">
+            <button class="chat-opt" onclick="chatReply('entrega')">⏱ Tempo de entrega</button>
+            <button class="chat-opt" onclick="chatReply('vegano')">🌱 Opções veganas</button>
+            <button class="chat-opt" onclick="chatReply('horario')">🕐 Horário</button>
+            <button class="chat-opt" onclick="chatReply('desconto')">🎁 Promoções</button>
+        </div>
+    </div>
+
+    <!-- Roleta da Sorte -->
+    <button id="roleta-btn" onclick="openRoleta()">🎰 Roleta da Sorte</button>
+    <div id="roleta-modal">
+        <div class="modal-bg" onclick="closeRoleta()"></div>
+        <div id="roleta-box">
+            <button id="roleta-close" onclick="closeRoleta()">✕</button>
+            <h3 style="font-family:'DM Serif Display',serif;color:var(--dark-green);margin-bottom:8px">🎰 Roleta da Sorte</h3>
+            <p style="font-size:0.8rem;opacity:0.6;margin-bottom:20px">Gire e ganhe um desconto especial!</p>
+            <span id="roleta-wheel">🎰</span>
+            <div id="roleta-result"></div>
+            <button id="roleta-spin-btn" onclick="spinRoleta()">Girar!</button>
+        </div>
+    </div>
+
+    <!-- Animação de Preparo -->
+    <div id="preparo-overlay">
+        <span id="preparo-pan">🍳</span>
+        <div id="preparo-msg">Preparando seu pedido...</div>
+        <div id="preparo-sub">Nossos chefs já estão na cozinha 👨‍🍳</div>
+    </div>
+
+    <!-- Personalização do Pedido -->
+    <div id="custom-modal">
+        <div class="modal-bg" onclick="closeCustom()"></div>
+        <div id="custom-box">
+            <button id="custom-close" onclick="closeCustom()">✕</button>
+            <h3 id="custom-title">Personalizar pedido</h3>
+            <div class="custom-opt"><input type="checkbox" id="sem-cebola"><label for="sem-cebola">Sem cebola</label></div>
+            <div class="custom-opt"><input type="checkbox" id="sem-gluten"><label for="sem-gluten">Sem glúten</label></div>
+            <div class="custom-opt"><input type="checkbox" id="extra-molho"><label for="extra-molho">Molho extra</label></div>
+            <div class="custom-opt"><input type="checkbox" id="ponto-bem"><label for="ponto-bem">Bem passado</label></div>
+            <div class="custom-opt"><label>📝 Observação:</label><input type="text" id="obs-text" placeholder="ex: sem pimenta..."></div>
+            <button id="custom-confirm" onclick="confirmCustom()">✅ Adicionar ao pedido</button>
+        </div>
+    </div>
 
     <!-- Toast -->
     <div id="toast"></div>
@@ -390,7 +527,12 @@
         <div class="cart-total" id="cartTotal" style="display:none">
             <span>Total</span><span id="cartTotalValue">R$ 0,00</span>
         </div>
-        <button class="cart-checkout" id="cartCheckout" style="display:none" onclick="createLeaves(this)">Finalizar Pedido 🌿</button>
+        <button class="cart-checkout" id="cartCheckout" style="display:none" onclick="finalizarPedido()">Finalizar Pedido 🌿</button>
+        <button id="share-btn" onclick="compartilharPedido()">📤 Compartilhar pedido</button>
+        <div id="fidelidade-bar">
+            <p id="fidelidade-msg">⭐ Faltam <strong id="fidelidade-faltam">5</strong> itens para um Bowl grátis!</p>
+            <div id="fidelidade-track"><div id="fidelidade-fill"></div></div>
+        </div>
     </div>
     
     <a href="https://wa.me/556981133218" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -416,13 +558,16 @@
                 <div class="nav-dot" id="nav-dot"></div>
                 <span id="nav-text">---</span>
             </div>
+            <div id="clima-widget">🌤 --°C</div>
         </div>
         <div class="nav-links">
             <i class="fas fa-moon theme-switch" id="themeToggle"></i>
+            <i class="fas fa-utensils" id="mesa-btn" onclick="toggleMesa()" title="Modo Mesa"></i>
             <div id="cart-btn" onclick="toggleCart()" title="Carrinho">
                 <i class="fas fa-shopping-bag"></i>
                 <span id="cart-badge"></span>
             </div>
+            <span id="nivel-badge">Visitante</span>
             <a href="#menu">Cardápio</a>
             <a href="#" class="btn-nav">iFood</a>
         </div>
@@ -489,8 +634,14 @@
         </div>
     </section>
 
+    <div id="desafio-banner">
+        🎯 <strong>Desafio do dia:</strong> Experimente o <strong id="desafio-prato">Mousse Frutas</strong> e ganhe 2x pontos de fidelidade!
+        <button id="desafio-btn" onclick="aceitarDesafio()">Aceitar desafio!</button>
+    </div>
+
     <section id="menu" class="menu-section reveal">
         <h2>Cardápio Completo</h2>
+        <button id="surpresa-btn" onclick="surpresaChef()">🎲 Surpresa do Chef</button>
         
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterMenu('all', this)">Todos</button>
@@ -502,7 +653,7 @@
         <div class="menu-grid" id="menuGrid">
             <div class="card burger steam-effect">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500');"></div></div>
-                <div class="card-info"><h3>Burger Raiz</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span></div><p class="typing-desc">Blend bovino 180g.</p><span class="card-views">👁 247 pessoas viram hoje</span><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="createLeaves(this)">Adicionar</button></div>
+                <div class="card-info"><h3>Burger Raiz</h3><div class="card-stars"><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span><span class="card-star filled">★</span></div><p class="typing-desc">Blend bovino 180g.</p><span class="card-views">👁 247 pessoas viram hoje</span><span class="price-tag">R$ 32,00</span><button class="btn-card" onclick="openCustom('Burger Raiz', 32)">🎨 Personalizar</button></div>
             </div>
             <div class="card bowl">
                 <div class="card-img-container"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500');"></div></div>
@@ -1159,6 +1310,234 @@
                 localStorage.setItem('dark-mode', 'true');
                 showToast('🌙 Modo noturno ativado automaticamente');
             }, 1200);
+        }
+
+        // === CHAT DE ATENDIMENTO ===
+        const chatRespostas = {
+            entrega: ['⏱ Tempo de entrega', 'Nosso tempo médio é de 35 a 50 minutos. Em horários de pico pode chegar a 1h. Acompanhe pelo iFood!'],
+            vegano: ['🌱 Opções veganas', 'Sim! O Bowl da Estação e a Salada Mix são 100% veganos. Também temos sucos naturais sem adição de açúcar.'],
+            horario: ['🕐 Horário', 'Funcionamos de Segunda a Quinta das 11h às 23h, Sexta e Sábado das 11h à meia-noite, e Domingo das 18h às 23h.'],
+            desconto: ['🎁 Promoções', 'Use o código RAIZ50 para 50% no 2° Bowl! Gire nossa Roleta da Sorte para mais surpresas. Adicione 5+ itens e ganhe pontos de fidelidade!'],
+        };
+        function toggleChat() {
+            document.getElementById('chat-panel').classList.toggle('open');
+        }
+        function chatReply(key) {
+            const [label, resp] = chatRespostas[key];
+            const msgs = document.getElementById('chatMessages');
+            const uMsg = document.createElement('div');
+            uMsg.className = 'chat-msg user'; uMsg.textContent = label;
+            msgs.appendChild(uMsg);
+            setTimeout(() => {
+                const bMsg = document.createElement('div');
+                bMsg.className = 'chat-msg bot'; bMsg.textContent = resp;
+                msgs.appendChild(bMsg);
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 600);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        // === NOTIFICAÇÃO AO SAIR DA ABA ===
+        const titleOrig = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                let blink = true;
+                window._titleBlink = setInterval(() => {
+                    document.title = blink ? '🍃 Volte! Seu pedido te espera...' : titleOrig;
+                    blink = !blink;
+                }, 1200);
+            } else {
+                clearInterval(window._titleBlink);
+                document.title = titleOrig;
+            }
+        });
+
+        // === LEMBRETE DE CARRINHO ABANDONADO ===
+        let cartTimer = null;
+        function resetCartTimer() {
+            clearTimeout(cartTimer);
+            if (cart.length > 0) {
+                cartTimer = setTimeout(() => {
+                    showToast('🛒 Ei! Seu pedido ainda está aqui. Finalize antes que acabe!');
+                }, 120000); // 2 minutos
+            }
+        }
+
+        // === WIDGET DE CLIMA (simulado realisticamente) ===
+        (function() {
+            const temps = [24,26,28,30,32,34,22,20];
+            const icons = ['☀️','🌤','⛅','🌥','🌦'];
+            const temp = temps[Math.floor(Math.random() * temps.length)];
+            const icon = icons[Math.floor(Math.random() * icons.length)];
+            const w = document.getElementById('clima-widget');
+            w.textContent = `${icon} ${temp}°C`;
+            // mensagem contextual no hero
+            if (temp >= 28) {
+                setTimeout(() => showToast(`${icon} Está ${temp}°C lá fora — perfeito para um Bowl gelado! 🥗`), 3000);
+            }
+        })();
+
+        // === NÍVEL DO CLIENTE ===
+        const niveis = ['Visitante','Apreciador 🌿','Raizeiro 🌱','Mestre Raiz 🌳'];
+        function atualizarNivel() {
+            const total = cart.reduce((s,i) => s + i.qty, 0);
+            const nivel = total === 0 ? 0 : total < 3 ? 1 : total < 6 ? 2 : 3;
+            document.getElementById('nivel-badge').textContent = niveis[nivel];
+        }
+
+        // === FIDELIDADE ===
+        const FIDELIDADE_META = 5;
+        let fidelidadeTotal = parseInt(localStorage.getItem('fidelidade') || '0');
+        function atualizarFidelidade() {
+            const total = cart.reduce((s,i) => s + i.qty, 0);
+            const prog = Math.min((fidelidadeTotal + total) / FIDELIDADE_META * 100, 100);
+            const faltam = Math.max(FIDELIDADE_META - fidelidadeTotal - total, 0);
+            document.getElementById('fidelidade-fill').style.width = prog + '%';
+            document.getElementById('fidelidade-faltam').textContent = faltam;
+            if (faltam === 0) {
+                document.getElementById('fidelidade-msg').innerHTML = '🎉 <strong>Parabéns! Você ganhou um Bowl grátis!</strong>';
+            }
+        }
+
+        // === ROLETA DA SORTE ===
+        const roletaPremios = [
+            { emoji:'🎁', label:'5% de desconto no pedido' },
+            { emoji:'🍰', label:'Sobremesa grátis!' },
+            { emoji:'💚', label:'10% de desconto!' },
+            { emoji:'🥤', label:'Bebida grátis!' },
+            { emoji:'⭐', label:'Frete grátis!' },
+            { emoji:'🌿', label:'Bowl grátis no próximo pedido!' },
+        ];
+        let rouletteSpun = false;
+        function openRoleta() { document.getElementById('roleta-modal').classList.add('open'); }
+        function closeRoleta() { document.getElementById('roleta-modal').classList.remove('open'); }
+        function spinRoleta() {
+            if (rouletteSpun) { showToast('Você já girou hoje! Volte amanhã 😊'); return; }
+            rouletteSpun = true;
+            const wheel = document.getElementById('roleta-wheel');
+            const result = document.getElementById('roleta-result');
+            const premio = roletaPremios[Math.floor(Math.random() * roletaPremios.length)];
+            const emojis = roletaPremios.map(p => p.emoji);
+            let i = 0;
+            const spin = setInterval(() => {
+                wheel.textContent = emojis[i++ % emojis.length];
+            }, 80);
+            setTimeout(() => {
+                clearInterval(spin);
+                wheel.textContent = premio.emoji;
+                result.innerHTML = `<strong>${premio.label}</strong><br><small style="opacity:0.6">Código aplicado automaticamente!</small>`;
+                showToast(`🎉 ${premio.label}`);
+            }, 1500);
+        }
+
+        // === SURPRESA DO CHEF ===
+        function surpresaChef() {
+            const cards = [...document.querySelectorAll('.card:not(.hidden):not(.esgotado)')];
+            if (!cards.length) return;
+            const card = cards[Math.floor(Math.random() * cards.length)];
+            const name = card.querySelector('h3')?.textContent || '';
+            const priceStr = card.querySelector('.price-tag')?.textContent || 'R$ 0,00';
+            const price = parseFloat(priceStr.replace('R$','').replace(',','.').trim());
+            card.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            card.style.transform = 'scale(1.08)';
+            card.style.boxShadow = '0 0 30px rgba(217,125,84,0.6)';
+            setTimeout(() => { card.style.transform = ''; card.style.boxShadow = ''; }, 800);
+            addToCart(name, price);
+            showToast(`🎲 Chef escolheu: ${name}!`);
+        }
+
+        // === DESAFIO DIÁRIO ===
+        const pratosDesafio = ['Mousse Frutas','Bowl da Estação','Brownie Terra','Salada Mix'];
+        const pratoDesafioHoje = pratosDesafio[new Date().getDay() % pratosDesafio.length];
+        document.getElementById('desafio-prato').textContent = pratoDesafioHoje;
+        function aceitarDesafio() {
+            const card = [...document.querySelectorAll('.card')].find(c => c.querySelector('h3')?.textContent === pratoDesafioHoje);
+            if (card) {
+                card.scrollIntoView({ behavior:'smooth', block:'center' });
+                card.style.outline = '3px solid var(--terracotta)';
+                setTimeout(() => card.style.outline = '', 2000);
+            }
+            showToast(`🎯 Desafio aceito! Adicione ${pratoDesafioHoje} ao pedido`);
+            document.getElementById('desafio-banner').style.background = 'linear-gradient(90deg,#27ae60,#2ecc71)';
+        }
+
+        // === MODO MESA DO RESTAURANTE ===
+        function toggleMesa() {
+            document.body.classList.toggle('mesa-mode');
+            const on = document.body.classList.contains('mesa-mode');
+            showToast(on ? '🪵 Modo Mesa ativado — bem-vindo ao Raiz!' : '☀️ Modo normal restaurado');
+        }
+
+        // === ANIMAÇÃO DE PREPARO ===
+        function finalizarPedido() {
+            toggleCart();
+            const overlay = document.getElementById('preparo-overlay');
+            overlay.classList.add('show');
+            const pans = ['🍳','🥘','🍲','👨‍🍳','🌿'];
+            let pi = 0;
+            const panAnim = setInterval(() => {
+                document.getElementById('preparo-pan').textContent = pans[pi++ % pans.length];
+            }, 400);
+            createLeaves(document.getElementById('cartCheckout'));
+            fidelidadeTotal = Math.min(fidelidadeTotal + cart.reduce((s,i) => s+i.qty,0), FIDELIDADE_META * 3);
+            localStorage.setItem('fidelidade', fidelidadeTotal);
+            setTimeout(() => {
+                clearInterval(panAnim);
+                overlay.classList.remove('show');
+                cart = [];
+                renderCart();
+                atualizarNivel();
+                atualizarFidelidade();
+                showToast('✅ Pedido enviado! Obrigado 🌿');
+            }, 3500);
+        }
+
+        // === PERSONALIZAÇÃO DO PEDIDO ===
+        let customPendente = null;
+        function openCustom(name, price) {
+            customPendente = { name, price };
+            document.getElementById('custom-title').textContent = `🎨 Personalizar: ${name}`;
+            document.getElementById('custom-modal').classList.add('open');
+        }
+        function closeCustom() { document.getElementById('custom-modal').classList.remove('open'); }
+        function confirmCustom() {
+            if (!customPendente) return;
+            const opts = [];
+            if (document.getElementById('sem-cebola').checked) opts.push('sem cebola');
+            if (document.getElementById('sem-gluten').checked) opts.push('sem glúten');
+            if (document.getElementById('extra-molho').checked) opts.push('molho extra');
+            if (document.getElementById('ponto-bem').checked) opts.push('bem passado');
+            const obs = document.getElementById('obs-text').value.trim();
+            if (obs) opts.push(obs);
+            const label = opts.length ? ` (${opts.join(', ')})` : '';
+            addToCart(customPendente.name + label, customPendente.price);
+            closeCustom();
+            [document.getElementById('sem-cebola'),document.getElementById('sem-gluten'),document.getElementById('extra-molho'),document.getElementById('ponto-bem')].forEach(el => el.checked = false);
+            document.getElementById('obs-text').value = '';
+        }
+
+        // === COMPARTILHAR PEDIDO ===
+        function compartilharPedido() {
+            const itens = cart.map(i => `${i.qty}x ${i.name}`).join(', ');
+            const total = cart.reduce((s,i) => s+i.price*i.qty,0);
+            const texto = `🌿 Meu pedido no Raiz:\n${itens}\nTotal: R$ ${total.toFixed(2).replace('.',',')}`;
+            if (navigator.share) {
+                navigator.share({ title:'Meu pedido no Raiz', text:texto, url:window.location.href });
+            } else {
+                navigator.clipboard.writeText(texto);
+                showToast('📋 Pedido copiado! Cole no WhatsApp');
+            }
+        }
+
+        // Hook no renderCart para atualizar fidelidade, nível, share e lembrete
+        const _origRenderCart = renderCart;
+        function renderCart() {
+            _origRenderCart();
+            atualizarNivel();
+            atualizarFidelidade();
+            resetCartTimer();
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) shareBtn.style.display = cart.length > 0 ? 'block' : 'none';
         }
 
         updateStatus();
