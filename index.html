@@ -90,7 +90,6 @@
         .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 4rem); color: #FFFFFF; text-align: center; }
 
-        /* ALTERAÇÃO NA VALUES-BAR */
         .values-bar { background: var(--soft-peach); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding: 60px 10%; text-align: center; gap: 40px; color: var(--dark-green); transition: background 0.5s; }
         .value-item { transition: 0.4s ease; padding: 20px; border-radius: 15px; }
         .value-item:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
@@ -271,85 +270,32 @@
         const soundToggle = document.getElementById('soundToggle');
         const natureSound = document.getElementById('natureSound');
 
+        // Lógica de Persistência do Dark Mode
+        const checkTheme = () => {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                themeToggle.classList.replace('fa-moon', 'fa-sun');
+            }
+        };
+
         document.addEventListener('mousemove', e => {
             cursor.style.top = e.clientY + 'px';
             cursor.style.left = e.clientX + 'px';
         });
 
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            themeToggle.classList.toggle('fa-sun');
-            themeToggle.classList.toggle('fa-moon');
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark); // Salva a escolha
+            
+            if (isDark) {
+                themeToggle.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeToggle.classList.replace('fa-sun', 'fa-moon');
+            }
         });
 
         soundToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             if (natureSound.paused) { natureSound.play(); soundToggle.classList.add('active'); }
-            else { natureSound.pause(); soundToggle.classList.remove('active'); }
-        });
-
-        function filterMenu(category, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const cards = document.querySelectorAll('.menu-grid .card');
-            cards.forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        function createLeaves(btn) {
-            const originalText = btn.innerText;
-            btn.innerText = "✓";
-            btn.classList.add('checked');
-            setTimeout(() => { btn.innerText = originalText; btn.classList.remove('checked'); }, 2000);
-
-            const leafCount = btn.classList.contains('ifood-full-btn') ? 400 : 30;
-            const leaves = ['🌿', '🍃', '🌱', '☘️', '🍀'];
-            for(let i=0; i < leafCount; i++) {
-                const leaf = document.createElement('div');
-                leaf.className = 'leaf';
-                leaf.innerText = leaves[Math.floor(Math.random() * leaves.length)];
-                leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
-                document.body.appendChild(leaf);
-                setTimeout(() => leaf.remove(), 6000);
-            }
-        }
-
-        function updateSlider(element, color) {
-            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('especiais').style.backgroundColor = color;
-            document.getElementById('wavePath').style.fill = color;
-        }
-
-        function updateStatus() {
-            const hour = new Date().getHours();
-            const day = new Date().getDay();
-            const isOpen = hour >= 11 && hour < 23;
-            document.getElementById('nav-dot').className = 'nav-dot ' + (isOpen ? 'dot-online' : 'dot-offline');
-            document.getElementById('nav-text').innerText = isOpen ? 'ABERTO' : 'FECHADO';
-            const hoursItems = document.querySelectorAll('.hours-list li');
-            hoursItems.forEach(li => {
-                if(parseInt(li.getAttribute('data-day')) === day) li.classList.add('today');
-            });
-        }
-
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-            const btt = document.getElementById('backToTop');
-            if (window.scrollY > 400) btt.classList.add('visible');
-            else btt.classList.remove('visible');
-        });
-
-        updateStatus();
-    </script>
-</body>
-</html>
+            else { 
