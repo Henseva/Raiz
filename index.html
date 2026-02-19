@@ -193,21 +193,12 @@
             #custom-cursor, .cursor-trail { display: none; }
             * { cursor: auto; }
 
-            /* Navbar */
+            /* Navbar layout */
             .navbar { padding: 8px 4%; height: auto; min-height: 54px; flex-wrap: nowrap; gap: 6px; }
             .logo { font-size: 1.2rem; }
-            #clima-widget { display: none; }
-            /* Navbar — ocultar ícones extras */
-            #kraft-btn { display: none; }
-            #acess-btn { display: none; }
-            #hist-nav-btn { display: none; }
-            #nivel-badge { display: none; }
             .nav-status { font-size: 0.55rem; padding: 3px 7px; }
-            .nav-links { gap: 8px; }
-            .nav-links a:not(.btn-nav) { display: none; }
-            .btn-nav { padding: 6px 12px; font-size: 0.75rem; }
+            .nav-links { gap: 6px; }
             #cart-btn { font-size: 1rem; }
-            #mesa-btn { display: none; }
 
             /* Hero */
             .hero { height: 50vh; background-attachment: scroll; }
@@ -239,16 +230,6 @@
             .slider-container { padding: 10px 5%; gap: 14px; }
             .slide { min-width: 240px; height: 400px; }
 
-            /* Carrinho lateral — ocupa tela toda no mobile */
-            #cart-panel { width: 100%; right: -100%; }
-
-            /* Toast — não sai da tela */
-            #toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.78rem; }
-            #desconto-toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.75rem; }
-
-            /* Sugestão bubble */
-            #sugestao-bubble { right: 12px; bottom: 150px; max-width: 160px; font-size: 0.72rem; }
-
             /* Desafio banner */
             #desafio-banner { flex-direction: column; gap: 8px; padding: 12px 5%; text-align: center; }
 
@@ -259,9 +240,6 @@
             .footer-content { grid-template-columns: 1fr; gap: 24px; }
             .main-footer { padding: 50px 5% 30px; }
 
-            /* Seção historia responsive */
-            .historia-section { grid-template-columns: 1fr; }
-
             /* Modais — sempre 95% da tela */
             #detail-modal .modal-box,
             #roleta-box,
@@ -270,7 +248,6 @@
         }
 
         @media (max-width: 480px) {
-            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
             .card-info { padding: 12px; }
             .card-info h3 { font-size: 0.9rem; }
             .card-info p { font-size: 0.75rem; height: 32px; }
@@ -281,7 +258,6 @@
             .drink-img { height: 150px; }
 
             .historia-text h2 { font-size: 1.4rem; }
-            .galeria-grid { grid-template-columns: repeat(2, 1fr); }
 
             /* Promo banner esconde extras */
             #promo-banner span:not(.promo-highlight) { display: none; }
@@ -584,17 +560,61 @@
         #roleta-btn { position:fixed; bottom:160px; left:20px; background:var(--terracotta); color:#fff; border:none; border-radius:30px; padding:10px 18px; font-size:0.8rem; font-weight:bold; cursor:pointer; z-index:7999; box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:transform 0.2s; display:flex; align-items:center; gap:6px; }
         #roleta-btn:hover { transform:scale(1.05); }
 
-        /* === RESPONSIVIDADE DOS BOTÕES FLUTUANTES === */
+        /* === MENU HAMBURGUER MOBILE === */
+        #mob-menu-btn { display:none; background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer; padding:4px 8px; line-height:1; }
+        #mob-menu-panel { display:none; position:fixed; top:54px; right:0; left:0; background:var(--dark-green); z-index:9100; flex-direction:column; padding:8px 0; box-shadow:0 8px 30px rgba(0,0,0,0.3); }
+        #mob-menu-panel.open { display:flex; }
+        #mob-menu-panel button { background:none; border:none; color:#fff; font-size:0.95rem; padding:14px 24px; text-align:left; cursor:pointer; border-bottom:1px solid rgba(255,255,255,0.07); transition:background 0.2s; }
+        #mob-menu-panel button:last-child { border-bottom:none; }
+        #mob-menu-panel button:hover { background:rgba(255,255,255,0.1); }
+
+        /* === RESPONSIVIDADE MOBILE — DEVE VIR APÓS TODO CSS DESKTOP === */
         @media (max-width: 768px) {
-            #chat-btn   { bottom: 14px; left: 80px; width: 44px; height: 44px; font-size: 1.1rem; }
-            #chat-panel { width: calc(100vw - 24px); left: 12px; bottom: 66px; border-radius: 16px; }
-            #roleta-btn { bottom: 66px; left: 12px; padding: 8px 12px; font-size: 0.72rem; }
-            #indica-btn { display: none; }
-            #hist-btn   { display: none; }
-            #upsell-bubble { right: 10px; left: 10px; bottom: 140px; max-width: calc(100vw - 20px); }
-        }
-        @media (max-width: 480px) {
+            /* Navbar: oculta tudo exceto logo + carrinho + lua + hamburguer */
+            #mesa-btn, #kraft-btn, #acess-btn, #hist-nav-btn,
+            #nivel-badge, #clima-widget,
+            .nav-links a:not(.btn-nav), .btn-nav { display: none; }
+            #mob-menu-btn { display: block; }
+
+            /* Menu toolbar: empilha em coluna */
+            #menu-toolbar { flex-direction: column; align-items: stretch; gap: 8px; }
+            #busca-input { width: 100%; }
+            #menu-toolbar .ordem-btn,
+            #menu-toolbar .restricao-btn { font-size: 0.7rem; padding: 6px 10px; }
+
+            /* Seção combo: selects em coluna */
+            #combo-section { padding: 40px 5%; }
+            .combo-selects { flex-direction: column; align-items: stretch; }
+            .combo-select { min-width: unset; width: 100%; }
+
+            /* Depoimentos */
+            .depoimentos-section { padding: 50px 5%; }
+
+            /* Botões flutuantes: reposiciona sem sobreposição */
+            #chat-btn  { bottom: 80px; left: 16px; width: 48px; height: 48px; font-size: 1.2rem; }
+            #chat-panel { width: calc(100vw - 32px); left: 16px; bottom: 136px; }
             #roleta-btn { display: none; }
+
+            /* Upsell: largura total */
+            #upsell-bubble { left: 12px; right: 12px; bottom: 80px; max-width: calc(100vw - 24px); }
+
+            /* Sugestão bubble */
+            #sugestao-bubble { right: 12px; left: auto; bottom: 80px; max-width: 200px; }
+
+            /* Carrinho: tela cheia */
+            #cart-panel { width: 100%; right: -100%; }
+
+            /* Toast */
+            #toast, #desconto-toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.78rem; }
+        }
+
+        @media (max-width: 480px) {
+            /* Cards: 1 coluna em telas muito pequenas */
+            .menu-grid { grid-template-columns: 1fr; gap: 12px; }
+            /* Galeria: 2 colunas */
+            .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+            /* Chat cobre mais espaço */
+            #chat-panel { width: calc(100vw - 24px); left: 12px; }
         }
         #roleta-modal { position:fixed; inset:0; z-index:9600; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         #roleta-modal.open { opacity:1; pointer-events:all; }
@@ -846,6 +866,16 @@
             <span id="nivel-badge">Visitante</span>
             <a href="#menu">Cardápio</a>
             <a href="#" class="btn-nav">iFood</a>
+            <!-- Menu mobile -->
+            <button id="mob-menu-btn" onclick="toggleMobMenu()" aria-label="Menu">☰</button>
+        </div>
+        <div id="mob-menu-panel">
+            <button onclick="toggleMobMenu();toggleMesa()">🍴 Modo Mesa</button>
+            <button onclick="toggleMobMenu();toggleKraft()">📖 Cardápio Físico</button>
+            <button onclick="toggleMobMenu();toggleAcess()">♿ Acessibilidade</button>
+            <button onclick="toggleMobMenu();openHist()">📋 Histórico</button>
+            <button onclick="toggleMobMenu();openIndica()">🎁 Indicar Amigo</button>
+            <button onclick="toggleMobMenu();openRoleta()">🎰 Roleta da Sorte</button>
         </div>
     </nav>
 
@@ -2116,6 +2146,19 @@
             document.getElementById('reserva-ok').style.display = 'block';
             showToast('🪑 Reserva confirmada! Até lá 🌿');
         }
+
+        // === MENU HAMBURGUER MOBILE ===
+        function toggleMobMenu() {
+            const panel = document.getElementById('mob-menu-panel');
+            panel.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('mob-menu-panel');
+            const btn = document.getElementById('mob-menu-btn');
+            if (panel.classList.contains('open') && !panel.contains(e.target) && e.target !== btn) {
+                panel.classList.remove('open');
+            }
+        });
 
         updateStatus();
         atualizarBotaoRoleta();
