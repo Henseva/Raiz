@@ -603,6 +603,9 @@
             /* Upsell: lado esquerdo para não sobrepor back-to-top/whatsapp */
             #upsell-bubble { left: 12px; right: auto; bottom: 140px; max-width: 200px; }
 
+            /* Painel de rank: full width no mobile */
+            #nivel-panel { width: 100%; border-radius: 0; border-left: none; border-bottom: 3px solid var(--terracotta); }
+
             /* Sugestão bubble */
             #sugestao-bubble { right: 12px; left: auto; bottom: 80px; max-width: 200px; }
 
@@ -633,7 +636,103 @@
         #roleta-close { position:absolute; top:12px; right:16px; background:none; border:none; font-size:1.3rem; cursor:pointer; opacity:0.5; }
 
         /* === NÍVEL DO CLIENTE === */
-        #nivel-badge { font-size:0.7rem; background:rgba(255,255,255,0.15); border-radius:20px; padding:3px 10px; color:#fff; margin-left:8px; transition:0.3s; }
+        #nivel-badge {
+            font-size:0.72rem; font-weight:bold; border-radius:20px; padding:4px 12px;
+            color:#fff; cursor:pointer; transition:all 0.4s ease; position:relative;
+            border:1.5px solid rgba(255,255,255,0.25); white-space:nowrap;
+            background:rgba(255,255,255,0.12);
+        }
+        #nivel-badge:hover { transform:scale(1.06); filter:brightness(1.15); }
+
+        /* Cores por nível */
+        #nivel-badge.nivel-0 { background:rgba(180,180,180,0.2); border-color:rgba(200,200,200,0.3); }
+        #nivel-badge.nivel-1 { background:rgba(82,165,100,0.35); border-color:rgba(82,165,100,0.6); box-shadow:0 0 10px rgba(82,165,100,0.25); }
+        #nivel-badge.nivel-2 { background:rgba(46,139,87,0.45); border-color:rgba(46,139,87,0.7); box-shadow:0 0 14px rgba(46,139,87,0.4); }
+        #nivel-badge.nivel-3 { background:linear-gradient(135deg,rgba(212,175,55,0.5),rgba(255,215,0,0.35)); border-color:rgba(212,175,55,0.8); box-shadow:0 0 18px rgba(212,175,55,0.5); animation:goldPulse 2.5s ease-in-out infinite; }
+        @keyframes goldPulse { 0%,100%{box-shadow:0 0 14px rgba(212,175,55,0.4)} 50%{box-shadow:0 0 28px rgba(212,175,55,0.75)} }
+
+        /* Painel de rank */
+        #nivel-panel {
+            position:fixed; top:68px; right:0; width:300px; background:var(--cream);
+            border-radius:0 0 0 20px; box-shadow:-4px 8px 40px rgba(0,0,0,0.2);
+            z-index:9050; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+            border-left:3px solid var(--terracotta); overflow:hidden;
+        }
+        #nivel-panel.open { transform:translateX(0); }
+        #nivel-panel-header {
+            background:var(--dark-green); padding:18px 20px 14px;
+            display:flex; align-items:center; justify-content:space-between;
+        }
+        #nivel-panel-header h4 { color:#fff; font-family:'DM Serif Display',serif; font-size:1.1rem; margin:0; }
+        #nivel-panel-close { background:none; border:none; color:rgba(255,255,255,0.6); font-size:1.2rem; cursor:pointer; transition:0.2s; padding:0 4px; }
+        #nivel-panel-close:hover { color:#fff; }
+        #nivel-panel-body { padding:20px; }
+
+        /* Card do rank atual */
+        #nivel-card-atual {
+            border-radius:14px; padding:16px 18px; margin-bottom:16px;
+            display:flex; align-items:center; gap:14px;
+            background:linear-gradient(135deg, var(--dark-green), #3d6b5a);
+            color:#fff; position:relative; overflow:hidden;
+        }
+        #nivel-card-atual::before { content:''; position:absolute; right:-20px; top:-20px; width:90px; height:90px; border-radius:50%; background:rgba(255,255,255,0.05); }
+        #nivel-icone { font-size:2.2rem; }
+        #nivel-nome-atual { font-family:'DM Serif Display',serif; font-size:1.15rem; font-weight:bold; }
+        #nivel-subtitulo { font-size:0.72rem; opacity:0.75; margin-top:2px; }
+
+        /* Barra de progresso */
+        #nivel-progresso-wrap { margin-bottom:16px; }
+        #nivel-prog-label { font-size:0.75rem; color:var(--text-main); opacity:0.7; margin-bottom:6px; display:flex; justify-content:space-between; }
+        #nivel-prog-bar-bg { background:rgba(0,0,0,0.08); border-radius:20px; height:8px; overflow:hidden; }
+        #nivel-prog-bar { height:100%; border-radius:20px; background:linear-gradient(90deg,var(--terracotta),#e8925a); transition:width 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+
+        /* Lista de ranks */
+        #nivel-lista { display:flex; flex-direction:column; gap:8px; }
+        .nivel-item {
+            display:flex; align-items:center; gap:12px; padding:10px 12px;
+            border-radius:10px; border:1.5px solid rgba(0,0,0,0.06);
+            background:var(--white); transition:0.2s; font-size:0.82rem;
+            color:var(--text-main);
+        }
+        .nivel-item.atual { border-color:var(--terracotta); background:rgba(184,93,57,0.06); }
+        .nivel-item.conquistado { opacity:0.55; }
+        .nivel-item-icon { font-size:1.3rem; width:28px; text-align:center; }
+        .nivel-item-info { flex:1; }
+        .nivel-item-nome { font-weight:bold; font-size:0.8rem; }
+        .nivel-item-req { font-size:0.7rem; opacity:0.6; margin-top:1px; }
+        .nivel-item-check { color:var(--terracotta); font-size:0.9rem; }
+
+        /* Animação de rank-up */
+        #rankup-overlay {
+            position:fixed; inset:0; z-index:99998; pointer-events:none;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; transition:opacity 0.4s;
+        }
+        #rankup-overlay.show { opacity:1; }
+        #rankup-card {
+            background:var(--dark-green); color:#fff; border-radius:24px;
+            padding:36px 48px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.4);
+            transform:scale(0.5) translateY(40px); transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+            border:2px solid rgba(255,255,255,0.15);
+        }
+        #rankup-overlay.show #rankup-card { transform:scale(1) translateY(0); }
+        #rankup-emoji { font-size:3.5rem; display:block; margin-bottom:8px; animation:rankBounce 0.6s ease 0.3s both; }
+        @keyframes rankBounce { 0%{transform:scale(0) rotate(-20deg)} 60%{transform:scale(1.2) rotate(5deg)} 100%{transform:scale(1) rotate(0)} }
+        #rankup-titulo { font-family:'DM Serif Display',serif; font-size:1.6rem; margin-bottom:4px; }
+        #rankup-sub { font-size:0.85rem; opacity:0.7; }
+
+        /* Rank no header mobile */
+        #mob-rank-display {
+            display:flex; align-items:center; gap:10px;
+            padding:12px 20px; border-bottom:1px solid rgba(255,255,255,0.1);
+            background:rgba(255,255,255,0.05);
+        }
+        #mob-rank-icon { font-size:1.4rem; }
+        #mob-rank-info { flex:1; }
+        #mob-rank-nome { color:#fff; font-weight:bold; font-size:0.85rem; }
+        #mob-rank-prog { font-size:0.68rem; color:rgba(255,255,255,0.55); margin-top:2px; }
+        #mob-rank-bar-bg { height:4px; background:rgba(255,255,255,0.15); border-radius:4px; margin-top:6px; overflow:hidden; }
+        #mob-rank-bar { height:100%; background:linear-gradient(90deg,var(--terracotta),#e8925a); border-radius:4px; transition:width 0.5s ease; width:0%; }
 
         /* === DESAFIO DIÁRIO === */
         #desafio-banner { background:linear-gradient(90deg,var(--dark-green),#3d6b5a); color:#fff; padding:10px 5%; display:flex; align-items:center; justify-content:center; gap:14px; font-size:0.82rem; flex-wrap:wrap; }
@@ -868,7 +967,7 @@
                 <i class="fas fa-shopping-bag"></i>
                 <span id="cart-badge"></span>
             </div>
-            <span id="nivel-badge">Visitante</span>
+            <span id="nivel-badge" class="nivel-0" onclick="toggleNivelPanel()">Visitante</span>
             <a href="#menu">Cardápio</a>
             <a href="#" class="btn-nav">iFood</a>
             <!-- Menu mobile -->
@@ -882,12 +981,84 @@
             <span>Menu</span>
             <button id="mob-menu-close" onclick="toggleMobMenu()">✕</button>
         </div>
+        <!-- Rank display no mobile -->
+        <div id="mob-rank-display">
+            <div id="mob-rank-icon">🌿</div>
+            <div id="mob-rank-info">
+                <div id="mob-rank-nome">Visitante</div>
+                <div id="mob-rank-prog">Adicione itens para subir de rank</div>
+                <div id="mob-rank-bar-bg"><div id="mob-rank-bar"></div></div>
+            </div>
+        </div>
         <button onclick="toggleMobMenu();toggleMesa()">🍴 Modo Mesa</button>
         <button onclick="toggleMobMenu();toggleKraft()">📖 Cardápio Físico</button>
         <button onclick="toggleMobMenu();toggleAcess()">♿ Acessibilidade</button>
         <button onclick="toggleMobMenu();openHist()">📋 Histórico de Pedidos</button>
         <button onclick="toggleMobMenu();openIndica()">🎁 Indicar Amigo</button>
         <button onclick="toggleMobMenu();openRoleta()">🎰 Roleta da Sorte</button>
+    </div>
+
+    <!-- Painel de Rank (desktop) -->
+    <div id="nivel-panel">
+        <div id="nivel-panel-header">
+            <h4>🏅 Seu Rank</h4>
+            <button id="nivel-panel-close" onclick="toggleNivelPanel()">✕</button>
+        </div>
+        <div id="nivel-panel-body">
+            <div id="nivel-card-atual">
+                <div id="nivel-icone">🌿</div>
+                <div>
+                    <div id="nivel-nome-atual">Visitante</div>
+                    <div id="nivel-subtitulo">Adicione itens ao carrinho</div>
+                </div>
+            </div>
+            <div id="nivel-progresso-wrap">
+                <div id="nivel-prog-label">
+                    <span id="nivel-prog-texto">Progresso para Apreciador</span>
+                    <span id="nivel-prog-num">0/3</span>
+                </div>
+                <div id="nivel-prog-bar-bg"><div id="nivel-prog-bar" style="width:0%"></div></div>
+            </div>
+            <div id="nivel-lista">
+                <div class="nivel-item atual" id="nivel-item-0">
+                    <div class="nivel-item-icon">👤</div>
+                    <div class="nivel-item-info">
+                        <div class="nivel-item-nome">Visitante</div>
+                        <div class="nivel-item-req">Rank inicial</div>
+                    </div>
+                </div>
+                <div class="nivel-item" id="nivel-item-1">
+                    <div class="nivel-item-icon">🌿</div>
+                    <div class="nivel-item-info">
+                        <div class="nivel-item-nome">Apreciador</div>
+                        <div class="nivel-item-req">1–2 itens no carrinho</div>
+                    </div>
+                </div>
+                <div class="nivel-item" id="nivel-item-2">
+                    <div class="nivel-item-icon">🌱</div>
+                    <div class="nivel-item-info">
+                        <div class="nivel-item-nome">Raizeiro</div>
+                        <div class="nivel-item-req">3–5 itens · +1 giro na roleta</div>
+                    </div>
+                </div>
+                <div class="nivel-item" id="nivel-item-3">
+                    <div class="nivel-item-icon">🌳</div>
+                    <div class="nivel-item-info">
+                        <div class="nivel-item-nome">Mestre Raiz</div>
+                        <div class="nivel-item-req">6+ itens · +1 giro na roleta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rank-up animation overlay -->
+    <div id="rankup-overlay">
+        <div id="rankup-card">
+            <span id="rankup-emoji">🌱</span>
+            <div id="rankup-titulo">Você subiu de rank!</div>
+            <div id="rankup-sub">Raizeiro desbloqueado</div>
+        </div>
     </div>
 
     <header class="hero">
@@ -1713,16 +1884,135 @@
 
         // === NÍVEL DO CLIENTE ===
         const niveis = ['Visitante','Apreciador 🌿','Raizeiro 🌱','Mestre Raiz 🌳'];
+        const niveisInfo = [
+            { icon:'👤', nome:'Visitante',     req:'Rank inicial',                  cor:'nivel-0', min:0,  max:1  },
+            { icon:'🌿', nome:'Apreciador',    req:'1–2 itens no carrinho',         cor:'nivel-1', min:1,  max:3  },
+            { icon:'🌱', nome:'Raizeiro',      req:'3–5 itens · +1 giro na roleta', cor:'nivel-2', min:3,  max:6  },
+            { icon:'🌳', nome:'Mestre Raiz',   req:'6+ itens · +1 giro na roleta',  cor:'nivel-3', min:6,  max:6  },
+        ];
         let nivelAnterior = 0;
+
         function atualizarNivel() {
             const total = cart.reduce((s,i) => s + i.qty, 0);
             const nivel = total === 0 ? 0 : total < 3 ? 1 : total < 6 ? 2 : 3;
-            document.getElementById('nivel-badge').textContent = niveis[nivel];
-            // Giro extra ao subir de nível (Raizeiro ou Mestre)
-            if (nivel > nivelAnterior && nivel >= 2) {
-                setTimeout(() => ganharGiroExtra(`${niveis[nivel]} desbloqueado`), 600);
+            const info  = niveisInfo[nivel];
+
+            // Atualiza badge
+            const badge = document.getElementById('nivel-badge');
+            badge.textContent = niveis[nivel];
+            badge.className   = info.cor;
+
+            // Rank-up animation + giro extra
+            if (nivel > nivelAnterior && nivel >= 1) {
+                if (nivel >= 2) setTimeout(() => ganharGiroExtra(`${niveis[nivel]} desbloqueado`), 800);
+                mostrarRankUp(nivel);
             }
             nivelAnterior = nivel;
+
+            // Atualiza painel desktop
+            atualizarPainelNivel(nivel, total);
+            // Atualiza rank no mobile menu
+            atualizarRankMobile(nivel, total);
+        }
+
+        function atualizarPainelNivel(nivel, total) {
+            const info = niveisInfo[nivel];
+
+            // Card atual
+            document.getElementById('nivel-icone').textContent     = info.icon;
+            document.getElementById('nivel-nome-atual').textContent = niveis[nivel];
+
+            // Progresso
+            let progPct = 0, progTexto = '', progNum = '';
+            if (nivel < 3) {
+                const prox   = niveisInfo[nivel + 1];
+                const feitos = total - info.min;
+                const meta   = prox.min - info.min;
+                progPct      = Math.min(100, Math.round((feitos / meta) * 100));
+                progTexto    = `Progresso para ${niveisInfo[nivel+1].nome}`;
+                progNum      = `${Math.max(0, feitos)}/${meta}`;
+                document.getElementById('nivel-subtitulo').textContent = `Faltam ${Math.max(0, prox.min - total)} itens para ${niveisInfo[nivel+1].nome}`;
+            } else {
+                progPct   = 100;
+                progTexto = 'Rank máximo atingido! 🏆';
+                progNum   = '✓';
+                document.getElementById('nivel-subtitulo').textContent = 'Você é um Mestre Raiz!';
+            }
+            document.getElementById('nivel-prog-bar').style.width    = progPct + '%';
+            document.getElementById('nivel-prog-texto').textContent   = progTexto;
+            document.getElementById('nivel-prog-num').textContent     = progNum;
+
+            // Items da lista
+            niveisInfo.forEach((n, i) => {
+                const el = document.getElementById(`nivel-item-${i}`);
+                if (!el) return;
+                el.className = 'nivel-item' + (i === nivel ? ' atual' : i < nivel ? ' conquistado' : '');
+                const check = el.querySelector('.nivel-item-check');
+                if (i < nivel) {
+                    if (!check) { const c = document.createElement('span'); c.className='nivel-item-check'; c.textContent='✓'; el.appendChild(c); }
+                } else if (check) check.remove();
+            });
+        }
+
+        function atualizarRankMobile(nivel, total) {
+            const info = niveisInfo[nivel];
+            const nomeEl = document.getElementById('mob-rank-nome');
+            const progEl = document.getElementById('mob-rank-prog');
+            const barEl  = document.getElementById('mob-rank-bar');
+            const iconEl = document.getElementById('mob-rank-icon');
+            if (!nomeEl) return;
+
+            iconEl.textContent = info.icon;
+            nomeEl.textContent = niveis[nivel];
+
+            let pct = 0;
+            if (nivel < 3) {
+                const prox   = niveisInfo[nivel + 1];
+                const feitos = total - info.min;
+                const meta   = prox.min - info.min;
+                pct          = Math.min(100, Math.round((feitos / meta) * 100));
+                progEl.textContent = `Faltam ${Math.max(0, prox.min - total)} itens para ${niveisInfo[nivel+1].nome}`;
+            } else {
+                pct = 100;
+                progEl.textContent = '🏆 Rank máximo atingido!';
+            }
+            barEl.style.width = pct + '%';
+        }
+
+        function toggleNivelPanel() {
+            const panel = document.getElementById('nivel-panel');
+            panel.classList.toggle('open');
+        }
+
+        // Fecha painel ao clicar fora
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('nivel-panel');
+            const badge = document.getElementById('nivel-badge');
+            if (panel && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== badge) {
+                panel.classList.remove('open');
+            }
+        });
+
+        function mostrarRankUp(nivel) {
+            const info = niveisInfo[nivel];
+            const ov   = document.getElementById('rankup-overlay');
+            document.getElementById('rankup-emoji').textContent   = info.icon;
+            document.getElementById('rankup-titulo').textContent  = `${niveis[nivel]} desbloqueado!`;
+            document.getElementById('rankup-sub').textContent     = info.req;
+            ov.classList.add('show');
+            // Dispara folhas comemorativas
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const leaf = document.createElement('div');
+                    leaf.className = 'leaf';
+                    leaf.innerText = ['🌿','🍃','🌱','⭐','✨'][Math.floor(Math.random()*5)];
+                    leaf.style.left = Math.random()*100 + 'vw';
+                    leaf.style.animationDuration = (Math.random()*2+1.5)+'s';
+                    document.body.appendChild(leaf);
+                    setTimeout(()=>leaf.remove(), 4000);
+                }, i * 60);
+            }
+            setTimeout(() => ov.classList.remove('show'), 2800);
         }
 
         // === FIDELIDADE ===
@@ -2178,6 +2468,8 @@
         window.addEventListener('scroll', () => {
             const panel = document.getElementById('mob-menu-panel');
             if (panel && panel.classList.contains('open')) panel.classList.remove('open');
+            const np = document.getElementById('nivel-panel');
+            if (np && np.classList.contains('open')) np.classList.remove('open');
         }, { passive: true });
 
         updateStatus();
