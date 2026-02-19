@@ -197,6 +197,10 @@
             .navbar { padding: 8px 4%; height: auto; min-height: 54px; flex-wrap: nowrap; gap: 6px; }
             .logo { font-size: 1.2rem; }
             #clima-widget { display: none; }
+            /* Navbar — ocultar ícones extras */
+            #kraft-btn { display: none; }
+            #acess-btn { display: none; }
+            #hist-nav-btn { display: none; }
             #nivel-badge { display: none; }
             .nav-status { font-size: 0.55rem; padding: 3px 7px; }
             .nav-links { gap: 8px; }
@@ -238,10 +242,6 @@
             /* Carrinho lateral — ocupa tela toda no mobile */
             #cart-panel { width: 100%; right: -100%; }
 
-            /* Botões flutuantes da esquerda — reorganiza empilhado */
-            #chat-btn   { bottom: 160px; left: 12px; width: 44px; height: 44px; font-size: 1.1rem; }
-            #roleta-btn { bottom: 210px; left: 12px; padding: 7px 12px; font-size: 0.7rem; }
-
             /* Toast — não sai da tela */
             #toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.78rem; }
             #desconto-toast { max-width: 90vw; white-space: normal; text-align: center; font-size: 0.75rem; }
@@ -282,10 +282,6 @@
 
             .historia-text h2 { font-size: 1.4rem; }
             .galeria-grid { grid-template-columns: repeat(2, 1fr); }
-
-            /* Roleta e chat ainda mais compactos */
-            #roleta-btn { display: none; } /* aparece só via menu */
-            #chat-panel { width: 100%; left: 0; border-radius: 20px 20px 0 0; bottom: 0; top: auto; }
 
             /* Promo banner esconde extras */
             #promo-banner span:not(.promo-highlight) { display: none; }
@@ -456,7 +452,7 @@
         .card-info p.typing-desc { height:38px; overflow:hidden; }
 
         /* === TAGS NOS CARDS === */
-        .card-tag { position:absolute; top:10px; left:10px; font-size:0.6rem; font-weight:bold; padding:3px 10px; border-radius:20px; z-index:4; letter-spacing:0.5px; pointer-events:none; }
+        .card-tag { position:absolute; top:10px; left:10px; font-size:0.6rem; font-weight:bold; padding:3px 10px; border-radius:20px; z-index:15; letter-spacing:0.5px; pointer-events:none; }
         .tag-mais-vendido { background:#e74c3c; color:#fff; }
         .tag-novo { background:#3498db; color:#fff; }
         .tag-chef { background:var(--dark-green); color:var(--soft-peach); }
@@ -485,7 +481,7 @@
         /* === FUNDO POR HORÁRIO === */
         body.hora-manha { --bg-body:#e8f4fd; --light-grey:#d1eaf8; }
         body.hora-tarde { --bg-body:#fdf3e8; --light-grey:#f8e4cc; }
-        body.hora-noite { --bg-body:#1a1a2e; --light-grey:#16213e; --text-main:#e0e0e0; --cream:#0f3460; }
+        body.hora-noite { --bg-body:#1a1a2e; --light-grey:#16213e; --text-main:#e0e0e0; --cream:#0f3460; --card-shadow:rgba(255,255,255,0.06); }
 
         /* === CONTADOR DE PEDIDOS === */
         #pedidos-counter { background:rgba(0,0,0,0.18); backdrop-filter:blur(8px); color:#fff; font-size:0.75rem; font-weight:bold; padding:5px 14px; border-radius:20px; display:inline-flex; align-items:center; gap:6px; margin-top:14px; }
@@ -587,6 +583,19 @@
         /* === ROLETA DA SORTE === */
         #roleta-btn { position:fixed; bottom:160px; left:20px; background:var(--terracotta); color:#fff; border:none; border-radius:30px; padding:10px 18px; font-size:0.8rem; font-weight:bold; cursor:pointer; z-index:7999; box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:transform 0.2s; display:flex; align-items:center; gap:6px; }
         #roleta-btn:hover { transform:scale(1.05); }
+
+        /* === RESPONSIVIDADE DOS BOTÕES FLUTUANTES === */
+        @media (max-width: 768px) {
+            #chat-btn   { bottom: 14px; left: 80px; width: 44px; height: 44px; font-size: 1.1rem; }
+            #chat-panel { width: calc(100vw - 24px); left: 12px; bottom: 66px; border-radius: 16px; }
+            #roleta-btn { bottom: 66px; left: 12px; padding: 8px 12px; font-size: 0.72rem; }
+            #indica-btn { display: none; }
+            #hist-btn   { display: none; }
+            #upsell-bubble { right: 10px; left: 10px; bottom: 140px; max-width: calc(100vw - 20px); }
+        }
+        @media (max-width: 480px) {
+            #roleta-btn { display: none; }
+        }
         #roleta-modal { position:fixed; inset:0; z-index:9600; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         #roleta-modal.open { opacity:1; pointer-events:all; }
         #roleta-modal .modal-bg { position:absolute; inset:0; background:rgba(0,0,0,0.7); }
@@ -1583,9 +1592,9 @@
 
         // === FILTRO COM ANIMAÇÃO (integrado em filterMenu abaixo) ===
 
-        // === MODO NOTURNO AUTOMÁTICO (após 20h) ===
+        // === MODO NOTURNO AUTOMÁTICO (após 20h) — só se hora-noite não já aplicou tema escuro ===
         const hAtual = new Date().getHours();
-        if ((hAtual >= 20 || hAtual < 6) && !document.body.classList.contains('dark-mode')) {
+        if ((hAtual >= 20 || hAtual < 6) && !document.body.classList.contains('dark-mode') && !document.body.classList.contains('hora-noite')) {
             setTimeout(() => {
                 document.body.classList.add('dark-mode');
                 themeToggle.classList.add('fa-sun');
