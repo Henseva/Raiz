@@ -738,11 +738,12 @@
         <div class="modal-bg" onclick="closeRoleta()"></div>
         <div id="roleta-box">
             <button id="roleta-close" onclick="closeRoleta()">✕</button>
-            <h3 style="font-family:'DM Serif Display',serif;color:var(--dark-green);margin-bottom:8px">🎰 Roleta da Sorte</h3>
-            <p style="font-size:0.8rem;opacity:0.6;margin-bottom:20px">Gire e ganhe um desconto especial!</p>
+            <h3 style="font-family:'DM Serif Display',serif;color:var(--dark-green);margin-bottom:4px">🎰 Roleta da Sorte</h3>
+            <p id="roleta-status" style="font-size:0.78rem;margin-bottom:16px;">carregando...</p>
             <span id="roleta-wheel">🎰</span>
             <div id="roleta-result"></div>
             <button id="roleta-spin-btn" onclick="spinRoleta()">Girar!</button>
+            <p style="font-size:0.68rem;opacity:0.45;margin-top:14px">💡 Ganhe giros extras completando a fidelidade ou subindo de nível</p>
         </div>
     </div>
 
@@ -1671,10 +1672,16 @@
 
         // === NÍVEL DO CLIENTE ===
         const niveis = ['Visitante','Apreciador 🌿','Raizeiro 🌱','Mestre Raiz 🌳'];
+        let nivelAnterior = 0;
         function atualizarNivel() {
             const total = cart.reduce((s,i) => s + i.qty, 0);
             const nivel = total === 0 ? 0 : total < 3 ? 1 : total < 6 ? 2 : 3;
             document.getElementById('nivel-badge').textContent = niveis[nivel];
+            // Giro extra ao subir de nível (Raizeiro ou Mestre)
+            if (nivel > nivelAnterior && nivel >= 2) {
+                setTimeout(() => ganharGiroExtra(`${niveis[nivel]} desbloqueado`), 600);
+            }
+            nivelAnterior = nivel;
         }
 
         // === FIDELIDADE ===
@@ -1688,6 +1695,12 @@
             document.getElementById('fidelidade-faltam').textContent = faltam;
             if (faltam === 0) {
                 document.getElementById('fidelidade-msg').innerHTML = '🎉 <strong>Parabéns! Você ganhou um Bowl grátis!</strong>';
+                // Giro extra ao completar fidelidade (1x por ciclo)
+                const chave = 'fidelidade-giro-' + Math.floor(fidelidadeTotal / FIDELIDADE_META);
+                if (!localStorage.getItem(chave)) {
+                    localStorage.setItem(chave, '1');
+                    setTimeout(() => ganharGiroExtra('🏆 Fidelidade completa!'), 800);
+                }
             }
         }
 
@@ -1700,25 +1713,86 @@
             { emoji:'⭐', label:'Frete grátis!' },
             { emoji:'🌿', label:'Bowl grátis no próximo pedido!' },
         ];
-        let rouletteSpun = false;
-        function openRoleta() { document.getElementById('roleta-modal').classList.add('open'); }
+
+        // Persistência real: 1 giro grátis por dia + extras ganhos
+        function getGiros() {
+            const hoje = new Date().toDateString();
+            const saved = JSON.parse(localStorage.getItem('raiz-roleta') || '{}');
+            // Reseta giro diário se mudou o dia
+            if (saved.dia !== hoje) {
+                saved.dia = hoje;
+                saved.girado = false;   // giro diário disponível
+                saved.extras = saved.extras || 0;
+                localStorage.setItem('raiz-roleta', JSON.stringify(saved));
+            }
+            return saved;
+        }
+        function salvarGiros(dados) {
+            localStorage.setItem('raiz-roleta', JSON.stringify(dados));
+        }
+        function girosDisponiveis() {
+            const g = getGiros();
+            return (!g.girado ? 1 : 0) + (g.extras || 0);
+        }
+        function ganharGiroExtra(motivo) {
+            const g = getGiros();
+            g.extras = (g.extras || 0) + 1;
+            salvarGiros(g);
+            showToast(`🎰 ${motivo} — Você ganhou 1 giro extra na Roleta!`);
+            atualizarBotaoRoleta();
+        }
+        function atualizarBotaoRoleta() {
+            const disponiveis = girosDisponiveis();
+            const btn = document.getElementById('roleta-btn');
+            const spinBtn = document.getElementById('roleta-spin-btn');
+            const statusEl = document.getElementById('roleta-status');
+            if (btn) btn.textContent = disponiveis > 0
+                ? `🎰 Roleta da Sorte (${disponiveis})`
+                : `🎰 Roleta da Sorte`;
+            if (statusEl) {
+                if (disponiveis > 0) {
+                    statusEl.textContent = `✨ Você tem ${disponiveis} giro${disponiveis > 1 ? 's' : ''} disponível!`;
+                    statusEl.style.color = 'var(--terracotta)';
+                } else {
+                    statusEl.textContent = 'Sem giros hoje. Volte amanhã ou ganhe extras!';
+                    statusEl.style.color = 'rgba(0,0,0,0.4)';
+                }
+            }
+            if (spinBtn) spinBtn.disabled = disponiveis === 0;
+        }
+
+        function openRoleta() {
+            document.getElementById('roleta-modal').classList.add('open');
+            atualizarBotaoRoleta();
+        }
         function closeRoleta() { document.getElementById('roleta-modal').classList.remove('open'); }
         function spinRoleta() {
-            if (rouletteSpun) { showToast('Você já girou hoje! Volte amanhã 😊'); return; }
-            rouletteSpun = true;
+            const disponiveis = girosDisponiveis();
+            if (disponiveis === 0) {
+                showToast('Sem giros disponíveis hoje. Volte amanhã! 😊');
+                return;
+            }
+            // Consome o giro
+            const g = getGiros();
+            if (!g.girado) { g.girado = true; }
+            else { g.extras = Math.max(0, (g.extras || 0) - 1); }
+            salvarGiros(g);
+
             const wheel = document.getElementById('roleta-wheel');
             const result = document.getElementById('roleta-result');
+            const spinBtn = document.getElementById('roleta-spin-btn');
+            spinBtn.disabled = true;
+            result.innerHTML = '';
             const premio = roletaPremios[Math.floor(Math.random() * roletaPremios.length)];
             const emojis = roletaPremios.map(p => p.emoji);
             let i = 0;
-            const spin = setInterval(() => {
-                wheel.textContent = emojis[i++ % emojis.length];
-            }, 80);
+            const spin = setInterval(() => { wheel.textContent = emojis[i++ % emojis.length]; }, 80);
             setTimeout(() => {
                 clearInterval(spin);
                 wheel.textContent = premio.emoji;
-                result.innerHTML = `<strong>${premio.label}</strong><br><small style="opacity:0.6">Código aplicado automaticamente!</small>`;
+                result.innerHTML = `<strong>${premio.label}</strong><br><small style="opacity:0.6;font-size:0.8rem">Código aplicado automaticamente!</small>`;
                 showToast(`🎉 ${premio.label}`);
+                atualizarBotaoRoleta();
             }, 1500);
         }
 
@@ -2044,6 +2118,7 @@
         }
 
         updateStatus();
+        atualizarBotaoRoleta();
     </script>
 </body>
 </html>
